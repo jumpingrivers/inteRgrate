@@ -10,7 +10,7 @@
 check_namespace = function(no_imports = NULL) {
   set_crayon()
   if (is.null(no_imports)) {
-    no_imports = Sys.getenv("NO_IMPORTS", 0)
+    no_imports = get_env_variable("NO_IMPORTS", 0)
   }
   msg = glue("{symbol$circle_filled} Checking namespace for imports()...check_namespace()")
   message(blue(msg))
@@ -18,7 +18,8 @@ check_namespace = function(no_imports = NULL) {
   namespace = readLines("NAMESPACE")
   imports_only = namespace[substr(namespace, 1, 7) == "import("]
   if (length(imports_only) <= no_imports) {
-    msg = glue("{symbol$tick} Imports look good")
+    msg = glue("{symbol$tick} Imports look good - \\
+               {length(imports_only)} found, {no_imports} allowed")
     message(green(msg))
     return(invisible(NULL))
   }
