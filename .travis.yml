@@ -1,0 +1,34 @@
+language: r
+cache: packages
+env:
+  global:
+    - ALLOWED_WARNINGS=0
+    - ALLOWED_NOTES=0
+
+packages:
+  - covr
+
+r:
+#  - oldrel
+  - release
+#  - devel
+
+script:
+  - Rscript -e 'devtools::install(".", upgrade = "never", build_vignettes = TRUE)'
+  - Rscript -e "inteRgrate::check_pkg(install = FALSE)"
+  - Rscript -e "inteRgrate::check_r_filenames()"
+  - Rscript -e "inteRgrate::check_tidy_description()"
+  - Rscript -e "inteRgrate::check_lintr()"
+  - Rscript -e "inteRgrate::check_namespace()"
+
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+## Only run covr on release
+#after_success:
+#  - Rscript -e "if(length(grep('1\$', ${TRAVIS_JOB_NUMBER}))) covr::codecov()";
+
+
