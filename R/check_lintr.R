@@ -1,7 +1,8 @@
 #' @rdname check_pkg
+#' @param vignettes Default \code{TRUE}. Should the vignettes be linted.
 #' @importFrom lintr lint_package
 #' @export
-check_lintr = function() {
+check_lintr = function(vignettes = TRUE) {
   set_crayon()
   if (!file.exists(".lintr")) {
     stop("Please create a .lintr file", call. = FALSE)
@@ -14,8 +15,21 @@ check_lintr = function() {
     lapply(lints, print)
     msg = glue("{symbol$cross} Lintr failed")
     message(red(msg))
-    stop(red("Please fix lints"), call. = FALSE)
+    stop(red("Please fix lints in the R/"), call. = FALSE)
   }
+
+  if (isTRUE(vignettes) && file.exists("vignettes")) {
+    msg = glue("{symbol$circle_filled} Checking vignettes")
+    message(blue(msg))
+    vig_lints = lintr::lint_dir("vignettes")
+    if (length(vig_lints) > 0) {
+      lapply(vig_lints, print)
+      msg = glue("{symbol$cross} Lintr failed")
+      message(red(msg))
+      stop(red("Please fix lints in the vignettes/"), call. = FALSE)
+    }
+  }
+
   msg = glue("{symbol$tick} Lint looks good")
   message(green(msg))
   return(invisible(NULL))
