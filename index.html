@@ -69,24 +69,87 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The goal of inteRgrate is to make continuous integration more consistent across platforms. Currently, the package is being tested on GitHub and GitLab. Examples to follow</p>
+<p>The goal of inteRgrate is to make continuous integration more consistent across platforms. Currently, the package is used by <a href="https://www.jumpingrivers.com">Jumping Rivers</a> on GitHub and GitLab.</p>
+<p>The rationale behind this package is</p>
+<ul>
+<li>While checking R packages on travis is easy, support for GitLab (and others) is lacking.</li>
+<li>When developing a package, sometimes we want to specify the exact number of NOTES and WARNINGS we expect/allow.</li>
+<li>Having a consistent system for different CI is desirable.</li>
+<li>For our CI steps, we have a few other checks that we tend to implement, e.g. lints, not using imports within namespaces.</li>
+</ul>
+<p>This package is still being developed, but we are now actively using it, so hopefully we can avoid breaking changes.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<!-- You can install the released version of inteRgrate from [CRAN](https://CRAN.R-project.org) with: -->
-<!-- ``` r -->
-<!-- install.packages("inteRgrate") -->
-<!-- ``` -->
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
+<p>As the package is currently being developed, it isn’t yet on CRAN. The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"jumpingrivers/inteRgrate"</span>)</a></code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="functions" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(inteRgrate)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">## basic example code</a></code></pre></div>
+<a href="#functions" class="anchor"></a>Functions</h2>
+<p>The package is meant to be used within a continuous integration framework, e.g. travis, GitLab runner. This package contains a number functions that are useful for CI:</p>
+<ul>
+<li>
+<code><a href="reference/check_pkg.html">check_pkg()</a></code> - installs package dependencies, builds &amp; installs the package, before running package check. By default, <strong>any</strong> notes or warnings will raise an error message. This can be changed by setting the environment variables <code>ALLOWED_NOTES</code> and <code>ALLOWED_WARNINGS</code>.</li>
+<li>
+<code><a href="reference/check_namespace.html">check_namespace()</a></code> - check for instances of <code>import()</code> in the NAMESPACE file. By default, no imports are allowed. This can be changed via the environment variable <code>NO_IMPORTS</code>
+</li>
+<li>
+<code><a href="reference/check_pkg.html">check_lintr()</a></code> - runs lintr on the package, README.Rmd and vignettes.</li>
+<li>
+<code><a href="reference/check_pkg.html">check_r_filenames()</a></code> - ensures file extensions are <code>.R</code> and all names are lower case.</li>
+<li>
+<code><a href="reference/check_pkg.html">check_tidy_description()</a></code> - ensure that the DESCRIPTION file is tidy, via <code><a href="https://usethis.r-lib.org/reference/tidyverse.html">usethis::use_tidy_description()</a></code>.</li>
+</ul>
+<p>See the help pages for customisation.</p>
+<div id="example--travis-yml-file" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example--travis-yml-file" class="anchor"></a>Example .travis.yml file</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">language<span class="op">:</span><span class="st"> </span>r</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">cache<span class="op">:</span><span class="st"> </span>packages</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">env<span class="op">:</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span>global<span class="op">:</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="st">    </span><span class="op">-</span><span class="st"> </span>ALLOWED_WARNINGS=<span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="op">-</span><span class="st"> </span>ALLOWED_NOTES=<span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="op">-</span><span class="st"> </span>NO_IMPORTS=<span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">script<span class="op">:</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">  </span><span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_pkg()"</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">  <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_r_filenames()"</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">  <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_tidy_description()"</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">  <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_lintr()"</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">  <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_namespace()"</span></a></code></pre></div>
+</div>
+<div id="example--gitlab-yml-file" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example--gitlab-yml-file" class="anchor"></a>Example .gitlab.yml file</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">image<span class="op">:</span><span class="st"> </span>rocker<span class="op">/</span>r<span class="op">-</span>ubuntu<span class="op">:</span><span class="fl">18.04</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">variables<span class="op">:</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span>ALLOWED_WARNINGS<span class="op">:</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  ALLOWED_NOTES<span class="op">:</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  NO_IMPORTS<span class="op">:</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">before_script<span class="op">:</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">  </span><span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"install.packages('remotes')"</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"remotes::install_github('jumpingrivers/inteRgrate')"</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">check<span class="op">:</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">  </span>script<span class="op">:</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">    </span><span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_pkg()"</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_r_filenames()"</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">    <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_tidy_description()"</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">    <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_lintr()"</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">    <span class="op">-</span><span class="st"> </span>Rscript <span class="op">-</span>e <span class="st">"inteRgrate::check_namespace()"</span></a></code></pre></div>
+</div>
+<div id="command-line" class="section level3">
+<h3 class="hasAnchor">
+<a href="#command-line" class="anchor"></a>Command line</h3>
+<p>You can also use it at the command line</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"inteRgrate"</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/check_pkg.html">check_pkg</a></span>()</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="reference/check_pkg.html">check_r_filenames</a></span>()</a></code></pre></div>
+</div>
 </div>
 <div id="other-information" class="section level2">
 <h2 class="hasAnchor">
