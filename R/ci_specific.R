@@ -42,7 +42,7 @@ get_build_dir = function(path = NULL) {
     } else if (is.null(path) && is_gitlab()) {
       path = Sys.getenv("CI_PROJECT_DIR", ".")
     } else {
-      path = "."
+      path = getwd()
     }
   }
   return(path)

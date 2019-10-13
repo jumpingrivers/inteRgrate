@@ -1,3 +1,5 @@
+#' @rdname
+#' @export
 get_pkg_tar_ball = function() {
   des_file = file.path(get_build_dir(), "DESCRIPTION")
   des = read.dcf(des_file)
