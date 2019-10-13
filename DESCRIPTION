@@ -1,7 +1,7 @@
 Type: Package
 Package: inteRgrate
 Title: GitLab CI Package
-Version: 0.0.1.9000
+Version: 0.0.1.9001
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",

@@ -31,11 +31,15 @@ fast_pre_install = function(path = ".", suggests = FALSE) {
   cran_pkgs = cran_pkgs[!is.na(cran_pkgs)]
 
   avail = pkgs[pkgs %in% cran_pkgs]
-  avail = paste0("r-cran-", avail)
   if (length(avail) == 0) return(invisible(NULL))
 
-  cat(avail, sep = "\n")
-  system2("apt-get", args = c("update"))
+  avail = paste0("r-cran-", avail)
+  for (pkg in avail) {
+    msg = glue::glue_col("{blue} {symbol$info} Installing {pkg}")
+    message(msg)
+  }
+
+  system2("apt-get", args = "update")
   system2("apt-get", args = c("install", "-y", avail))
 
   return(invisible(NULL))
@@ -77,6 +81,7 @@ install_pkg = function(path = NULL) {
   message(blue(msg))
 
   devtools::install(path, upgrade = "never", build_vignettes = TRUE)
-  msg = glue::glue("{symbol$tick} Package installed")
-  message(green(msg))
+  msg = glue::glue_col("{green} {symbol$tick} Package installed")
+  message(msg)
+  return(invisible(NULL))
 }

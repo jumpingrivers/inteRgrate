@@ -11,7 +11,7 @@
 \usage{
 build_pkg(path = NULL)
 
-check_lintr(vignettes = TRUE)
+check_lintr(readme = TRUE, vignettes = TRUE)
 
 check_pkg(path = NULL, build = TRUE, install = TRUE)
 
@@ -21,6 +21,8 @@ check_tidy_description(path = NULL)
 }
 \arguments{
 \item{path}{Default \code{.} The location of the package}
+
+\item{readme}{Default \code{TRUE}. Should README.Rmd be checked}
 
 \item{vignettes}{Default \code{TRUE}. Should the vignettes be linted.}
 

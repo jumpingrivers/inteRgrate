@@ -19,7 +19,7 @@ get_env_variable = function(env_variable, default = NULL) {
 #' @param path Default \code{.} The location of the package
 #' @param build Default \code{TRUE}. Call build_pkg() before checking.
 #' @param install Default \code{TRUE}. Call install_pkg() after checking
-#' @importFrom glue glue
+#' @importFrom glue glue glue_col
 #' @importFrom devtools check_built
 #' @export
 check_pkg = function(path = NULL,
@@ -27,6 +27,9 @@ check_pkg = function(path = NULL,
                      install = TRUE) {
   set_crayon()
   if (is.null(path)) path = get_build_dir()
+
+  ## Install package dependencies
+  install_deps(path)
   if (isTRUE(build)) {
     pkg_tar_ball = build_pkg(path)
   } else {
