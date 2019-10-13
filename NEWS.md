@@ -1,5 +1,7 @@
 # inteRgrate (development version)
-  * Adding lintr checks to vignettes
+  * Feature: lintr checks to vignettes
+  * Feature: pkgdown site
+  * Feature: Install dependencies by default
 
 # Version 0.1
   * Initial version

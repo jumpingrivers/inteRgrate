@@ -4,3 +4,6 @@
 ^\.lintr$
 ^\.travis\.yml$
 ^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
