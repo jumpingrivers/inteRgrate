@@ -4,12 +4,14 @@
 \alias{gitlab_instead_of}
 \title{Gitlab rewrite
 
-Rewrites the gitlab URL. Using this means we don't require specific runner gitlab commands.}
+Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
+on successful builds.}
 \usage{
 gitlab_instead_of()
 }
 \description{
 Gitlab rewrite
 
-Rewrites the gitlab URL. Using this means we don't require specific runner gitlab commands.
+Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
+on successful builds.
 }

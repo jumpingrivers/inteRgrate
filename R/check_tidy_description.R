@@ -1,4 +1,8 @@
-#' @rdname check_pkg
+#' Tidy description
+#'
+#' Checks for a tidy description file (via the \code{usethis} function
+#' \code{use_tidy_description}).
+#' @inheritParams check_pkg
 #' @export
 check_tidy_description = function(path = NULL) {
   set_crayon()

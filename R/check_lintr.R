@@ -1,4 +1,6 @@
-#' @rdname check_pkg
+#' @title The lintr check
+#'
+#' Runs lint from the \code{lintr} package.
 #' @param readme Default \code{TRUE}. Should README.Rmd be checked
 #' @param vignettes Default \code{TRUE}. Should the vignettes be linted.
 #' @importFrom lintr lint_package lint_dir lint

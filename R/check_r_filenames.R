@@ -3,7 +3,6 @@
 #' Checks that all filenames are lower case and the file extension matches
 #' .\code{extension}
 #' @param extension Preferred R file extension. Default \code{R}.
-#' @rdname check_pkg
 #' @export
 check_r_filenames = function(extension = "R") {
   set_crayon()
