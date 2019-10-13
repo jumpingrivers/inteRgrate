@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Build R package — get_pkg_tar_ball • inteRgrate</title>
+<title>The lintr check
+
+Runs lint from the <code>lintr</code> package. — check_lintr • inteRgrate</title>
 
 
 <!-- jquery -->
@@ -35,8 +37,11 @@
 
 
 
-<meta property="og:title" content="Build R package — get_pkg_tar_ball" />
-<meta property="og:description" content="Path is the CI project directory or .." />
+<meta property="og:title" content="The lintr check
+
+Runs lint from the <code>lintr</code> package. — check_lintr" />
+<meta property="og:description" content="The lintr check
+Runs lint from the lintr package." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,35 +108,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Build R package</h1>
+    <h1>The lintr check
+
+Runs lint from the <code>lintr</code> package.</h1>
     
-    <div class="hidden name"><code>check_pkg.Rd</code></div>
+    <div class="hidden name"><code>check_lintr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Path is the CI project directory or <code>.</code>.</p>
+    <p>The lintr check</p>
+<p>Runs lint from the <code>lintr</code> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_pkg_tar_ball</span>()
-
-<span class='fu'>build_pkg</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='fu'>check_pkg</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>build</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>install</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>check_lintr</span>(<span class='kw'>readme</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>vignettes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>Default <code>.</code> The location of the package</p></td>
+      <th>readme</th>
+      <td><p>Default <code>TRUE</code>. Should README.Rmd be checked</p></td>
     </tr>
     <tr>
-      <th>build</th>
-      <td><p>Default <code>TRUE</code>. Call build_pkg() before checking.</p></td>
-    </tr>
-    <tr>
-      <th>install</th>
-      <td><p>Default <code>TRUE</code>. Call install_pkg() after checking</p></td>
+      <th>vignettes</th>
+      <td><p>Default <code>TRUE</code>. Should the vignettes be linted.</p></td>
     </tr>
     </table>
 
