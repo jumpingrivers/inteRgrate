@@ -37,7 +37,7 @@ Currently, the package is being tested on GitHub and GitLab. Examples to follow
 
 And the development version from [GitHub](https://github.com/) with:
 
-``` r
+```{r, eval = FALSE}
 # install.packages("remotes")
 remotes::install_github("jumpingrivers/inteRgrate")
 ```
@@ -46,6 +46,18 @@ remotes::install_github("jumpingrivers/inteRgrate")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(inteRgrate)
+library("inteRgrate")
 ## basic example code
 ```
+
+Other information
+-----------------
+
+ * If you have any suggestions or find bugs, please use the github [issue tracker](https://github.com/jumpingrivers/inteRgrate/issues)
+ * Feel free to submit pull requests
+
+---
+
+Development of this package was supported by [Jumping Rivers](https://www.jumpingrivers.com)
+
+

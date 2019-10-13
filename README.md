@@ -45,3 +45,14 @@ This is a basic example which shows you how to solve a common problem:
 library(inteRgrate)
 ## basic example code
 ```
+
+## Other information
+
+  - If you have any suggestions or find bugs, please use the github
+    [issue tracker](https://github.com/jumpingrivers/inteRgrate/issues)
+  - Feel free to submit pull requests
+
+-----
+
+Development of this package was supported by [Jumping
+Rivers](https://www.jumpingrivers.com)
