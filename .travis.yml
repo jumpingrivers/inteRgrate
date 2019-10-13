@@ -5,7 +5,7 @@ env:
     - ALLOWED_WARNINGS=0
     - ALLOWED_NOTES=0
 
-packages:
+r_packages:
   - covr
   - pkgdown
 
