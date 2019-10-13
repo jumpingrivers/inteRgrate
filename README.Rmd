@@ -25,29 +25,98 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The goal of inteRgrate is to make continuous integration more consistent across platforms.
-Currently, the package is being tested on GitHub and GitLab. Examples to follow
+Currently, the package is used by [Jumping Rivers](https://www.jumpingrivers.com) on GitHub and 
+GitLab.
+
+The rationale behind this package is
+
+ * While checking R packages on travis is easy, support for GitLab (and others) is lacking.
+ * When developing a package, sometimes we want to specify the exact number of NOTES
+ and WARNINGS we expect/allow.
+ * Having a consistent system for different CI is desirable.
+ * For our CI steps, we have a few other checks that we tend to implement, e.g. lints, not
+ using imports within namespaces.
+ 
+This package is still being developed, but we are now actively using it, so hopefully we can
+avoid breaking changes.
 
 ## Installation
 
-<!-- You can install the released version of inteRgrate from [CRAN](https://CRAN.R-project.org) with: -->
-
-<!-- ``` r -->
-<!-- install.packages("inteRgrate") -->
-<!-- ``` -->
-
-And the development version from [GitHub](https://github.com/) with:
+As the package is currently being developed, it isn't yet on CRAN. 
+The development version can be installed from [GitHub](https://github.com/) with:
 
 ```{r, eval = FALSE}
-# install.packages("remotes")
+install.packages("remotes")
 remotes::install_github("jumpingrivers/inteRgrate")
 ```
-## Example
 
-This is a basic example which shows you how to solve a common problem:
+## Functions
 
-```{r example}
+The package is meant to be used within a continuous integration framework, e.g. travis, GitLab 
+runner. This package contains a number functions that are useful for CI:
+
+ * `check_pkg()` - installs package dependencies, builds & installs the package, before 
+  running package check. By default, __any__ notes or warnings will raise an error message.
+  This can be changed by setting the environment variables `ALLOWED_NOTES` and 
+  `ALLOWED_WARNINGS`.
+ * `check_namespace()` - check for instances of `import()` in the NAMESPACE file. By default, 
+ no imports are allowed. This can be changed via the environment variable `NO_IMPORTS`
+ * `check_lintr()` - runs lintr on the package, README.Rmd and vignettes. 
+ * `check_r_filenames()` - ensures file extensions are `.R` and all names are lower case.
+ * `check_tidy_description()` - ensure that the DESCRIPTION file is tidy, 
+ via `usethis::use_tidy_description()`. 
+
+See the help pages for customisation.
+
+### Example .travis.yml file
+
+```
+language: r
+cache: packages
+env:
+  global:
+    - ALLOWED_WARNINGS=0
+    - ALLOWED_NOTES=0
+    - NO_IMPORTS=0
+
+script:
+  - Rscript -e "inteRgrate::check_pkg()"
+  - Rscript -e "inteRgrate::check_r_filenames()"
+  - Rscript -e "inteRgrate::check_tidy_description()"
+  - Rscript -e "inteRgrate::check_lintr()"
+  - Rscript -e "inteRgrate::check_namespace()"
+```
+
+### Example .gitlab.yml file
+
+```
+image: rocker/r-ubuntu:18.04
+variables:
+  ALLOWED_WARNINGS: 0
+  ALLOWED_NOTES: 0
+  NO_IMPORTS: 0
+
+before_script:
+  - Rscript -e "install.packages('remotes')"
+  - Rscript -e "remotes::install_github('jumpingrivers/inteRgrate')"
+
+check:
+  script:
+    - Rscript -e "inteRgrate::check_pkg()"
+    - Rscript -e "inteRgrate::check_r_filenames()"
+    - Rscript -e "inteRgrate::check_tidy_description()"
+    - Rscript -e "inteRgrate::check_lintr()"
+    - Rscript -e "inteRgrate::check_namespace()"
+```
+
+### Command line
+
+You can also use it at the command line
+
+```{r, eval = FALSE}
 library("inteRgrate")
-## basic example code
+check_pkg()
+check_r_filenames()
 ```
 
 Other information

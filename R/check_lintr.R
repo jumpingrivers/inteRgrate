@@ -5,11 +5,13 @@
 #' @export
 check_lintr = function(readme = TRUE, vignettes = TRUE) {
   set_crayon()
-  if (!file.exists(".lintr")) {
-    stop("Please create a .lintr file", call. = FALSE)
-  }
   msg = glue("{symbol$circle_filled} Checking lint...check_lintr()")
   message(blue(msg))
+
+  if (!file.exists(".lintr")) {
+    msg = glue::glue_col("{blue}{symbol$info} No .lintr file found")
+    message(msg)
+  }
 
   lints = lintr::lint_package()
   if (length(lints) > 0) {
