@@ -115,9 +115,9 @@ check_r_filenames()
 ## Other information
 
   - ROpensci are developing a related package -
-    [tic](https://github.com/ropenscilabs/tic.package). The
-    [tic](https://github.com/ropenscilabs/tic.package) package aims to
-    specify the CI environment purely by an R script.
+    [tic](https://github.com/ropenscilabs/tic). The
+    [tic](https://github.com/ropenscilabs/tic) package aims to specify
+    the CI environment purely by an R script.
 
   - If you have any suggestions or find bugs, please use the github
     [issue tracker](https://github.com/jumpingrivers/inteRgrate/issues)
