@@ -30,9 +30,6 @@ check_pkg = function(path = NULL,
 
   ## Install package dependencies
   install_deps(path)
-  if (isTRUE(build)) {
-    build_pkg(path)
-  }
   check_output = devtools::check(pkg = path, cran = TRUE,
                                        force_suggests = TRUE, run_dont_test = FALSE,
                                        manual = FALSE, args = "--timings", env_vars = NULL,
