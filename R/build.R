@@ -21,7 +21,7 @@ build_pkg = function(path = NULL) {
   message(blue(msg))
 
   if (is.null(path)) path = get_build_dir(path)
-  devtools::build(path)
+  devtools::build(path, )
   set_renviron_var("PKG_TARBALL", get_pkg_tar_ball())
 
   msg = glue::glue("{symbol$tick} Package built: {get_pkg_tar_ball()}")
