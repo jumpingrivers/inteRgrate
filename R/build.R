@@ -2,15 +2,19 @@
 #' @rdname check_pkg
 #' @export
 get_pkg_tar_ball = function() {
+  if (!is.na(Sys.getenv("PKG_TARBALL", NA))) {
+    return(Sys.getenv("PKG_TARBALL"))
+  }
+
   des_file = file.path(get_build_dir(), "DESCRIPTION")
   des = read.dcf(des_file)
   pkg_name = des[colnames(des) == "Package"]
   pkg_version = des[colnames(des) == "Version"]
   pkg_tar_ball = glue::glue("{pkg_name}_{pkg_version}.tar.gz")
-  pkg_tar_ball = file.path(get_build_dir(), "..", pkg_tar_ball)
   if (!file.exists(pkg_tar_ball)) {
     message("Package tar ball doesn't yet exist.")
   }
+  set_renviron_var("PKG_TARBALL", pkg_tar_ball)
   pkg_tar_ball
 }
 # nolint end

@@ -30,7 +30,7 @@ notifications:
 
 deploy:
   provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github(tarball = inteRgrate::get_pkg_tar_ball())'
+  script: Rscript -e 'pkgdown::deploy_site_github()'
   skip_cleanup: true
 
 ## Only run covr on release

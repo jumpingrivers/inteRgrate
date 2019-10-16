@@ -38,9 +38,9 @@ get_gitlab_env_var = function(env_variable, default = NULL) {
 get_build_dir = function(path = NULL) {
   if (is.null(path)) {
     if (is_github()) {
-      path = Sys.getenv("TRAVIS_BUILD_DIR", ".")
-    } else if (is.null(path) && is_gitlab()) {
-      path = Sys.getenv("CI_PROJECT_DIR", ".")
+      path = Sys.getenv("TRAVIS_BUILD_DIR", getwd())
+    } else if (is_gitlab()) {
+      path = Sys.getenv("CI_PROJECT_DIR", getwd())
     } else {
       path = getwd()
     }
