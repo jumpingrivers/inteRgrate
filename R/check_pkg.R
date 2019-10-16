@@ -56,6 +56,7 @@ check_pkg = function(path = NULL,
     stop("You have too many warnings and/or notes", call. = FALSE)
   }
 
+  if (isTRUE(build)) build_pkg(path)
   if (isTRUE(install)) install_pkg(path)
   return(invisible(NULL))
 }
