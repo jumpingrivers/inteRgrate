@@ -17,7 +17,7 @@ get_env_variable = function(env_variable, default = NULL) {
 #'
 #' Path is the CI project directory or \code{.}.
 #' @param path Default \code{.} The location of the package
-#' @param build Default \code{TRUE}. Call build_pkg() before checking.
+#' @param build Default TRUE. Should the .tar.gz file be built and kept
 #' @param install Default \code{TRUE}. Call install_pkg() after checking
 #' @importFrom glue glue glue_col
 #' @importFrom devtools check_built
@@ -31,11 +31,9 @@ check_pkg = function(path = NULL,
   ## Install package dependencies
   install_deps(path)
   if (isTRUE(build)) {
-    pkg_tar_ball = build_pkg(path)
-  } else {
-    pkg_tar_ball = get_pkg_tar_ball()
+    build_pkg(path)
   }
-  check_output = devtools::check_built(path = pkg_tar_ball, cran = TRUE,
+  check_output = devtools::check(pkg = path, cran = TRUE,
                                        force_suggests = TRUE, run_dont_test = FALSE,
                                        manual = FALSE, args = "--timings", env_vars = NULL,
                                        quiet = FALSE, error_on = "error")

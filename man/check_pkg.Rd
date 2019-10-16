@@ -15,7 +15,7 @@ check_pkg(path = NULL, build = TRUE, install = TRUE)
 \arguments{
 \item{path}{Default \code{.} The location of the package}
 
-\item{build}{Default \code{TRUE}. Call build_pkg() before checking.}
+\item{build}{Default TRUE. Should the .tar.gz file be built and kept}
 
 \item{install}{Default \code{TRUE}. Call install_pkg() after checking}
 }

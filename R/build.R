@@ -20,11 +20,11 @@ build_pkg = function(path = NULL) {
   msg = glue::glue("{symbol$circle_filled} Building the package")
   message(blue(msg))
 
-  path = get_build_dir(path)
+  if (is.null(path)) path = get_build_dir(path)
   devtools::build(path)
   set_renviron_var("PKG_TARBALL", get_pkg_tar_ball())
 
-  msg = glue::glue("{symbol$tick} Package built: {pkg_tar_ball}")
+  msg = glue::glue("{symbol$tick} Package built: {get_pkg_tar_ball()}")
   message(green(msg))
   invisible(get_pkg_tar_ball())
 }

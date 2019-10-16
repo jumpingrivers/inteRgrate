@@ -24,7 +24,6 @@ script:
   - Rscript -e "inteRgrate::check_lintr()"
   - Rscript -e "inteRgrate::check_namespace()"
 
-
 notifications:
   email:
     on_success: change
