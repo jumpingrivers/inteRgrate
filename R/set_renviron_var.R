@@ -11,4 +11,3 @@ set_renviron_var = function(variable, value) {
   readRenviron("~/.Renviron")
   return(invisible(NULL))
 }
-

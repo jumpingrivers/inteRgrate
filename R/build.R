@@ -1,23 +1,16 @@
-# nolint start
 #' @rdname check_pkg
+#' @importFrom devtools as.package
 #' @export
 get_pkg_tar_ball = function() {
   if (!is.na(Sys.getenv("PKG_TARBALL", NA))) {
     return(Sys.getenv("PKG_TARBALL"))
   }
 
-  des_file = file.path(get_build_dir(), "DESCRIPTION")
-  des = read.dcf(des_file)
-  pkg_name = des[colnames(des) == "Package"]
-  pkg_version = des[colnames(des) == "Version"]
-  pkg_tar_ball = glue::glue("{pkg_name}_{pkg_version}.tar.gz")
-  if (!file.exists(pkg_tar_ball)) {
-    message("Package tar ball doesn't yet exist.")
-  }
+  pkg = devtools::as.package("inteRgrate/")
+  pkg_tar_ball = paste0(pkg$package, "_", pkg$version, ".tar.gz")
   set_renviron_var("PKG_TARBALL", pkg_tar_ball)
   pkg_tar_ball
 }
-# nolint end
 
 #' Build R package
 #' @rdname check_pkg
@@ -28,9 +21,10 @@ build_pkg = function(path = NULL) {
   message(blue(msg))
 
   path = get_build_dir(path)
-  pkg_tar_ball = devtools::build(path)
+  devtools::build(path)
+  set_renviron_var("PKG_TARBALL", get_pkg_tar_ball())
 
   msg = glue::glue("{symbol$tick} Package built: {pkg_tar_ball}")
   message(green(msg))
-  invisible(pkg_tar_ball)
+  invisible(get_pkg_tar_ball())
 }
