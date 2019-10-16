@@ -6,7 +6,7 @@ get_pkg_tar_ball = function() {
     return(Sys.getenv("PKG_TARBALL"))
   }
 
-  pkg = devtools::as.package("inteRgrate/")
+  pkg = devtools::as.package(".")
   pkg_tar_ball = paste0(pkg$package, "_", pkg$version, ".tar.gz")
   set_renviron_var("PKG_TARBALL", pkg_tar_ball)
   pkg_tar_ball
