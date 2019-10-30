@@ -1,18 +1,3 @@
-#' @importFrom stringr str_detect str_trim str_split
-get_env_variable = function(env_variable, default = NULL) {
-  if (is_gitlab() || is_github()) {
-    var = as.numeric(Sys.getenv(env_variable, default))
-  } else if (file.exists(".gitlab-ci.yml")) {
-    var = get_gitlab_env_var(env_variable, default)
-  } else if (file.exists(".travis.yml")) {
-    var = get_github_env_var(env_variable, default)
-  } else {
-    var = 0
-  }
-  return(var)
-}
-
-
 #' Check R package
 #'
 #' Path is the CI project directory or \code{.}.

@@ -30,5 +30,8 @@ check_namespace = function(no_imports = NULL) {
                use importFrom instead.")
     message(red(msg))
   }
-  stop(call. = FALSE)
+  msg = glue::glue("A total of {length(imports_only)} imports detected. \\
+                   But only {no_imports} are allowed.")
+
+  stop(msg, call. = FALSE)
 }
