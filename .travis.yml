@@ -23,6 +23,7 @@ script:
   - Rscript -e "inteRgrate::check_tidy_description()"
   - Rscript -e "inteRgrate::check_lintr()"
   - Rscript -e "inteRgrate::check_namespace()"
+  - Rscript -e "inteRgrate::check_version()"
 
 notifications:
   email:
