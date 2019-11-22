@@ -11,6 +11,11 @@
 #' @param repo Default origin/master. The repo to compare against.
 #' @export
 check_version = function(repo = "origin/master") {
+
+  if (Sys.getenv("TRAVIS") == "true") {
+    system2("git", args = c("remote", "set-branches", "--add", "origin", "master"))
+    system2("git", args = "fetch")
+  }
   committed_files = system2("git",
                             args = c("diff", "--name-only", repo),
                             stdout = TRUE)
