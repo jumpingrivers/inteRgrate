@@ -34,8 +34,8 @@ check_version = function(repo = "origin/master") {
                      args = c("diff", "--unified=0", repo, "DESCRIPTION"),
                      stdout = TRUE)
   ## Remove standard diff header
-  des_diff = des_diff[-(1:5)]
-  if ( length(grep("Version:", des_diff)) == 0L) {
+  des_diff = des_diff[-1:-5]
+  if (length(grep("Version:", des_diff)) == 0L) {
     stop("Please update the package version", call. = FALSE)
   }
 
@@ -43,4 +43,3 @@ check_version = function(repo = "origin/master") {
   message(green(msg))
   return(invisible(NULL))
 }
-
