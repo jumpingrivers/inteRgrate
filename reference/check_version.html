@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sets an Renviron variable — set_renviron_var • inteRgrate</title>
+<title>Version check — check_version • inteRgrate</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,10 @@
 
 
 
-<meta property="og:title" content="Sets an Renviron variable — set_renviron_var" />
-<meta property="og:description" content="Set an variable in the .Renviron file. Calls readEnviron to enable R
-to use the variable in future function calls." />
+<meta property="og:title" content="Version check — check_version" />
+<meta property="og:description" content="Check if the package version has been updated compared to the a
+master repo (default is origin/master). This ensures that when branches are merged
+the package version is bumped." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,37 +105,40 @@ to use the variable in future function calls." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sets an Renviron variable</h1>
+    <h1>Version check</h1>
     
-    <div class="hidden name"><code>set_renviron_var.Rd</code></div>
+    <div class="hidden name"><code>check_version.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Set an variable in the .Renviron file. Calls <code>readEnviron</code> to enable R
-to use the variable in future function calls.</p>
+    <p>Check if the package version has been updated compared to the a
+master repo (default is origin/master). This ensures that when branches are merged
+the package version is bumped.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_renviron_var</span>(<span class='no'>variable</span>, <span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>check_version</span>(<span class='kw'>repo</span> <span class='kw'>=</span> <span class='st'>"origin/master"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>variable</th>
-      <td><p>The variable name</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>The value</p></td>
+      <th>repo</th>
+      <td><p>Default origin/master. The repo to compare against.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Files listed in .Rbuildignore don't count as changes.</p>
+<p>Technically we only check for a change in the Version line of the DESCRIPTION file, not an
+actual version increase.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#details">Details</a></li>
     </ul>
 
   </div>
