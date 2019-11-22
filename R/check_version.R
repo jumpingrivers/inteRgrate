@@ -13,14 +13,26 @@
 check_version = function(repo = "origin/master") {
 
   if (Sys.getenv("TRAVIS") == "true") {
-    system2("git", args = c("remote", "set-branches", "--add", "origin", "master"))
-    system2("git", args = "fetch")
-  }
-  committed_files = system2("git",
-                            args = c("diff", "--name-only", repo),
-                            stdout = TRUE)
 
-  if (length(committed_files) == 0L) return(invisible(NULL))
+    if (Sys.getenv("TRAVIS_BRANCH") != "master") {
+      system2("git", args = c("remote", "set-branches", "--add", "origin", "master"))
+      system2("git", args = "fetch")
+      committed_files = system2("git",
+                                args = c("diff", "--name-only", repo),
+                                stdout = TRUE)
+    } else {
+      # TRAVIS_COMMIT_RANGE returns empty on first commit
+      committed_files = system2("git",
+                                args = c("diff", "--name-only", Sys.getenv("TRAVIS_COMMIT_RANGE")),
+                                stdout = TRUE)
+    }
+  }
+
+  if (length(committed_files) == 0L) {
+    message("No files commited")
+    return(invisible(NULL))
+  }
+
   ## Get ignores and remove ignored files
   ignores = readLines(".Rbuildignore")
   list_ignores = lapply(ignores,
@@ -35,9 +47,16 @@ check_version = function(repo = "origin/master") {
   }
 
   ## Check if version has been updated
-  des_diff = system2("git",
-                     args = c("diff", "--unified=0", repo, "DESCRIPTION"),
-                     stdout = TRUE)
+  if (Sys.getenv("TRAVIS_BRANCH") != "master") {
+    des_diff = system2("git",
+                       args = c("diff", "--unified=0", repo, "DESCRIPTION"),
+                       stdout = TRUE)
+  } else {
+    des_diff = system2("git",
+                       args = c("diff", "--unified=0",
+                                Sys.getenv("TRAVIS_COMMIT_RANGE"), "DESCRIPTION"),
+                       stdout = TRUE)
+  }
   ## Remove standard diff header
   des_diff = des_diff[-1:-5]
   if (length(grep("Version:", des_diff)) == 0L) {
