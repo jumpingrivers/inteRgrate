@@ -62,6 +62,8 @@ functions that are useful for CI:
     names are lower case.
   - `check_tidy_description()` - ensure that the DESCRIPTION file is
     tidy, via `usethis::use_tidy_description()`.
+  - `check_version()` - ensures that the package description has been
+    updated.
 
 See the help pages for customisation.
 
@@ -81,6 +83,7 @@ See the help pages for customisation.
       - Rscript -e "inteRgrate::check_tidy_description()"
       - Rscript -e "inteRgrate::check_lintr()"
       - Rscript -e "inteRgrate::check_namespace()"
+      - Rscript -e "inteRgrate::check_version()"
 
 ### Example .gitlab.yml file
 
