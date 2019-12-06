@@ -35,12 +35,13 @@ check_version = function(repo = "origin/master") {
 
   ## Get ignores and remove ignored files
   ignores = readLines(".Rbuildignore")
-  list_ignores = lapply(ignores,
-                        function(ignore) grepl(ignore, committed_files))
-  mat_ignores = Reduce(rbind, list_ignores)
+  list_ignores = sapply(ignores,
+                        function(ignore) stringr::str_detect(committed_files, ignore))
+  mat_ignores = matrix(list_ignores, ncol = length(committed_files), byrow = TRUE)
 
-  ignore_files = colSums(mat_ignores) != nrow(mat_ignores)
-  committed_files = committed_files[ignore_files]
+
+  ignore_files = apply(mat_ignores, 2, any)
+  committed_files = committed_files[!ignore_files]
 
   if (length(committed_files) > 0L && !("DESCRIPTION" %in% committed_files)) {
     stop("Please update the package version", call. = FALSE)

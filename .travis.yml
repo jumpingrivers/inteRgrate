@@ -40,3 +40,4 @@ deploy:
 #  - Rscript -e "if(length(grep('1\$', ${TRAVIS_JOB_NUMBER}))) covr::codecov()";
 
 
+
