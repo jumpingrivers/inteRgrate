@@ -44,8 +44,9 @@ check_version = function(repo = "origin/master") {
   committed_files = committed_files[!ignore_files]
 
   if (length(committed_files) == 0L) {
-    msg = glue("{symbol$tick} Your version has been updated!")
+    msg = glue("{symbol$tick} Your version is fine!")
     message(green(msg))
+    return(invisible(NULL))
   }
 
 
