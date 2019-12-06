@@ -43,6 +43,12 @@ check_version = function(repo = "origin/master") {
   ignore_files = apply(mat_ignores, 2, any)
   committed_files = committed_files[!ignore_files]
 
+  if (length(committed_files) == 0L) {
+    msg = glue("{symbol$tick} Your version has been updated!")
+    message(green(msg))
+  }
+
+
   if (length(committed_files) > 0L && !("DESCRIPTION" %in% committed_files)) {
     stop("Please update the package version", call. = FALSE)
   }
