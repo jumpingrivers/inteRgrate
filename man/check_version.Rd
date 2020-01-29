@@ -15,6 +15,8 @@ master repo (default is origin/master). This ensures that when branches are merg
 the package version is bumped.
 }
 \details{
+Files listed in .Rbuildignore don't count as changes.
+
 Technically we only check for a change in the Version line of the DESCRIPTION file, not an
 actual version increase.
 }

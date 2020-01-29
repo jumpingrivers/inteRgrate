@@ -1,7 +1,22 @@
+check_version_format = function(description_path) {
+  des = read.dcf(description_path)[1, ]
+  version = des[names(des) == "Version"]
+  check = stringr::str_detect(version, "^[0-9]*\\.[0-9]*\\.[0-9]*$") ||
+    stringr::str_detect(version, "^[0-9]*\\.[0-9]*\\.[0-9]*\\.9[0-9]{3}$")
+  if (isFALSE(check)) {
+    msg = glue("{symbol$cross} Version format is incorrect. \\
+               Should be X.Y.Z or X.Y.Z.9ABC")
+    message(red(msg))
+    stop(call. = FALSE)
+  }
+  return(invisible(NULL))
+}
+
 #' Tidy description
 #'
 #' Checks for a tidy description file (via the \code{usethis} function
-#' \code{use_tidy_description}).
+#' \code{use_tidy_description}). It also checks that the version numbers conform
+#' to the tidy format - X.Y.Z or X.Y.Z.9ABC.
 #' @inheritParams check_pkg
 #' @export
 check_tidy_description = function(path = NULL) {
@@ -12,6 +27,7 @@ check_tidy_description = function(path = NULL) {
   if (is.null(path)) path = get_build_dir()
   des_path = file.path(path, "DESCRIPTION")
   if (!file.exists(des_path)) stop("Missing DESCRIPTION file", call. = FALSE)
+  check_version_format(des_path)
 
   r_old = readLines(des_path)
   #message("Read ", des_path, " - ", length(r_old))

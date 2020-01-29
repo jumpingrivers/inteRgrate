@@ -11,5 +11,6 @@ check_tidy_description(path = NULL)
 }
 \description{
 Checks for a tidy description file (via the \code{usethis} function
-\code{use_tidy_description}).
+\code{use_tidy_description}). It also checks that the version numbers conform
+to the tidy format - X.Y.Z or X.Y.Z.9ABC.
 }
