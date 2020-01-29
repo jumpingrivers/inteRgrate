@@ -12,20 +12,18 @@
 #' @export
 check_version = function(repo = "origin/master") {
 
-  if (Sys.getenv("TRAVIS") == "true") {
+  current_branch = Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
+  sha_range = Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
 
-    if (Sys.getenv("TRAVIS_BRANCH") != "master") {
-      system2("git", args = c("remote", "set-branches", "--add", "origin", "master"))
-      system2("git", args = "fetch")
-      committed_files = system2("git",
-                                args = c("diff", "--name-only", repo),
-                                stdout = TRUE)
-    } else {
-      # TRAVIS_COMMIT_RANGE returns empty on first commit
-      committed_files = system2("git",
-                                args = c("diff", "--name-only", Sys.getenv("TRAVIS_COMMIT_RANGE")),
-                                stdout = TRUE)
-    }
+  if (current_branch != "master") {
+    system2("git", args = c("remote", "set-branches", "--add", "origin", "master"))
+    system2("git", args = "fetch")
+    committed_files = system2("git", args = c("diff", "--name-only", repo),
+                              stdout = TRUE)
+  } else {
+    # TRAVIS_COMMIT_RANGE returns empty on first commit
+    committed_files = system2("git", args = c("diff", "--name-only", sha_range),
+                              stdout = TRUE)
   }
 
   if (length(committed_files) == 0L) {
@@ -55,14 +53,13 @@ check_version = function(repo = "origin/master") {
   }
 
   ## Check if version has been updated
-  if (Sys.getenv("TRAVIS_BRANCH") != "master") {
+  if (current_branch != "master") {
     des_diff = system2("git",
                        args = c("diff", "--unified=0", repo, "DESCRIPTION"),
                        stdout = TRUE)
   } else {
     des_diff = system2("git",
-                       args = c("diff", "--unified=0",
-                                Sys.getenv("TRAVIS_COMMIT_RANGE"), "DESCRIPTION"),
+                       args = c("diff", "--unified=0", sha_range, "DESCRIPTION"),
                        stdout = TRUE)
   }
   ## Remove standard diff header

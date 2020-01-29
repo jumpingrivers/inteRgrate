@@ -5,7 +5,8 @@
 \title{Gitlab rewrite
 
 Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
-on successful builds.}
+on successful builds. Uses the environment variable CI_SERVER_HOST to determine
+the HOST.}
 \usage{
 gitlab_instead_of()
 }
@@ -13,5 +14,6 @@ gitlab_instead_of()
 Gitlab rewrite
 
 Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
-on successful builds.
+on successful builds. Uses the environment variable CI_SERVER_HOST to determine
+the HOST.
 }
