@@ -4,12 +4,18 @@
 \alias{create_tag}
 \title{Auto-tagging via CI}
 \usage{
-create_tag(branch = "master")
+create_tag(branch = "master", in_development = FALSE)
 }
 \arguments{
 \item{branch}{The branch where the tagging will occur. Default master.}
+
+\item{in_development}{Logical default FALSE.}
 }
 \description{
 Automatically tag the commit via the version number. This requies the
 environment variable GITHUB_TOKEN that has write permission.
+}
+\details{
+If the version contains an in development component (e.g. X.Y.Z.9001), by
+default a tag isn't created.
 }
