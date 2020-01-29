@@ -36,7 +36,8 @@
 
 
 <meta property="og:title" content="Auto-tagging via CI — create_tag" />
-<meta property="og:description" content="Automatically tag the commit via the version number." />
+<meta property="og:description" content="Automatically tag the commit via the version number. This requies the
+environment variable GITHUB_TOKEN that has write permission." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9012</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9013</span>
       </span>
     </div>
 
@@ -109,7 +110,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Automatically tag the commit via the version number.</p>
+    <p>Automatically tag the commit via the version number. This requies the
+environment variable GITHUB_TOKEN that has write permission.</p>
     </div>
 
     <pre class="usage"><span class='fu'>create_tag</span>(<span class='kw'>branch</span> <span class='kw'>=</span> <span class='st'>"master"</span>)</pre>
