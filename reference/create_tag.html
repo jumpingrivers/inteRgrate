@@ -70,7 +70,7 @@ environment variable GITHUB_TOKEN that has write permission." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9014</span>
       </span>
     </div>
 
@@ -114,7 +114,7 @@ environment variable GITHUB_TOKEN that has write permission." />
 environment variable GITHUB_TOKEN that has write permission.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_tag</span>(<span class='kw'>branch</span> <span class='kw'>=</span> <span class='st'>"master"</span>)</pre>
+    <pre class="usage"><span class='fu'>create_tag</span>(<span class='kw'>branch</span> <span class='kw'>=</span> <span class='st'>"master"</span>, <span class='kw'>in_development</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,14 +123,23 @@ environment variable GITHUB_TOKEN that has write permission.</p>
       <th>branch</th>
       <td><p>The branch where the tagging will occur. Default master.</p></td>
     </tr>
+    <tr>
+      <th>in_development</th>
+      <td><p>Logical default FALSE.</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If the version contains an in development component (e.g. X.Y.Z.9001), by
+default a tag isn't created.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#details">Details</a></li>
     </ul>
 
   </div>
