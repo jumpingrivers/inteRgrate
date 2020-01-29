@@ -10,5 +10,6 @@ create_tag(branch = "master")
 \item{branch}{The branch where the tagging will occur. Default master.}
 }
 \description{
-Automatically tag the commit via the version number.
+Automatically tag the commit via the version number. This requies the
+environment variable GITHUB_TOKEN that has write permission.
 }

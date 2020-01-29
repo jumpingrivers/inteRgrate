@@ -16,9 +16,7 @@ r:
 
 script:
   - Rscript -e 'devtools::install(".", upgrade = "never", build_vignettes = TRUE)'
-  - ls
   - Rscript -e "inteRgrate::check_pkg(install = FALSE)"
-  - ls
   - Rscript -e "inteRgrate::check_r_filenames()"
   - Rscript -e "inteRgrate::check_tidy_description()"
   - Rscript -e "inteRgrate::check_lintr()"

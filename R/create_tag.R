@@ -5,11 +5,11 @@ get_tag_name = function() {
   tag_name
 }
 
-
 globalVariables(c("tag_name", "SERVER_HOST", "CI_PROJECT_ID", "CI_COMMIT_SHA"))
 #' Auto-tagging via CI
 #'
-#' Automatically tag the commit via the version number.
+#' Automatically tag the commit via the version number. This requies the
+#' environment variable GITHUB_TOKEN that has write permission.
 #' @param branch The branch where the tagging will occur. Default master.
 #' @export
 create_tag = function(branch = "master") {
@@ -22,7 +22,6 @@ create_tag = function(branch = "master") {
     message("Not on ", branch, " so no tagging")
     return(invisible(NULL))
   }
-
 
   if (!is.na(Sys.getenv("CI_COMMIT_TAG", NA))) {
     message("This looks like a tagging CI process, so I'm not going to tag")

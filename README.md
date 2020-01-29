@@ -64,6 +64,7 @@ functions that are useful for CI:
     tidy, via `usethis::use_tidy_description()`.
   - `check_version()` - ensures that the package description has been
     updated.
+  - `create_tag()` - autotag via the CI (Gitlab only).
 
 See the help pages for customisation.
 
