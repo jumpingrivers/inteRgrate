@@ -1,11 +1,12 @@
-# inteRgrate (development version)
-  * Feature: lintr checks to vignettes
-  * Feature: pkgdown site
+# Version 0.2.0
+  * Feature (check): lintr checks to vignettes
+  * Feature (check): Adding check_version
+  * Feature (check): Check version number is tidyverse compliant
+  * Feature (check): Run checks via environment variables
   * Feature: Install dependencies by default
   * Feature: Set PKG_TARBALL in the .Renviron on build step
-  * Feature: Adding check_version
-  * Feature: Check version number is tidyverse compliant
   * Feature: Auto tagging via Gitlab CI
+  * Other: pkgdown site
 
-# Version 0.1
+# Version 0.1.0
   * Initial version
