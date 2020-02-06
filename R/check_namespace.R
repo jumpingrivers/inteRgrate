@@ -12,26 +12,23 @@ check_namespace = function(no_imports = NULL) {
   if (is.null(no_imports)) {
     no_imports = get_env_variable("NO_IMPORTS", 0)
   }
-  msg = glue("{symbol$circle_filled} Checking namespace for imports()...check_namespace()")
-  message(blue(msg))
-
+  msg_start("Checking namespace for imports()...check_namespace()")
   namespace = readLines("NAMESPACE")
   imports_only = namespace[substr(namespace, 1, 7) == "import("]
   if (length(imports_only) <= no_imports) {
-    msg = glue("{symbol$tick} Imports look good - \\
-               {length(imports_only)} found, {no_imports} allowed")
-    message(green(msg))
+    msg = glue("Imports look good - {length(imports_only)} found, {no_imports} allowed")
+    msg_ok(msg)
     return(invisible(NULL))
   }
 
   imports_only = substr(imports_only, 8, nchar(imports_only) - 1)
   for (import in imports_only) {
-    msg = glue::glue("{symbol$cross} The package {import} is being directly imported - \\
+    msg = glue::glue("The package {import} is being directly imported - \\
                use importFrom instead.")
-    message(red(msg))
+    msg_error(msg)
   }
   msg = glue::glue("A total of {length(imports_only)} imports detected. \\
                    But only {no_imports} are allowed.")
-
-  stop(msg, call. = FALSE)
+  msg_error(msg)
+  stop(call. = FALSE)
 }

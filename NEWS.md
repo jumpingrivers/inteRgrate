@@ -1,3 +1,7 @@
+# Dev
+  * Other: Standardisation of messages & colours
+  * Improvement: Don't tag if package hasn't changed
+
 # Version 0.2.0
   * Feature (check): lintr checks to vignettes
   * Feature (check): Adding check_version

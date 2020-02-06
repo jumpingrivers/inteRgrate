@@ -35,13 +35,11 @@ fast_pre_install = function(path = ".", suggests = FALSE) {
 
   avail = paste0("r-cran-", avail)
   for (pkg in avail) {
-    msg = glue::glue_col("{blue} {symbol$info} Installing {pkg}")
-    message(msg)
+    msg_info(paste("Installing", pkg))
   }
 
   system2("apt-get", args = "update")
   system2("apt-get", args = c("install", "-y", avail))
-
   return(invisible(NULL))
 }
 
@@ -77,11 +75,9 @@ install_deps = function(path = NULL) {
 install_pkg = function(path = NULL) {
   set_crayon()
   path = get_build_dir(path)
-  msg = glue::glue("{symbol$circle_filled} Installing the package")
-  message(blue(msg))
+  msg_start("Installing the package")
 
   devtools::install(path, upgrade = "never", build_vignettes = TRUE)
-  msg = glue::glue_col("{green} {symbol$tick} Package installed")
-  message(msg)
+  msg_ok("Package installed")
   return(invisible(NULL))
 }

@@ -7,47 +7,38 @@
 #' @export
 check_lintr = function(readme = TRUE, vignettes = TRUE) {
   set_crayon()
-  msg = glue("{symbol$circle_filled} Checking lint...check_lintr()")
-  message(blue(msg))
+  msg_start("Checking lint...check_lintr()")
 
   if (!file.exists(".lintr")) {
-    msg = glue::glue_col("{blue}{symbol$info} No .lintr file found")
-    message(msg)
+    msg_info("No .lintr file found")
   }
 
   lints = lintr::lint_package()
   if (length(lints) > 0) {
     lapply(lints, print)
-    msg = glue("{symbol$cross} Lintr failed")
-    message(red(msg))
-    stop(red("Please fix lints in R/"), call. = FALSE)
+    msg_error("Please fix lints in R/", stop = TRUE)
   }
+  msg_ok("R/ scripts OK")
 
   if (isTRUE(readme) && file.exists("README.Rmd")) {
-    msg = glue("{symbol$circle_filled} Checking README.Rmd")
-    message(blue(msg))
+    msg_start("Checking README.Rmd")
     re_lints = lintr::lint("README.Rmd")
     if (length(re_lints) > 0) {
       lapply(re_lints, print)
-      msg = glue("{symbol$cross} Lintr failed")
-      message(red(msg))
-      stop(red("Please fix lints in the README.Rmd"), call. = FALSE)
+      msg_error("Please fix lints in the README.Rmd", stop = TRUE)
     }
+    msg_ok("README.Rmd OK")
   }
 
   if (isTRUE(vignettes) && file.exists("vignettes")) {
-    msg = glue("{symbol$circle_filled} Checking vignettes")
-    message(blue(msg))
+    msg_start("Checking vignettes")
     vig_lints = lintr::lint_dir("vignettes", pattern = "*.Rmd")
     if (length(vig_lints) > 0) {
       lapply(vig_lints, print)
-      msg = glue("{symbol$cross} Lintr failed")
-      message(red(msg))
-      stop(red("Please fix lints in vignettes/"), call. = FALSE)
+      msg_error("Please fix lints in vignettes/", stop = TRUE)
     }
+    msg_ok("Vignettes OK")
   }
-
-  msg = glue("{symbol$tick} Lint looks good")
-  message(green(msg))
+  msg_ok("Lint looks good")
   return(invisible(NULL))
 }
