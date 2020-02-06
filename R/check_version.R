@@ -28,7 +28,7 @@ has_pkg_changed = function(repo) {
 
   ignore_files = apply(mat_ignores, 2, any)
   committed_files = committed_files[!ignore_files]
-  any_changes = length(committed_files) == 0L
+  any_changes = length(committed_files) != 0L
   return(any_changes)
 
 }
