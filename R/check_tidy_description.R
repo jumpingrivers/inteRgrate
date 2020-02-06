@@ -19,8 +19,7 @@ check_version_format = function(description_path) {
 #' @export
 check_tidy_description = function(path = NULL) {
   set_crayon()
-  msg = glue("{symbol$circle_filled} Checking tidy descriptions")
-  message(blue(msg))
+  msg_start("Checking tidy descriptions...check_tidy_descriptions()")
 
   if (is.null(path)) path = get_build_dir()
   des_path = file.path(path, "DESCRIPTION")
