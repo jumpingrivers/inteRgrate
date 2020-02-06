@@ -38,7 +38,7 @@ check_pkg = function(path = NULL,
   }
 
   if (no_of_warnings > allowed_warnings || no_of_notes > allowed_notes) {
-    stop("You have too many warnings and/or notes", call. = FALSE)
+    msg_error("You have too many warnings and/or notes", stop = TRUE)
   }
 
   if (isTRUE(build)) build_pkg(path)

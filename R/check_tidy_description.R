@@ -4,8 +4,7 @@ check_version_format = function(description_path) {
   check = stringr::str_detect(version, "^[0-9]*\\.[0-9]*\\.[0-9]*$") ||
     stringr::str_detect(version, "^[0-9]*\\.[0-9]*\\.[0-9]*\\.9[0-9]{3}$")
   if (isFALSE(check)) {
-    msg_error("Version format is incorrect. Should be X.Y.Z or X.Y.Z.9ABC")
-    stop(call. = FALSE)
+    msg_error("Version format is incorrect. Should be X.Y.Z or X.Y.Z.9ABC", stop = TRUE)
   }
   return(invisible(NULL))
 }
@@ -37,12 +36,11 @@ check_tidy_description = function(path = NULL) {
     msg_ok("Your description is tidy!")
     return(invisible(NULL))
   }
-  msg_error("Run usethis::use_tidy_description() before committing.")
   for (i in seq_along(r_old)) {
     if (is.na(r_new[i]) || r_old[i] != r_new[i]) {
       message(red(glue("  Current line {i}: {r_old[i]}")))
       message(red(glue("  Tidied line {i}: {r_new[i]}")))
     }
   }
-  stop(call. = FALSE)
+  msg_error("Run usethis::use_tidy_description() before committing.", stop = TRUE)
 }

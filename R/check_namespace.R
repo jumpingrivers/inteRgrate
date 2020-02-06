@@ -29,6 +29,5 @@ check_namespace = function(no_imports = NULL) {
   }
   msg = glue::glue("A total of {length(imports_only)} imports detected. \\
                    But only {no_imports} are allowed.")
-  msg_error(msg)
-  stop(call. = FALSE)
+  msg_error(msg, stop = TRUE)
 }
