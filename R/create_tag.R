@@ -23,6 +23,7 @@ globalVariables(c("tag_name", "SERVER_HOST", "CI_PROJECT_ID", "CI_COMMIT_SHA"))
 #' @param in_development Logical default FALSE.
 #' @export
 create_tag = function(branch = "master", in_development = FALSE) {
+  set_crayon()
   msg_start("Creating a tag...create_tag()")
   if (!is_gitlab()) {
     msg_info("Doesn't seem to be a gitlab runner, so no tagging")
