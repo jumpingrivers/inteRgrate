@@ -23,23 +23,30 @@ globalVariables(c("tag_name", "SERVER_HOST", "CI_PROJECT_ID", "CI_COMMIT_SHA"))
 #' @param in_development Logical default FALSE.
 #' @export
 create_tag = function(branch = "master", in_development = FALSE) {
+  set_crayon()
+  msg_start("Creating a tag...create_tag()")
   if (!is_gitlab()) {
-    message("Doesn't seem to be a gitlab runner. No tagging")
+    msg_info("Doesn't seem to be a gitlab runner, so no tagging")
     return(invisible(NULL))
   }
   # Assume GITLAB
   if (Sys.getenv("CI_COMMIT_BRANCH") != branch) {
-    message("Not on ", branch, " so no tagging")
+    msg_info(paste("Not on", branch, "so no tagging"))
     return(invisible(NULL))
   }
 
   if (!is.na(Sys.getenv("CI_COMMIT_TAG", NA))) {
-    message("This looks like a tagging CI process, so I'm not going to tag")
+    msg_info("This looks like a tagging CI process, so no tagging")
     return(invisible(NULL))
   }
 
   if (!in_development && is_in_development()) {
-    message("In development, not tag")
+    msg_info("In development, so no tagging")
+    return(invisible(NULL))
+  }
+
+  if (isFALSE(has_pkg_changed)) {
+    msg_info("Package hasn't changed, so no tagging")
     return(invisible(NULL))
   }
 
@@ -50,7 +57,7 @@ create_tag = function(branch = "master", in_development = FALSE) {
   CI_COMMIT_SHA = Sys.getenv("CI_COMMIT_SHA") #nolint
   GITLAB_TOKEN = Sys.getenv("GITLAB_TOKEN", NA) #nolint
   if (is.na(GITLAB_TOKEN)) {
-    stop("GITLAB_TOKEN missing. Required for tagging", call. = FALSE)
+    msg_error("GITLAB_TOKEN missing. Required for tagging", stop = TRUE)
   }
   url = glue::glue("'https://{SERVER_HOST}/api/v4/projects/{CI_PROJECT_ID}/repository/tags?\\
            tag_name={tag_name}&ref={CI_COMMIT_SHA}&private_token={GITLAB_TOKEN}'")
@@ -59,7 +66,7 @@ create_tag = function(branch = "master", in_development = FALSE) {
                 stderr = TRUE, stdout = TRUE)
 
   if (!is.null(attr(out, "status"))) {
-    stop("Tagging didn't work", call. = FALSE)
+    msg_error("Tagging didn't work", stop = TRUE)
   }
   return(invisible(NULL))
 }

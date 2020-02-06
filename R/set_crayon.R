@@ -1,5 +1,3 @@
-#' @importFrom clisymbols symbol
-#' @importFrom crayon red yellow blue green
 set_crayon = function() {
   if (!is_gitlab() && !is_github()) {
     return(invisible(NULL))

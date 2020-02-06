@@ -17,14 +17,12 @@ get_pkg_tar_ball = function() {
 #' @export
 build_pkg = function(path = NULL) {
   set_crayon()
-  msg = glue::glue("{symbol$circle_filled} Building the package")
-  message(blue(msg))
+  msg_start("Building the package")
 
   if (is.null(path)) path = get_build_dir(path)
   devtools::build(pkg = path, path = path)
   set_renviron_var("PKG_TARBALL", get_pkg_tar_ball())
 
-  msg = glue::glue("{symbol$tick} Package built: {get_pkg_tar_ball()}")
-  message(green(msg))
+  msg_ok(paste("Package built:", get_pkg_tar_ball()))
   invisible(get_pkg_tar_ball())
 }

@@ -25,16 +25,16 @@ check_pkg = function(path = NULL,
 
   no_of_warnings = length(check_output$warnings)
   for (i in seq_len(no_of_warnings)) {
-    msg = glue("{symbol$info} Warning {i} of {no_of_warnings} ({allowed_warnings} allowed)")
-    message(blue(msg))
-    message(check_output$warnings[i], "\n")
+    msg = glue("Warning {i} of {no_of_warnings} ({allowed_warnings} allowed)")
+    msg_info(msg)
+    msg_info(check_output$warnings[i])
   }
 
   no_of_notes = length(check_output$notes)
   for (i in seq_len(no_of_notes)) {
-    msg = glue("{symbol$info} Note {i} of {no_of_notes} ({allowed_notes} allowed)")
-    message(blue(msg))
-    message(check_output$notes[i], "\n")
+    msg = glue("Note {i} of {no_of_notes} ({allowed_notes} allowed)")
+    msg_info(msg)
+    msg_info(check_output$notes[i])
   }
 
   if (no_of_warnings > allowed_warnings || no_of_notes > allowed_notes) {
