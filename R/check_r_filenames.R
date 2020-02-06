@@ -14,8 +14,6 @@ check_r_filenames = function(extension = "R") {
     msg_error(paste("File extension for R files should be", extension), stop = TRUE)
   }
   msg_ok("Extensions look good")
-  msg_start("Checking file names")
-
   fnames = list.files("R")
   # Remove extension
   fnames = substr(fnames, 0, nchar(fnames) - 1 - length(extension))
