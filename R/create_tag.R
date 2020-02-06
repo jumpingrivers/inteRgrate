@@ -45,7 +45,7 @@ create_tag = function(branch = "master", in_development = FALSE) {
     return(invisible(NULL))
   }
 
-  if (isFALSE(has_pkg_changed)) {
+  if (isFALSE(has_pkg_changed(repo = paste0("origin/", branch)))) {
     msg_info("Package hasn't changed, so no tagging")
     return(invisible(NULL))
   }
