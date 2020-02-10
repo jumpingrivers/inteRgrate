@@ -1,3 +1,6 @@
+# Version 0.2.2
+  * Bug fixes when detecting tagging
+
 # Version 0.2.1
   * Other: Standardisation of messages & colours
   * Improvement: Don't tag if package hasn't changed
