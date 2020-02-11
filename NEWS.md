@@ -1,3 +1,6 @@
+# Version 0.2.3
+  * Remove dashes from tag
+
 # Version 0.2.2
   * Bug fixes when detecting tagging
 

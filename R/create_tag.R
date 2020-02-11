@@ -1,7 +1,7 @@
 get_tag_name = function() {
   des = read.dcf("DESCRIPTION")[1, ]
   version = des[names(des) == "Version"]
-  tag_name = paste0("v-", gsub("\\.", "-", version))
+  tag_name = paste0("v", version)
   tag_name
 }
 
