@@ -10,9 +10,9 @@ r_packages:
   - pkgdown
 
 r:
-#  - oldrel
+  - oldrel
   - release
-  - devel
+#  - devel
 
 script:
   - Rscript -e 'devtools::install(".", upgrade = "never", build_vignettes = TRUE)'
