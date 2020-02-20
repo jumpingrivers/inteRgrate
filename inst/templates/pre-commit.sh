@@ -1,9 +1,25 @@
 #!/bin/bash
 
-Rscript -e "inteRgrate::check_tidy_description()"
 Rscript -e "inteRgrate::check_r_filenames()"
+if [ "$?" -eq 1 ]; then
+  exit 1
+fi
+
 Rscript -e "inteRgrate::check_lintr()"
+if [ "$?" -eq 1 ]; then
+  exit 1
+fi
+
+# This actually changes the description file.
+Rscript -e "inteRgrate::check_tidy_description()"
+if [ "$?" -eq 1 ]; then
+  exit 1
+fi
+
 Rscript -e "inteRgrate::check_namespace()"
+if [ "$?" -eq 1 ]; then
+  exit 1
+fi
 
 # Running check_version doesn't currently work.
 # Basically I need to figure out what is being compared
