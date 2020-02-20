@@ -1,3 +1,6 @@
+# Dev
+  * Adding in pre-commit hook
+
 # Version 0.2.3
   * Remove dashes from tag
 
