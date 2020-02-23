@@ -13,8 +13,8 @@ add_pre_commit()
 add_pre_push()
 }
 \description{
-git_pre_commit only tests files that have changed. Makes things, especially linting
-a lot faster.
+git_pre_commit only tests files that have changed.
+Makes things, especially linting a lot faster.
 
 Add a pre-commit or pre-push hook.
 Both hooks are identical. They just get triggered at different times.
