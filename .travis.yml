@@ -6,13 +6,21 @@ env:
     - ALLOWED_NOTES=0
 
 r_packages:
-  - covr
+#  - covr
   - pkgdown
 
-r:
-  - oldrel
-  - release
-#  - devel
+matrix:
+  include:
+  - r: devel
+  - r: release
+    r_packages:
+      - pkgdown
+    # - covr
+    deploy:
+      provider: script
+      script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
+      skip_cleanup: true
+  - r: oldrel
 
 script:
   - Rscript -e 'devtools::install(".", upgrade = "never", build_vignettes = TRUE)'
@@ -28,10 +36,6 @@ notifications:
     on_success: change
     on_failure: change
 
-deploy:
-  provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github()'
-  skip_cleanup: true
 
 ## Only run covr on release
 #after_success:
