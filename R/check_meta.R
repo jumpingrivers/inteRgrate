@@ -1,3 +1,4 @@
+#' @importFrom utils glob2rx
 check_meta = function() {
   set_crayon()
   msg_start("Checking meta...check_meta()")
