@@ -42,6 +42,9 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
+# Silly macs
+.DS_Store
+
 ##############################
 ## Latex ignores from github
 ##############################
