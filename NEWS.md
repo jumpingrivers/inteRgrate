@@ -1,6 +1,7 @@
 # Dev
   * Adding in pre-commit & pre-push hook
   * Bug fix: parsing .gitlab-ci now removes comments
+  * Adding a meta check for markdown docs
 
 # Version 0.2.3
   * Remove dashes from tag

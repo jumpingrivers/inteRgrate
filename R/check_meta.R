@@ -3,14 +3,14 @@ check_meta = function() {
   set_crayon()
   msg_start("Checking meta...check_meta()")
   if (file.exists("README.Rmd")) {
-    msg_start("Checking README")
-    if (file.info("README.Rmd")$ctime < file.info("README.md")$ctime) {
+    msg_start("Checking README.Rmd timestamps")
+    if (file.info("README.Rmd")$ctime > file.info("README.md")$ctime) {
       msg_error("README.md appears to be out of date", stop = TRUE)
     }
     msg_ok("README OK")
   }
 
-  msg_start("Checking gitignore")
+  msg_start("Checking .gitignore")
   ## Get ignores and remove ignored files
   ignores = readLines(".gitignore")
   ignores = ignores[stringr::str_detect(ignores, pattern = "^#", negate = TRUE)]
@@ -29,13 +29,12 @@ check_meta = function() {
   missing_ignores = git_global_ignore[!ignore_files]
   if (length(missing_ignores) != 0L) {
     for (ignore in missing_ignores) {
-      msg_error(paste("Missing", ignore, " from .gitignores"))
+      msg_error(paste("Missing", ignore, " from .gitignore"))
     }
-    msg_error("Please update your .gitignore")
-    msg_error("Copying github.com/github/gitignore/blob/master/R.gitignore is a good start.",
-              stop = TRUE)
+    msg_error("Copying github.com/github/gitignore/blob/master/R.gitignore is a good start.")
+    msg_error("Please update your .gitignore", stop = TRUE)
   }
 
-  msg_ok()
-
+  msg_ok("Meta files look good")
+  return(invisible(NULL))
 }
