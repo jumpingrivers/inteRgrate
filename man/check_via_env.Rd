@@ -2,16 +2,23 @@
 % Please edit documentation in R/check_via_env.R
 \name{check_via_env}
 \alias{check_via_env}
-\title{Run GITLAB checks via Environment variables
-
-Looks for environment variables and runs associated checks.
-This allows you to set environment variables at a project level, e.g. Gitlab.}
+\title{Run GITLAB checks via Environment variables}
 \usage{
 check_via_env()
 }
 \description{
-Run GITLAB checks via Environment variables
-
 Looks for environment variables and runs associated checks.
 This allows you to set environment variables at a project level, e.g. Gitlab.
+}
+\details{
+Current list of variables is
+\describe{
+\item{INTERGRATE_PKG}{check_pkg()}
+\item{INTERGRATE_R_FILENAMES}{check_r_filenames()}
+\item{INTERGRATE_TIDY_DESCRIPTION}{check_tidy_description()}
+\item{INTERGRATE_LINTR}{check_lintr()}
+\item{INTERGRATE_NAMESPACE}{check_namespace()}
+\item{INTERGRATE_VERSION}{check_version()}
+\item{INTERGRATE_TAG}{create_tag()}
+}
 }
