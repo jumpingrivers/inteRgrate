@@ -23,6 +23,7 @@ script:
   - git config --global push.default simple
   - git remote add upstream "https://$GITHUB_PAT@github.com/jumpingrivers/inteRgrate.git"
   - git fetch --depth 1 upstream
+  - git checkout master
   - ls
   - git tag v0.3 -a -m "Version v0.3"
   - git push
