@@ -18,7 +18,7 @@ r:
 script:
   - Rscript -e "source('tmp.R')"
   - git tag v0.1 -a -m "Version v0.1" || die "get error when add new tag"
-  - git push origin v0.1
+  - git push git@github.com:jumpingrivers/inteRgrate.git v0.1
 
 notifications:
   email:
