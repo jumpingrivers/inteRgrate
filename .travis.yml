@@ -6,8 +6,8 @@ env:
     - ALLOWED_NOTES=0
 
 r_packages:
-  - covr
-  - pkgdown
+  - openssl
+  - fs
 
 r:
 #  - oldrel
@@ -18,13 +18,6 @@ script:
   - Rscript -e "source('tmp.R')"
   - git tag v0.1 -a -m "Version v0.1" || die "get error when add new tag"
   - git push origin v0.1
-  - Rscript -e 'devtools::install(".", upgrade = "never", build_vignettes = TRUE)'
-  - Rscript -e "inteRgrate::check_pkg(install = FALSE)"
-  - Rscript -e "inteRgrate::check_r_filenames()"
-  - Rscript -e "inteRgrate::check_tidy_description()"
-  - Rscript -e "inteRgrate::check_lintr()"
-  - Rscript -e "inteRgrate::check_namespace()"
-  - Rscript -e "inteRgrate::check_version()"
 
 notifications:
   email:
