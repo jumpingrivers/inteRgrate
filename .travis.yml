@@ -5,11 +5,6 @@ env:
     - ALLOWED_WARNINGS=0
     - ALLOWED_NOTES=0
 
-r_packages:
-  - openssl
-  - fs
-  - readr
-
 r:
 #  - oldrel
   - release
@@ -21,22 +16,17 @@ script:
   - git config user.name "Jumping Rivers"
   - git config user.email "colin@jumpingrivers.com"
   - git config --global push.default simple
-  - git remote add upstream "https://$GITHUB_PAT@github.com/jumpingrivers/inteRgrate.git"
-  - git fetch --depth 1 upstream
+  - git clone --depth 1 "https://$GITHUB_PAT@github.com/jumpingrivers/inteRgrate.git"
   - git checkout master
   - ls
   - git tag v0.3 -a -m "Version v0.3"
   - git push -u origin master
 
+
 notifications:
   email:
     on_success: change
     on_failure: change
-
-deploy:
-  provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github()'
-  skip_cleanup: true
 
 ## Only run covr on release
 #after_success:
