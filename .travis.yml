@@ -16,9 +16,9 @@ r:
 #  - devel
 
 script:
-  - Rscript -e "source('tmp.R')"
-  - git tag v0.1 -a -m "Version v0.1" || die "get error when add new tag"
-  - git push git@github.com:jumpingrivers/inteRgrate.git v0.1
+#  - Rscript -e "source('tmp.R')"
+  - git tag v0.3 -a -m "Version v0.3"
+  - git push "https://$GITHUB_PAT@github.com/jumpingrivers/inteRgrate.git" v0.3
 
 notifications:
   email:
