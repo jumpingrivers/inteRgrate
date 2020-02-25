@@ -16,7 +16,6 @@ r:
 #  - devel
 
 script:
-#  - Rscript -e "source('tmp.R')"
   - git remote add upstream "https://$GITHUB_PAT@github.com/jumpingrivers/inteRgrate.git"
   - git tag v0.3 -a -m "Version v0.3"
   - git push v0.3
