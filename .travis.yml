@@ -8,6 +8,7 @@ env:
 r_packages:
   - openssl
   - fs
+  - readr
 
 r:
 #  - oldrel
