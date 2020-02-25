@@ -13,7 +13,10 @@ r:
 script:
   - echo $PROJECT
   - Rscript -e "source('tmp.R')"
-  - git config --global url."git@github.com:".insteadOf"https://github.com/"
+  - git remote -v
+  - git remote set-url origin git@github.com:${TRAVIS_REPO_SLUG}
+  - git remote -v
+#  - git config --global url."git@github.com:".insteadOf"https://github.com/"
   #- cd ..; mkdir tag; cd tag
   #- git clone git@github.com:${TRAVIS_REPO_SLUG}
   #- ls
