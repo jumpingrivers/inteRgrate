@@ -13,12 +13,13 @@ r:
 script:
   - echo $PROJECT
   - Rscript -e "source('tmp.R')"
-  - cd ..; mkdir tag; cd tag
-  - git clone git@github.com:${TRAVIS_REPO_SLUG}
-  - ls
-  - cd inteRgrate
-  - ls
-  - git tag v0.5 -a -m "Version v0.5"
+  - git config --global url."git@github.com:".insteadOf"https://github.com/"
+  #- cd ..; mkdir tag; cd tag
+  #- git clone git@github.com:${TRAVIS_REPO_SLUG}
+  #- ls
+  #- cd inteRgrate
+  #- ls
+  - git tag v0.6 -a -m "Version v0.6"
   - git push --tags
 
   # - cd ..; mkdir tag; cd tag
