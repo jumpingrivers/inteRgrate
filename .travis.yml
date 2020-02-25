@@ -11,17 +11,26 @@ r:
 #  - devel
 
 script:
+  - Rscript -e "source('tmp.R')"
   - cd ..; mkdir tag; cd tag
-  - git init
-  - git config user.name "Jumping Rivers"
-  - git config user.email "colin@jumpingrivers.com"
-  - git config --global push.default simple
-  - git clone --depth 1 "https://$GITHUB_PAT@github.com/jumpingrivers/inteRgrate.git"
+  - git clone git@github.com:jumpingrivers/inteRgrate.git
+  - ls
   - cd inteRgrate
   - ls
   - git tag v0.3 -a -m "Version v0.3"
   - git push
 
+  # - cd ..; mkdir tag; cd tag
+  # - git init
+  # - git config user.name "Jumping Rivers"
+  # - git config user.email "colin@jumpingrivers.com"
+  # - git config --global push.default simple
+  # - git clone --depth 1 "https://$GITHUB_PAT@github.com/jumpingrivers/inteRgrate.git"
+  # - cd inteRgrate
+  # - ls
+  # - git tag v0.3 -a -m "Version v0.3"
+  # - git push
+  #
 
 notifications:
   email:
