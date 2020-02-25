@@ -18,7 +18,7 @@ script:
   - cd inteRgrate
   - ls
   - git tag v0.4 -a -m "Version v0.4"
-  - git push
+  - git push --tags
 
   # - cd ..; mkdir tag; cd tag
   # - git init
