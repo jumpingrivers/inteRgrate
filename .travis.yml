@@ -26,7 +26,7 @@ script:
   - git checkout master
   - ls
   - git tag v0.3 -a -m "Version v0.3"
-  - git push
+  - git push origin master
 
 notifications:
   email:
