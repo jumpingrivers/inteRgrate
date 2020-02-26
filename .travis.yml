@@ -20,8 +20,8 @@ matrix:
 
 script:
   - echo $TRAVIS_R_VERSION
-  - Rscript -e "inteRgrate::install_pkg()"
-  - Rscript -e "inteRgrate::check_pkg()"
+  - Rscript -e 'devtools::install(".", upgrade = "never", build_vignettes = TRUE)'
+  - Rscript -e "inteRgrate::check_pkg(install = FALSE)"
   - Rscript -e "inteRgrate::check_r_filenames()"
   - Rscript -e "inteRgrate::check_tidy_description()"
   - Rscript -e "inteRgrate::check_lintr()"
