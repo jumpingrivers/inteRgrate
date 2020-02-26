@@ -1,9 +1,6 @@
 get_current_branch = function() Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
 get_sha_range = function() Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
 is_tagging_branch = function() {
-  message("chars ", nchar(Sys.getenv("TRAVIS_TAG")))
-  message("chars ", Sys.getenv("TRAVIS_TAG", NA))
-
   !is.na(Sys.getenv("CI_COMMIT_TAG", NA))  ||
     nchar(Sys.getenv("TRAVIS_TAG")) > 0L
 }
