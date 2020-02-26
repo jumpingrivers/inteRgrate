@@ -79,7 +79,7 @@ github_tag = function(tag_name) {
   system2("git", args = c("remote", "set-url", "origin", git_url))
 
   # Tag and push
-  system2("git", args = c("tag", "-a", tag_name,  "-m", glue::glue("Version {tag_name}")))
+  system2("git", args = c("tag", "-a", tag_name,  "-m", glue::glue("'Version {tag_name}'")))
   system2("git", args = c("push", "--tags"))
   return(invisible(NULL))
 
