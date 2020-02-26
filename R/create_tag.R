@@ -63,15 +63,22 @@ create_tag = function(branch = "master", in_development = FALSE) {
 }
 
 github_tag = function(tag_name) {
+  # Set a sensible name for the commit
   system2("git", args = c("config", "--global", "user.email",  "'travis.tagger@example.com'"))
   system2("git", args = c("config", "--global", "user.name", "'Travis tagger'"))
+
+  # Check for GITHUB_PAT
   github_pat = Sys.getenv("GITHUB_PAT", NA)
   if (is.na(github_pat)) {
     msg_error("GITHUB_PAT missing. Required for tagging", stop = TRUE)
   }
+
+  # Rewrite URL with PAT
   repo = Sys.getenv("TRAVIS_REPO_SLUG", NA)
   git_url = glue::glue("https://{github_pat}@github.com/{repo}.git")
   system2("git", args = c("remote", "set-url", "origin", git_url))
+
+  # Tag and push
   system2("git", args = c("tag", "-a", tag_name,  "-m", glue::glue("Version {tag_name}")))
   system2("git", args = c("push", "--tags"))
   return(invisible(NULL))
