@@ -24,7 +24,7 @@ script:
   #- ls
   #- cd inteRgrate
   #- ls
-  - git tag v0.7 -a -m "Version v0.7"
+  - git tag v0.8 -a -m "Version v0.8"
   - git push --tags
 
   # - cd ..; mkdir tag; cd tag
