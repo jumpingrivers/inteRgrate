@@ -11,25 +11,27 @@ r:
 #  - devel
 
 script:
+  - Rscript -e "inteRgrate::install_pkg()"
+  - Rscript -e "inteRgrate::create_tag('travis', FALSE)"
   - echo $TRAVIS_REPO_SLUG
   - echo $TRAVIS_TAG
   - echo $TRAVIS_BRANCH
 #  - Rscript -e "source('tmp.R')"
 #  - git remote -v
 #  - git remote set-url origin git@github.com:${TRAVIS_REPO_SLUG}
-  - git config --global user.email "travis.tagger@example.com"
-  - git config --global user.name "Travis tagging"
-  - git remote -v
-  - git remote set-url origin https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git
-  - git remote -v
+#  - git config --global user.email "travis.tagger@example.com"
+#  - git config --global user.name "Travis tagging"
+#  - git remote -v
+#  - git remote set-url origin https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git
+#  - git remote -v
 #  - git config --global url."git@github.com:".insteadOf"https://github.com/"
   #- cd ..; mkdir tag; cd tag
   #- git clone git@github.com:${TRAVIS_REPO_SLUG}
   #- ls
   #- cd inteRgrate
   #- ls
-  - git tag -a v1.3 -m "Version v1.3"
-  - git push --tags
+#  - git tag -a v1.3 -m "Version v1.3"
+#  - git push --tags
 
   # - cd ..; mkdir tag; cd tag
   # - git init
