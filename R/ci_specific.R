@@ -1,3 +1,28 @@
+get_current_branch = function() Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
+get_sha_range = function() Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
+is_tagging_branch = function() {
+  !is.na(Sys.getenv("CI_COMMIT_TAG", NA))  ||
+    nchar(Sys.getenv("TRAVIS_TAG")) > 0L
+}
+
+get_auth_token = function() {
+  if (is_gitlab()) {
+    token = Sys.getenv("GITLAB_TOKEN", NA) #nolint
+    if (is.na(token)) {
+      msg_error("GITLAB_TOKEN missing. Required for tagging", stop = TRUE)
+    }
+  }
+
+  if (is_github()) {
+    token = Sys.getenv("GITHUB_PAT", NA)
+    if (is.na(token)) {
+      msg_error("GITHUB_PAT missing. Required for tagging", stop = TRUE)
+    }
+  }
+  return(token)
+}
+
+
 #' @importFrom stringr str_detect str_trim str_split
 get_env_variable = function(env_variable, default = NULL) {
   if (is_gitlab() || is_github()) {

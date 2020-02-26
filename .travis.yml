@@ -5,16 +5,21 @@ env:
     - ALLOWED_WARNINGS=0
     - ALLOWED_NOTES=0
 
-r_packages:
-  - covr
-  - pkgdown
-
-r:
-#  - oldrel
-  - release
-  - devel
+matrix:
+  include:
+  - r: devel
+  - r: release
+    r_packages:
+      - pkgdown
+    env: R_CURRENT=true
+    deploy:
+      provider: script
+      script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
+      skip_cleanup: true
+  - r: oldrel
 
 script:
+  - echo $TRAVIS_R_VERSION
   - Rscript -e 'devtools::install(".", upgrade = "never", build_vignettes = TRUE)'
   - Rscript -e "inteRgrate::check_pkg(install = FALSE)"
   - Rscript -e "inteRgrate::check_r_filenames()"
@@ -22,20 +27,10 @@ script:
   - Rscript -e "inteRgrate::check_lintr()"
   - Rscript -e "inteRgrate::check_namespace()"
   - Rscript -e "inteRgrate::check_version()"
+  - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag()"
 
 notifications:
   email:
     on_success: change
     on_failure: change
-
-deploy:
-  provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github()'
-  skip_cleanup: true
-
-## Only run covr on release
-#after_success:
-#  - Rscript -e "if(length(grep('1\$', ${TRAVIS_JOB_NUMBER}))) covr::codecov()";
-
-
 

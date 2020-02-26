@@ -1,5 +1,9 @@
 get_current_branch = function() Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
 get_sha_range = function() Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
+is_tagging_branch = function() {
+  !is.na(Sys.getenv("CI_COMMIT_TAG", Sys.getenv("TRAVIS_TAG", NA)))
+}
+
 
 has_pkg_changed = function(repo) {
   current_branch = get_current_branch()

@@ -10,7 +10,7 @@ green = crayon::green
 
 msg_error = function(msg, stop = FALSE) {
   if (isFALSE(stop)) {
-    message()
+    message(glue::glue_col("{red}{cross} {msg}"))
   } else {
     stop(glue::glue_col("{red}{cross} {msg}"), call. = FALSE)
   }

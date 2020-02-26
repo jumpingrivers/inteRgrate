@@ -9,6 +9,9 @@
 # Session Data files
 .RData
 
+# User-specific files
+.Ruserdata
+
 # Example code in package build process
 *-Ex.R
 
@@ -36,8 +39,11 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 
-# Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
-rsconnect/
+# R Environment Variables
+.Renviron
+
+# Silly macs
+.DS_Store
 
 ##############################
 ## Latex ignores from github

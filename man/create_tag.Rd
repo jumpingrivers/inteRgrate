@@ -12,7 +12,7 @@ create_tag(branch = "master", in_development = FALSE)
 \item{in_development}{Logical default FALSE.}
 }
 \description{
-Automatically tag the commit via the version number. This requies the
+Automatically tag the commit via the version number. This requires the
 environment variable GITHUB_TOKEN that has write permission.
 }
 \details{
