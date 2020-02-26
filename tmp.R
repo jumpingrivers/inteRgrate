@@ -1,6 +1,0 @@
-ssh_id = Sys.getenv("id_rsa1", NA)
-if (is.na(ssh_id)) stop("NO RSA")
-con = file("~/.ssh/id_rsa")
-writeLines(rawToChar(openssl::base64_decode(ssh_id)), con = con)
-close(con)
-Sys.chmod("~/.ssh/id_rsa", "0600")
