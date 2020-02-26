@@ -12,6 +12,8 @@ r:
 
 script:
   - echo $PROJECT
+  - echo $TRAVIS_REPO_SLUG
+  - echo $TRAVIS_TAG
 #  - Rscript -e "source('tmp.R')"
 #  - git remote -v
 #  - git remote set-url origin git@github.com:${TRAVIS_REPO_SLUG}
@@ -26,7 +28,7 @@ script:
   #- ls
   #- cd inteRgrate
   #- ls
-  - git tag -a v1.2 -m "[skip travis] Version v1.2"
+  - git tag -a v1.3 -m "Version v1.3"
   - git push --tags
 
   # - cd ..; mkdir tag; cd tag
