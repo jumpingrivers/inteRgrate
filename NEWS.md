@@ -1,7 +1,8 @@
-# Dev
-  * Adding in pre-commit & pre-push hook
+# Version 0.3.0
+  * Feature: Adding in pre-commit & pre-push hook
+  * Feature: Adding a meta check for markdown docs
+  * Feature: create_tag on travis
   * Bug fix: parsing .gitlab-ci now removes comments
-  * Adding a meta check for markdown docs
 
 # Version 0.2.3
   * Remove dashes from tag
