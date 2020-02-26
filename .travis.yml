@@ -11,6 +11,7 @@ r:
 #  - devel
 
 script:
+  - echo $TRAVIS
   - Rscript -e "inteRgrate::install_pkg()"
   - Rscript -e "inteRgrate::create_tag('travis', FALSE)"
   - echo $TRAVIS_REPO_SLUG

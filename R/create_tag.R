@@ -26,7 +26,7 @@ create_tag = function(branch = "master", in_development = FALSE) {
   set_crayon()
 
   msg_start("Creating a tag...create_tag()")
-  if (!is_gitlab() || !is_github()) {
+  if (!is_gitlab() && !is_github()) {
     msg_info("Doesn't seem to be a gitlab runner, so no tagging")
     return(invisible(NULL))
   }
