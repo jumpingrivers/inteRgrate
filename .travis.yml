@@ -11,16 +11,16 @@ r:
 #  - devel
 
 script:
-  - echo $PROJECT
   - echo $TRAVIS_REPO_SLUG
   - echo $TRAVIS_TAG
+  - echo $TRAVIS_BRANCH
 #  - Rscript -e "source('tmp.R')"
 #  - git remote -v
 #  - git remote set-url origin git@github.com:${TRAVIS_REPO_SLUG}
   - git config --global user.email "travis.tagger@example.com"
   - git config --global user.name "Travis tagging"
   - git remote -v
-  - git remote set-url origin https://${GITHUB_PAT}@github.com/jumpingrivers/inteRgrate.git
+  - git remote set-url origin https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git
   - git remote -v
 #  - git config --global url."git@github.com:".insteadOf"https://github.com/"
   #- cd ..; mkdir tag; cd tag

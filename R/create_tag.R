@@ -25,17 +25,13 @@ globalVariables(c("tag_name", "SERVER_HOST", "CI_PROJECT_ID", "CI_COMMIT_SHA"))
 create_tag = function(branch = "master", in_development = FALSE) {
   set_crayon()
   msg_start("Creating a tag...create_tag()")
-  if (!is_gitlab()) {
+  if (!is_gitlab() || !is_github()) {
     msg_info("Doesn't seem to be a gitlab runner, so no tagging")
     return(invisible(NULL))
   }
-  # Assume GITLAB
-  if (Sys.getenv("CI_COMMIT_BRANCH") != branch) {
-    msg_info(paste("Not on", branch, "so no tagging"))
-    return(invisible(NULL))
-  }
 
-  if (!is.na(Sys.getenv("CI_COMMIT_TAG", NA))) {
+  if (!is.na(Sys.getenv("CI_COMMIT_TAG", NA)) &&
+      !is.na(Sys.getenv("TRAVIS_TAG", NA))) {
     msg_info("This looks like a tagging CI process, so no tagging")
     return(invisible(NULL))
   }
@@ -44,6 +40,15 @@ create_tag = function(branch = "master", in_development = FALSE) {
     msg_info("In development, so no tagging")
     return(invisible(NULL))
   }
+
+  # Assume GITLAB
+  if (Sys.getenv("CI_COMMIT_BRANCH") != branch) {
+    msg_info(paste("Not on", branch, "so no tagging"))
+    return(invisible(NULL))
+  }
+
+
+
 
   if (isFALSE(has_pkg_changed(repo = paste0("origin/", branch)))) {
     msg_info("Package hasn't changed, so no tagging")
