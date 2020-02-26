@@ -11,10 +11,10 @@ is_in_development = function() {
   stringr::str_detect(version, "^[0-9]*\\.[0-9]*\\.[0-9]*\\.9[0-9]{3}$")
 }
 
-globalVariables(c("tag_name", "SERVER_HOST", "CI_PROJECT_ID", "CI_COMMIT_SHA"))
+globalVariables(c("token", "project"))
 #' Auto-tagging via CI
 #'
-#' Automatically tag the commit via the version number. This requies the
+#' Automatically tag the commit via the version number. This requires the
 #' environment variable GITHUB_TOKEN that has write permission.
 #'
 #' If the version contains an in development component (e.g. X.Y.Z.9001), by
@@ -24,43 +24,74 @@ globalVariables(c("tag_name", "SERVER_HOST", "CI_PROJECT_ID", "CI_COMMIT_SHA"))
 #' @export
 create_tag = function(branch = "master", in_development = FALSE) {
   set_crayon()
+
   msg_start("Creating a tag...create_tag()")
-  if (!is_gitlab()) {
-    msg_info("Doesn't seem to be a gitlab runner, so no tagging")
-    return(invisible(NULL))
-  }
-  # Assume GITLAB
-  if (Sys.getenv("CI_COMMIT_BRANCH") != branch) {
-    msg_info(paste("Not on", branch, "so no tagging"))
+  if (!is_gitlab() && !is_github()) {
+    msg_info("No tagging: doesn't seem to be a CI process")
     return(invisible(NULL))
   }
 
-  if (!is.na(Sys.getenv("CI_COMMIT_TAG", NA))) {
-    msg_info("This looks like a tagging CI process, so no tagging")
+  if (is_tagging_branch()) {
+    msg_info("No tagging: This looks like a tagging CI process")
     return(invisible(NULL))
   }
 
   if (!in_development && is_in_development()) {
-    msg_info("In development, so no tagging")
+    msg_info("No tagging: in development")
     return(invisible(NULL))
   }
 
+  # Check branch
+  if (get_current_branch() != branch) {
+    msg_info(paste("No tagging: Not on", branch))
+    return(invisible(NULL))
+  }
+
+  # Has the package actually changed?
   if (isFALSE(has_pkg_changed(repo = paste0("origin/", branch)))) {
-    msg_info("Package hasn't changed, so no tagging")
+    msg_info("No tagging: Package hasn't changed")
     return(invisible(NULL))
   }
 
   tag_name = get_tag_name()
+  if (is_gitlab()) {
+    gitlab_tag(tag_name)
+  } else {
+    github_tag(tag_name)
+  }
+  msg_ok("Tagging good.")
+  return(invisible(NULL))
+}
+
+github_tag = function(tag_name) {
+  # Set a sensible name for the commit
+  system2("git", args = c("config", "--global", "user.email",  "'travis.tagger@example.com'"))
+  system2("git", args = c("config", "--global", "user.name", "'Travis tagger'"))
+
+  # Get token
+  token = get_auth_token()
+
+  # Rewrite URL with PAT
+  project = Sys.getenv("TRAVIS_REPO_SLUG")
+  git_url = glue::glue("https://{token}@github.com/{project}.git")
+  system2("git", args = c("remote", "set-url", "origin", git_url))
+
+  # Tag and push
+  system2("git", args = c("tag", "-a", tag_name,  "-m", glue::glue("'Version {tag_name}'")))
+  system2("git", args = c("push", "--tags"))
+  return(invisible(NULL))
+
+}
+
+gitlab_tag = function(tag_name) {
   gitlab_instead_of()
   SERVER_HOST = Sys.getenv("CI_SERVER_HOST") #nolint
-  CI_PROJECT_ID = Sys.getenv("CI_PROJECT_ID") #nolint
+  project = Sys.getenv("CI_PROJECT_ID") #nolint
   CI_COMMIT_SHA = Sys.getenv("CI_COMMIT_SHA") #nolint
-  GITLAB_TOKEN = Sys.getenv("GITLAB_TOKEN", NA) #nolint
-  if (is.na(GITLAB_TOKEN)) {
-    msg_error("GITLAB_TOKEN missing. Required for tagging", stop = TRUE)
-  }
-  url = glue::glue("'https://{SERVER_HOST}/api/v4/projects/{CI_PROJECT_ID}/repository/tags?\\
-           tag_name={tag_name}&ref={CI_COMMIT_SHA}&private_token={GITLAB_TOKEN}'")
+  token = get_auth_token()
+
+  url = glue::glue("'https://{SERVER_HOST}/api/v4/projects/{project}/repository/tags?\\
+           tag_name={tag_name}&ref={CI_COMMIT_SHA}&private_token={token}'")
   out = system2("curl",
                 args = c("-X", "POST", "--silent", "--show-error", "--fail", url),
                 stderr = TRUE, stdout = TRUE)
@@ -70,3 +101,12 @@ create_tag = function(branch = "master", in_development = FALSE) {
   }
   return(invisible(NULL))
 }
+
+## We use tokens instead of ssh, but I suppose we could do both
+## For future readers
+## When add id_rsa, remember to remove lines breaks and encode base64
+#ssh_id = Sys.getenv("id_rsa", NA)
+# con = file("~/.ssh/id_rsa")
+# writeLines(rawToChar(openssl::base64_decode(ssh_id)), con = con)
+# close(con)
+# Sys.chmod("~/.ssh/id_rsa", "0600")
