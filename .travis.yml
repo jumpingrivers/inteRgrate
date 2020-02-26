@@ -12,9 +12,9 @@ r:
 
 script:
   - echo $PROJECT
-  - Rscript -e "source('tmp.R')"
-  - git remote -v
-  - git remote set-url origin git@github.com:${TRAVIS_REPO_SLUG}
+#  - Rscript -e "source('tmp.R')"
+#  - git remote -v
+#  - git remote set-url origin git@github.com:${TRAVIS_REPO_SLUG}
   - git remote -v
   - git remote set-url origin https://${GITHUB_PAT}@github.com/jumpingrivers/inteRgrate.git
   - git remote -v
