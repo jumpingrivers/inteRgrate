@@ -11,6 +11,7 @@ matrix:
   - r: release
     r_packages:
       - pkgdown
+    env: R_CURRENT=true
     deploy:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
@@ -26,7 +27,7 @@ script:
   - Rscript -e "inteRgrate::check_lintr()"
   - Rscript -e "inteRgrate::check_namespace()"
   - Rscript -e "inteRgrate::check_version()"
-  - Rscript -e "inteRgrate::create_tag()"
+  - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag()"
 
 notifications:
   email:
