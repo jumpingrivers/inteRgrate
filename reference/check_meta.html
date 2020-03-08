@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tidy description — check_tidy_description • inteRgrate</title>
+<title>Checks Meta files — check_meta • inteRgrate</title>
 
 
 <!-- jquery -->
@@ -35,10 +35,11 @@
 
 
 
-<meta property="og:title" content="Tidy description — check_tidy_description" />
+<meta property="og:title" content="Checks Meta files — check_meta" />
 <meta property="og:description" content="Checks for a tidy description file (via the usethis function
 use_tidy_description). It also checks that the version numbers conform
-to the tidy format - X.Y.Z or X.Y.Z.9ABC." />
+to the tidy format - X.Y.Z or X.Y.Z.9ABC, if the README is up to date, and
+if .gitignore contains sensible values." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,34 +106,26 @@ to the tidy format - X.Y.Z or X.Y.Z.9ABC." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tidy description</h1>
+    <h1>Checks Meta files</h1>
     
-    <div class="hidden name"><code>check_tidy_description.Rd</code></div>
+    <div class="hidden name"><code>check_meta.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Checks for a tidy description file (via the <code>usethis</code> function
 <code>use_tidy_description</code>). It also checks that the version numbers conform
-to the tidy format - X.Y.Z or X.Y.Z.9ABC.</p>
+to the tidy format - X.Y.Z or X.Y.Z.9ABC, if the README is up to date, and
+if .gitignore contains sensible values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_tidy_description</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>check_meta</span>()</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>path</th>
-      <td><p>Default <code>.</code> The location of the package</p></td>
-    </tr>
-    </table>
 
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
     </ul>
 
   </div>
