@@ -1,6 +1,4 @@
-#' @importFrom utils glob2rx
-check_meta = function() {
-  set_crayon()
+check_readme = function() {
   msg_start("Checking meta...check_meta()")
   if (file.exists("README.Rmd")) {
     msg_start("Checking README.Rmd timestamps")
@@ -9,8 +7,11 @@ check_meta = function() {
     }
     msg_ok("README OK")
   }
+  return(invisible(NULL))
+}
 
-  msg_start("Checking .gitignore")
+check_gitignore = function() {
+  msg_start("Checking .gitignore...check_meta()")
   ## Get ignores and remove ignored files
   ignores = readLines(".gitignore")
   ignores = ignores[stringr::str_detect(ignores, pattern = "^#", negate = TRUE)]
@@ -34,6 +35,21 @@ check_meta = function() {
     msg_error("Copying github.com/github/gitignore/blob/master/R.gitignore is a good start.")
     msg_error("Please update your .gitignore", stop = TRUE)
   }
+  return(invisible(NULL))
+}
+#' Checks Meta files
+#'
+#' Checks for a tidy description file (via the \code{usethis} function
+#' \code{use_tidy_description}). It also checks that the version numbers conform
+#' to the tidy format - X.Y.Z or X.Y.Z.9ABC, if the README is up to date, and
+#' if .gitignore contains sensible values.
+#' @export
+#' @importFrom utils glob2rx
+check_meta = function() {
+  set_crayon()
+  check_tidy_description()
+  check_readme()
+  check_gitignore()
 
   msg_ok("Meta files look good")
   return(invisible(NULL))

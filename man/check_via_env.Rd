@@ -16,6 +16,7 @@ Current list of variables is
 \item{INTERGRATE_PKG}{check_pkg()}
 \item{INTERGRATE_R_FILENAMES}{check_r_filenames()}
 \item{INTERGRATE_TIDY_DESCRIPTION}{check_tidy_description()}
+\item{INTERGRATE_META}{check_meta()}
 \item{INTERGRATE_LINTR}{check_lintr()}
 \item{INTERGRATE_NAMESPACE}{check_namespace()}
 \item{INTERGRATE_VERSION}{check_version()}

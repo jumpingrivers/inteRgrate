@@ -6,9 +6,9 @@ git_pre_commit = function() {
   out = system2("git",  args = c("diff", "--name-only", "--cached"), stdout = TRUE)
   fnames = unlist(stringr::str_split(out, "\n"))
 
-  if (any(stringr::str_detect(fnames, "^DESCRIPTION$"))) {
-    check_tidy_description()
-  }
+  # if (any(stringr::str_detect(fnames, "^DESCRIPTION$"))) {
+  #   check_tidy_description()
+  # }
 
   if (any(stringr::str_starts(fnames, "R\\/"))) {
     check_r_filenames()
@@ -18,7 +18,11 @@ git_pre_commit = function() {
     check_namespace()
   }
 
-  check_meta()
+  if (any(stringr::str_detect(fnames, "^DESCRIPTION$")) ||
+      any(stringr::str_detect(fnames, "^README\\.")) ||
+      any(stringr::str_detect(fnames, "^\\.gitignore"))) {
+    check_meta()
+  }
   has_error = FALSE
   fnames = fnames[stringr::str_detect(fnames, "\\.R$|\\.r$|\\.Rmd$")]
   for (fname in fnames) {

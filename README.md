@@ -60,8 +60,9 @@ functions that are useful for CI:
     vignettes.
   - `check_r_filenames()` - ensures file extensions are `.R` and all
     names are lower case.
-  - `check_tidy_description()` - ensure that the DESCRIPTION file is
-    tidy, via `usethis::use_tidy_description()`.
+  - `check_meta()` - ensure that the DESCRIPTION file is tidy, via
+    `usethis::use_tidy_description()`, checks README.Rmd timestamps,
+    checks .gitignore contains standard files.
   - `check_version()` - ensures that the package description has been
     updated.
   - `create_tag()` - autotag via the CI (Gitlab only).
