@@ -1,3 +1,7 @@
+# Version 0.4.0
+  * Feature: Add env variable to check_meta
+  * Feature: Add check_tidy_des to check_meta.
+
 # Version 0.3.0
   * Feature: Adding in pre-commit & pre-push hook
   * Feature: Adding a meta check for markdown docs
