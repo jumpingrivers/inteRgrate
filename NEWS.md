@@ -1,3 +1,6 @@
+# DEV
+  * Bug: .Rbuildignore files are case insensitive!
+
 # Version 0.4.0
   * Feature: Add env variable to check_meta
   * Feature: Add check_tidy_des to check_meta.

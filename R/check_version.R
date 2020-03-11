@@ -25,9 +25,11 @@ has_pkg_changed = function(repo) {
   }
 
   ## Get ignores and remove ignored files
-  ignores = readLines(".Rbuildignore")
+  ## .Rbuildignore is case insensitive
+  ignores = stringr::str_to_lower(readLines(".Rbuildignore"))
+  lower_committed = stringr::str_to_lower(committed_files)
   list_ignores = sapply(ignores,
-                        function(ignore) stringr::str_detect(committed_files, ignore))
+                        function(ignore) stringr::str_detect(lower_committed, ignore))
   mat_ignores = matrix(list_ignores, ncol = length(committed_files), byrow = TRUE)
 
   ignore_files = apply(mat_ignores, 2, any)
