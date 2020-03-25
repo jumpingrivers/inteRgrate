@@ -1,6 +1,7 @@
 # DEV
   * Bug: .Rbuildignore files are case insensitive!
   * Bug: Parsing .gitlab-ci files
+  * Bug: Remove deleted files in pre-commit check
 
 # Version 0.4.0
   * Feature: Add env variable to check_meta

@@ -6,6 +6,9 @@ git_pre_commit = function() {
   out = system2("git",  args = c("diff", "--name-only", "--cached"), stdout = TRUE)
   fnames = unlist(stringr::str_split(out, "\n"))
 
+  # Remove deleted files!
+  fnames = fnames[file.exists(fnames)]
+
   # if (any(stringr::str_detect(fnames, "^DESCRIPTION$"))) {
   #   check_tidy_description()
   # }
