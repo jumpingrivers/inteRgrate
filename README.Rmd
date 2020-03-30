@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# inteRgrate
+# inteRgrate: Very opinated package development
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -24,7 +24,10 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-The goal of inteRgrate is to make continuous integration more consistent across platforms.
+The goal of inteRgrate is to provide an very opinionated set of rules for R package development.
+The idea is that when many people contribute to a package, it's easy for standards to diverge. We
+think that CI can help here. 
+This package has the same functions for both travis and Gitlab-CI environments.
 Currently, the package is used by [Jumping Rivers](https://www.jumpingrivers.com) on GitHub and 
 GitLab.
 
@@ -67,9 +70,14 @@ runner. This package contains a number functions that are useful for CI:
  via `usethis::use_tidy_description()`, checks README.Rmd timestamps, checks .gitignore
  contains standard files.
  * `check_version()` - ensures that the package description has been updated.
- * `create_tag()` - autotag via the CI (Gitlab only).
+ * `check_windows_isses()` - ensures that linux line breaks are used and file permissions are
+ sensible.
+ * `create_tag()` - autotag via the CI.
 
 See the help pages for customisation.
+
+There's also a pre-commit hook to help. Run `inteRgrate::add_pre_commit()` in root git directory
+of your repo and checks will be run before committing.
 
 ### Example .travis.yml file
 

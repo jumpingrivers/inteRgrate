@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# inteRgrate
+# inteRgrate: Very opinated package development
 
 <!-- badges: start -->
 
@@ -15,8 +15,11 @@ Status](https://travis-ci.org/jumpingrivers/inteRgrate.png?branch=master,dev)](h
 
 <!-- badges: end -->
 
-The goal of inteRgrate is to make continuous integration more consistent
-across platforms. Currently, the package is used by [Jumping
+The goal of inteRgrate is to provide an very opinionated set of rules
+for R package development. The idea is that when many people contribute
+to a package, it’s easy for standards to diverge. We think that CI can
+help here. This package has the same functions for both travis and
+Gitlab-CI environments. Currently, the package is used by [Jumping
 Rivers](https://www.jumpingrivers.com) on GitHub and GitLab.
 
 The rationale behind this package is
@@ -65,9 +68,15 @@ functions that are useful for CI:
     checks .gitignore contains standard files.
   - `check_version()` - ensures that the package description has been
     updated.
-  - `create_tag()` - autotag via the CI (Gitlab only).
+  - `check_windows_isses()` - ensures that linux line breaks are used
+    and file permissions are sensible.
+  - `create_tag()` - autotag via the CI.
 
 See the help pages for customisation.
+
+There’s also a pre-commit hook to help. Run
+`inteRgrate::add_pre_commit()` in root git directory of your repo and
+checks will be run before committing.
 
 ### Example .travis.yml file
 
