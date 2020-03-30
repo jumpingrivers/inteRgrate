@@ -9,10 +9,8 @@ git_pre_commit = function() {
   # Remove deleted files!
   fnames = fnames[file.exists(fnames)]
 
-  # if (any(stringr::str_detect(fnames, "^DESCRIPTION$"))) {
-  #   check_tidy_description()
-  # }
-
+  check_file_permissions(fnames)
+  check_line_breaks(fnames)
   if (any(stringr::str_starts(fnames, "R\\/"))) {
     check_r_filenames()
   }

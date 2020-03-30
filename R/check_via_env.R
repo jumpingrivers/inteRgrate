@@ -23,6 +23,7 @@ check_via_env = function() {
   if (Sys.getenv("INTERGRATE_LINTR", "false") == "true") check_lintr()
   if (Sys.getenv("INTERGRATE_NAMESPACE", "false") == "true") check_namespace()
   if (Sys.getenv("INTERGRATE_VERSION", "false") == "true") check_version()
+  if (Sys.getenv("INTERGRATE_WINDOWS_ISSUES", "false") == "true") check_windows_issues()
   if (Sys.getenv("INTERGRATE_TAG", "false") == "true") create_tag()
   return(invisible(NULL))
 }
