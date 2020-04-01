@@ -13,6 +13,5 @@ check_windows_issues(permissions = TRUE, line_breaks = TRUE)
 }
 \description{
 This check tests for windows line breaks and file permissions. It ensures
-that no file is public writeable or if it has a file extensions, (txt|md|Rmd|yml|json|R|r),
-that it is not executable.
+that the file is not executable (txt|md|Rmd|yml|json|).
 }

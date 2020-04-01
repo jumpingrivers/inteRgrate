@@ -1,4 +1,4 @@
-# DEV
+# Version 0.4.1
   * Bug: .Rbuildignore files are case insensitive!
   * Bug: Parsing .gitlab-ci files
   * Bug: Remove deleted files in pre-commit check

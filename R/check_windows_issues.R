@@ -1,8 +1,7 @@
 #' Detects standard Windows related issues
 #'
 #' This check tests for windows line breaks and file permissions. It ensures
-#' that no file is public writeable or if it has a file extensions, (txt|md|Rmd|yml|json|R|r),
-#' that it is not executable.
+#' that the file is not executable (txt|md|Rmd|yml|json|).
 #' @param permissions Default \code{TRUE}. Checks for file permissions.
 #' @param line_breaks Default \code{TRUE}. Checks for Windows line breaks.
 #' @export
@@ -27,35 +26,23 @@ check_file_permissions = function(repo_files = NULL) {
   modes = file.info(repo_files, extra_cols = FALSE)[, "mode"]
   modes_list = stringr::str_split(modes, pattern = "")
 
-  # Check for executables & public files
+  # Check for executables
   is_executable = unlist(lapply(modes_list, function(i) any(as.numeric(i) %% 2 != 0)))
-  is_public = unlist(lapply(modes_list, function(i) i[3] == 2 || i[3] == 6))
 
   # Only look for certain executable files
   file_type = str_detect(repo_files, pattern = ".*\\.(txt|md|Rmd|yml|json|R|r)$")
   is_executable = is_executable & file_type
 
-  if (!any(is_executable) && !any(is_public)) {
+  if (!any(is_executable)) {
     msg_info("File modes looks good")
     return(invisible(NULL))
   }
 
   executable = repo_files[is_executable]
-  if (any(is_executable)) {
-    msg_error("The following files are executable")
-    for (i in seq_along(executable)) {
-      fname = normalizePath(executable[i])
-      msg_error(glue::glue("File {i} of {length(executable)}: {fname}"))
-    }
-  }
-
-  if (any(is_public)) {
-    public = repo_files[is_public]
-    msg_error("The following files are other public")
-    for (i in seq_along(public)) {
-      fname = normalizePath(public[i])
-      msg_error(glue::glue("File {i} of {length(public)}: {fname}"))
-    }
+  msg_error("The following files are executable")
+  for (i in seq_along(executable)) {
+    fname = normalizePath(executable[i])
+    msg_error(glue::glue("File {i} of {length(executable)}: {fname}"))
   }
   stop(call. = FALSE)
 }
