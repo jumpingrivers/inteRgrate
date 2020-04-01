@@ -55,7 +55,8 @@ check_line_breaks = function(repo_files = NULL) {
                          stdout = TRUE)
   }
   line_breaks = vapply(repo_files,
-                       function(fname) system2("grep", args = c("$'\015'", fname)),
+                       function(fname) system2("grep", args = c("--binary-files=without-match",
+                                                                "-Um1", "$'\015'", fname)),
                        FUN.VALUE = integer(1))
   line_breaks = names(line_breaks[line_breaks == 0])
   if (length(line_breaks) == 0L) {
