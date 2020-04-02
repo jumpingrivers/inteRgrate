@@ -11,6 +11,16 @@ check_windows_issues  = function(permissions = TRUE, line_breaks = TRUE) {
   return(invisible(NULL))
 }
 
+# Files types to check.
+# Assume all others are binary
+files_to_check = function(fnames) {
+  ext = c("R", "r", "Rd", "css", "html", "js", "yml",  "lintr", "md", "Rmd", "sh",
+          "Rbuildignore", "gitignore", "Rproj")
+  reg_expr = c(paste0("\\.", ext), "DESCRIPTION", "NAMESPACE")
+  reg_expr = paste(reg_expr, collapse = "$|")
+  fnames[!stringr::str_detect(fnames, pattern = reg_expr)]
+}
+
 globalVariables("fname")
 check_file_permissions = function(repo_files = NULL) {
   msg_info("Checking file permissions...check_file_permissions()")
@@ -22,6 +32,8 @@ check_file_permissions = function(repo_files = NULL) {
                          stdout = TRUE)
   }
 
+  # Strip out binary files
+  repo_files = files_to_check(repo_files)
   # Grab the permissions and split
   modes = file.info(repo_files, extra_cols = FALSE)[, "mode"]
   modes_list = stringr::str_split(modes, pattern = "")
