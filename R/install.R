@@ -16,6 +16,11 @@ get_entries = function(path = ".", entry) {
 fast_pre_install = function(path = ".", suggests = FALSE) {
   if (!is_gitlab()) return(invisible(NULL))
 
+  # Check for RSPM
+  if (is.null(getOption("HTTPUserAgent")) &&
+      is.null(getOption("download.file.extra"))) {
+    return(invisible(NULL))
+  }
   pkgs = get_entries(path, "Imports")
   if (isTRUE(suggests)) pkgs = c(pkgs, get_entries(path, "Suggests"))
   # This step is useful to get deps for packages where r-cran- isn't available

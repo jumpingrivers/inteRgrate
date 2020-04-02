@@ -1,5 +1,6 @@
 # DEV
   * Bug: Remove binary files from Windows checks
+  * Feature: Detect RSPM and skip if used
   
 # Version 0.4.1
   * Bug: .Rbuildignore files are case insensitive!
