@@ -17,8 +17,8 @@ fast_pre_install = function(path = ".", suggests = FALSE) {
   if (!is_gitlab()) return(invisible(NULL))
 
   # Check for RSPM
-  if (is.null(getOption("HTTPUserAgent")) &&
-      is.null(getOption("download.file.extra"))) {
+  if (!is.null(getOption("HTTPUserAgent")) &&
+      !is.null(getOption("download.file.extra"))) {
     return(invisible(NULL))
   }
   pkgs = get_entries(path, "Imports")
