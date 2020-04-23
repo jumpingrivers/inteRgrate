@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9005</span>
       </span>
     </div>
 
@@ -69,26 +69,26 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The goal of inteRgrate is to provide an very opinionated set of rules for R package development. The idea is that when many people contribute to a package, itâs easy for standards to diverge. We think that CI can help here. This package has the same functions for both travis and Gitlab-CI environments. Currently, the package is used by <a href="https://www.jumpingrivers.com">Jumping Rivers</a> on GitHub and GitLab.</p>
+<p>The goal of inteRgrate is to provide an very opinionated set of rules for R package development. The idea is that when many people contribute to a package, it’s easy for standards to diverge. We think that CI can help here. This package has the same functions for both travis and Gitlab-CI environments. Currently, the package is used by <a href="https://www.jumpingrivers.com">Jumping Rivers</a> on GitHub and GitLab.</p>
 <p>The rationale behind this package is</p>
 <ul>
 <li>While checking R packages on travis is easy, support for GitLab (and others) is lacking.</li>
 <li>When developing a package, sometimes we want to specify the exact number of NOTES and WARNINGS we expect/allow.</li>
 <li>Having a consistent system for different CI is desirable.</li>
-<li>For our CI steps, we have a few other checks that we tend to implement, e.g.Â lints, not using imports within namespaces.</li>
+<li>For our CI steps, we have a few other checks that we tend to implement, e.g. lints, not using imports within namespaces.</li>
 </ul>
 <p>This package is still being developed, but we are now actively using it, so hopefully we can avoid breaking changes.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>As the package is currently being developed, it isnât yet on CRAN. The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
+<p>As the package is currently being developed, it isn’t yet on CRAN. The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
 <span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"jumpingrivers/inteRgrate"</span>)</pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#functions" class="anchor"></a>Functions</h2>
-<p>The package is meant to be used within a continuous integration framework, e.g.Â travis, GitLab runner. This package contains a number functions that are useful for CI:</p>
+<p>The package is meant to be used within a continuous integration framework, e.g. travis, GitLab runner. This package contains a number functions that are useful for CI:</p>
 <ul>
 <li>
 <code><a href="reference/check_pkg.html">check_pkg()</a></code> - installs package dependencies, builds &amp; installs the package, before running package check. By default, <strong>any</strong> notes or warnings will raise an error message. This can be changed by setting the environment variables <code>ALLOWED_NOTES</code> and <code>ALLOWED_WARNINGS</code>.</li>
@@ -109,7 +109,7 @@
 <code><a href="reference/create_tag.html">create_tag()</a></code> - autotag via the CI.</li>
 </ul>
 <p>See the help pages for customisation.</p>
-<p>Thereâs also a pre-commit hook to help. Run <code><a href="reference/add_pre_commit.html">inteRgrate::add_pre_commit()</a></code> in root git directory of your repo and checks will be run before committing.</p>
+<p>There’s also a pre-commit hook to help. Run <code><a href="reference/add_pre_commit.html">inteRgrate::add_pre_commit()</a></code> in root git directory of your repo and checks will be run before committing.</p>
 <div id="example--travis-yml-file" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example--travis-yml-file" class="anchor"></a>Example .travis.yml file</h3>
@@ -206,7 +206,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
