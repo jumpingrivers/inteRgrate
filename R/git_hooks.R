@@ -5,6 +5,8 @@
 git_pre_commit = function() {
   out = system2("git",  args = c("diff", "--name-only", "--cached"), stdout = TRUE)
   fnames = unlist(stringr::str_split(out, "\n"))
+  # Exit early
+  if (length(fnames) == 0) return(invisible(NULL))
 
   # Remove deleted files!
   fnames = fnames[file.exists(fnames)]
