@@ -1,13 +1,13 @@
-get_entries = function(path = ".", entry) {
-  pkgs = read.dcf(file.path(path, "DESCRIPTION"))
-  entries = colnames(as.data.frame(pkgs))
-  if (!(entry %in% entries)) return(NULL)
-
-  pkgs = pkgs[1, entry]
-  pkgs = str_split(pkgs, ",")[[1]]
-  pkgs = str_trim(pkgs)
-  pkgs
-}
+# get_entries = function(path = ".", entry) {
+#   pkgs = read.dcf(file.path(path, "DESCRIPTION"))
+#   entries = colnames(as.data.frame(pkgs))
+#   if (!(entry %in% entries)) return(NULL)
+#
+#   pkgs = pkgs[1, entry]
+#   pkgs = str_split(pkgs, ",")[[1]]
+#   pkgs = str_trim(pkgs)
+#   pkgs
+# }
 
 # Fast pre-install of Depends
 # Uses the Ubuntu MPA to optimise installation.
