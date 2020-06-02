@@ -24,7 +24,7 @@ git_pre_commit = function() {
   if (any(stringr::str_detect(fnames, "^DESCRIPTION$")) ||
       any(stringr::str_detect(fnames, "^README\\.")) ||
       any(stringr::str_detect(fnames, "^\\.gitignore"))) {
-    check_meta()
+    #check_meta()
   }
   has_error = FALSE
   fnames = fnames[stringr::str_detect(fnames, "\\.R$|\\.r$|\\.Rmd$")]

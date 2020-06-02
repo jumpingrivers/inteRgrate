@@ -1,9 +1,11 @@
 # Version: 0.5
   * Feature: use `rcmdcheck` instead of `devtools`. This breaks/changes a few things.
+  * Feature: `check_all()` for running all checks
   * Change: Remove explicit install and build functions.
   * Change: Use `cli` exclusively.
   * Change: lint all Rmd and R files
-  
+  * Change: Remove `check_meta()` - expand to separate functions
+
 # Version 0.4.1
   * Bug: .Rbuildignore files are case insensitive!
   * Bug: Parsing .gitlab-ci files

@@ -13,7 +13,7 @@ check_windows_issues = function(permissions = TRUE, line_breaks = TRUE) {
 
 globalVariables("fname")
 check_file_permissions = function(repo_files = NULL) {
-  cli::cli_alert_info("Checking file permissions...check_file_permissions()")
+  cli::cli_h3("Checking file permissions...check_file_permissions()")
 
   # Get all repos files
   if (is.null(repo_files)) {
@@ -21,7 +21,8 @@ check_file_permissions = function(repo_files = NULL) {
                          args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
                          stdout = TRUE)
   }
-
+  # Remove deleted files
+  repo_files = repo_files[file.exists(repo_files)]
   # Grab the permissions and split
   modes = file.info(repo_files, extra_cols = FALSE)[, "mode"]
   modes_list = stringr::str_split(modes, pattern = "")
@@ -34,7 +35,7 @@ check_file_permissions = function(repo_files = NULL) {
   is_executable = is_executable & file_type
 
   if (!any(is_executable)) {
-    cli::cli_alert_info("File modes looks good")
+    cli::cli_alert_success("File modes looks good")
     return(invisible(NULL))
   }
 
@@ -54,13 +55,15 @@ check_line_breaks = function(repo_files = NULL) {
                          args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
                          stdout = TRUE)
   }
+  # Remove deleted files
+  repo_files = repo_files[file.exists(repo_files)]
   line_breaks = vapply(repo_files,
                        function(fname) system2("grep", args = c("--binary-files=without-match",
                                                                 "-Um1", "$'\015'", fname)),
                        FUN.VALUE = integer(1))
   line_breaks = names(line_breaks[line_breaks == 0])
   if (length(line_breaks) == 0L) {
-    cli::cli_alert_info("Line breaks look good")
+    cli::cli_alert_success("Line breaks look good")
     return(invisible(NULL))
   }
   msg_error("The following files have Windows line breaks")

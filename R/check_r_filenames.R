@@ -1,9 +1,11 @@
 #' Check R/ filenames
 #'
-#' Checks that all filenames are lower case and the file extension matches
-#' .\code{extension}
+#' Checks that all filenames in the directory \code{R/}
+#' are lower case and the file extension matches .\code{extension}
 #' @param extension Preferred R file extension. Default \code{R}.
 #' @export
+#' @examples
+#' check_r_filenames()
 check_r_filenames = function(extension = "R") {
   set_crayon()
   cli::cli_h3("Checking file extensions...check_r_filenames()")

@@ -26,12 +26,7 @@ before_install:
 script:
   - echo $TRAVIS_R_VERSION
   - Rscript -e 'remotes::install_local(".", upgrade = "never", build_vignettes = TRUE)'
-  - Rscript -e "inteRgrate::check_pkg()"
-  - Rscript -e "inteRgrate::check_namespace()"
-  - Rscript -e "inteRgrate::check_r_filenames()"
-  - Rscript -e "inteRgrate::check_meta()"
-  - Rscript -e "inteRgrate::check_lintr()"
-  - Rscript -e "inteRgrate::check_version()"
+  - Rscript -e "inteRgrate::check_all(tag = FALSE)"
   - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag()"
 
 notifications:

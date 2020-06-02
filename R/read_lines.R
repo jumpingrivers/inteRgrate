@@ -1,4 +1,4 @@
-# See https://community.rstudio.com/t/incomplete-final-line-found-whats-the-big-deal/56536
+# WIP: https://community.rstudio.com/t/incomplete-final-line-found-whats-the-big-deal/56536
 # Also cleans up noise from readLines
 # nolint start
 readLines = function(con = stdin(), n = -1L, ok = TRUE, warn = TRUE,

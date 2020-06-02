@@ -9,11 +9,16 @@ check_version_format = function(description_path) {
   return(invisible(NULL))
 }
 
-check_tidy_description = function(path = NULL) {
+#' @title Check tidy description
+#' @description Checks for a tidy description file (via the \code{usethis} function
+#' \code{use_tidy_description}). It also checks that the version numbers conform
+#' to the tidy format - X.Y.Z or X.Y.Z.9ABC
+#' @export
+check_tidy_description = function() {
   set_crayon()
   cli::cli_h3("Checking tidy descriptions...check_tidy_descriptions()")
 
-  if (is.null(path)) path = get_build_dir()
+  path = get_build_dir()
   des_path = file.path(path, "DESCRIPTION")
   if (!file.exists(des_path)) msg_error("Missing DESCRIPTION file", stop = TRUE)
   check_version_format(des_path)
