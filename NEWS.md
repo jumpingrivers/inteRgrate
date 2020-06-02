@@ -1,7 +1,8 @@
-# DEV
-  * Bug: Remove binary files from Windows checks
-  * Feature: Detect RSPM and skip if used
-  * Bug: pre_commit when there is nothing to commit
+# Version: 0.5
+  * Feature: use `rcmdcheck` instead of `devtools`. This breaks/changes a few things.
+  * Change: Remove explicit install and build functions.
+  * Change: Use `cli` exclusively.
+  * Change: lint all Rmd and R files
   
 # Version 0.4.1
   * Bug: .Rbuildignore files are case insensitive!
