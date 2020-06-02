@@ -2,22 +2,15 @@
 % Please edit documentation in R/build.R, R/check_pkg.R
 \name{get_pkg_tar_ball}
 \alias{get_pkg_tar_ball}
-\alias{build_pkg}
 \alias{check_pkg}
-\title{Build R package}
+\title{Check R package}
 \usage{
 get_pkg_tar_ball()
 
-build_pkg(path = NULL)
-
-check_pkg(path = NULL, build = TRUE, install = TRUE)
+check_pkg(path = NULL)
 }
 \arguments{
 \item{path}{Default \code{.} The location of the package}
-
-\item{build}{Default TRUE. Should the .tar.gz file be built and kept}
-
-\item{install}{Default \code{TRUE}. Call install_pkg() after checking}
 }
 \description{
 Path is the CI project directory or \code{.}.

@@ -13,7 +13,7 @@ check_windows_issues  = function(permissions = TRUE, line_breaks = TRUE) {
 
 globalVariables("fname")
 check_file_permissions = function(repo_files = NULL) {
-  msg_info("Checking file permissions...check_file_permissions()")
+  cli::cli_alert_info("Checking file permissions...check_file_permissions()")
 
   # Get all repos files
   if (is.null(repo_files)) {
@@ -34,7 +34,7 @@ check_file_permissions = function(repo_files = NULL) {
   is_executable = is_executable & file_type
 
   if (!any(is_executable)) {
-    msg_info("File modes looks good")
+    cli::cli_alert_info("File modes looks good")
     return(invisible(NULL))
   }
 
@@ -48,7 +48,7 @@ check_file_permissions = function(repo_files = NULL) {
 }
 
 check_line_breaks = function(repo_files = NULL) {
-  msg_info("Checking line breaks...check_line_breaks()")
+  cli::cli_alert_info("Checking line breaks...check_line_breaks()")
   if (is.null(repo_files)) {
     repo_files = system2("git",
                          args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
@@ -60,7 +60,7 @@ check_line_breaks = function(repo_files = NULL) {
                        FUN.VALUE = integer(1))
   line_breaks = names(line_breaks[line_breaks == 0])
   if (length(line_breaks) == 0L) {
-    msg_info("Line breaks look good")
+    cli::cli_alert_info("Line breaks look good")
     return(invisible(NULL))
   }
   msg_error("The following files have Windows line breaks")

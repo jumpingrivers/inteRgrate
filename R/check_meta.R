@@ -1,17 +1,17 @@
 check_readme = function() {
-  msg_start("Checking meta...check_meta()")
+  cli::cli_h3("Checking meta...check_meta()")
   if (file.exists("README.Rmd")) {
-    msg_start("Checking README.Rmd timestamps")
+    cli::cli_alert_info("Checking README.Rmd timestamps")
     if (file.info("README.Rmd")$ctime > file.info("README.md")$ctime) {
       msg_error("README.md appears to be out of date", stop = TRUE)
     }
-    msg_ok("README OK")
+    cli::cli_alert_success("README OK")
   }
   return(invisible(NULL))
 }
 
 check_gitignore = function() {
-  msg_start("Checking .gitignore...check_meta()")
+  cli::cli_h3("Checking .gitignore...check_meta()")
   ## Get ignores and remove ignored files
   ignores = readLines(".gitignore")
   ignores = ignores[stringr::str_detect(ignores, pattern = "^#", negate = TRUE)]
@@ -51,6 +51,6 @@ check_meta = function() {
   check_readme()
   check_gitignore()
 
-  msg_ok("Meta files look good")
+  cli::cli_alert_success("Meta files look good")
   return(invisible(NULL))
 }

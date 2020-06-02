@@ -18,7 +18,7 @@ check_version_format = function(description_path) {
 #' @export
 check_tidy_description = function(path = NULL) {
   set_crayon()
-  msg_start("Checking tidy descriptions...check_tidy_descriptions()")
+  cli::cli_h3("Checking tidy descriptions...check_tidy_descriptions()")
 
   if (is.null(path)) path = get_build_dir()
   des_path = file.path(path, "DESCRIPTION")
@@ -33,13 +33,13 @@ check_tidy_description = function(path = NULL) {
   #message("Read ", des_path, " - ", length(r_new))
 
   if (length(r_old) == length(r_new) && all(r_old == r_new)) {
-    msg_ok("Your description is tidy!")
+    cli::cli_alert_success("Your description is tidy!")
     return(invisible(NULL))
   }
   for (i in seq_along(r_old)) {
     if (is.na(r_new[i]) || r_old[i] != r_new[i]) {
-      message(red(glue("  Current line {i}: {r_old[i]}")))
-      message(red(glue("  Tidied line {i}: {r_new[i]}")))
+      cli::cli_alert_warning(glue("  Current line {i}: {r_old[i]}"))
+      cli::cli_alert_warning(glue("  Tidied line {i}: {r_new[i]}"))
     }
   }
   msg_error("Run usethis::use_tidy_description() before committing.", stop = TRUE)

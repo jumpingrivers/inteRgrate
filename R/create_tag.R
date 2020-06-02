@@ -25,31 +25,31 @@ globalVariables(c("token", "project"))
 create_tag = function(branch = "master", in_development = FALSE) {
   set_crayon()
 
-  msg_start("Creating a tag...create_tag()")
+  cli::cli_h3("Creating a tag...create_tag()")
   if (!is_gitlab() && !is_github()) {
-    msg_info("No tagging: doesn't seem to be a CI process")
+    cli::cli_alert_info("No tagging: doesn't seem to be a CI process")
     return(invisible(NULL))
   }
 
   if (is_tagging_branch()) {
-    msg_info("No tagging: This looks like a tagging CI process")
+    cli::cli_alert_info("No tagging: This looks like a tagging CI process")
     return(invisible(NULL))
   }
 
   if (!in_development && is_in_development()) {
-    msg_info("No tagging: in development")
+    cli::cli_alert_info("No tagging: in development")
     return(invisible(NULL))
   }
 
   # Check branch
   if (get_current_branch() != branch) {
-    msg_info(paste("No tagging: Not on", branch))
+    cli::cli_alert_info(paste("No tagging: Not on", branch))
     return(invisible(NULL))
   }
 
   # Has the package actually changed?
   if (isFALSE(has_pkg_changed(repo = paste0("origin/", branch)))) {
-    msg_info("No tagging: Package hasn't changed")
+    cli::cli_alert_info("No tagging: Package hasn't changed")
     return(invisible(NULL))
   }
 
@@ -59,7 +59,7 @@ create_tag = function(branch = "master", in_development = FALSE) {
   } else {
     github_tag(tag_name)
   }
-  msg_ok("Tagging good.")
+  cli::cli_alert_success("Tagging good")
   return(invisible(NULL))
 }
 

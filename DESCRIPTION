@@ -10,12 +10,12 @@ Authors@R:
 Description: Helper functions for CI runners, such as GitHub and
     GitLab.
 License: GPL-2 | GPL-3
-Imports: 
-    clisymbols,
-    crayon,
-    devtools,
+Imports:
+    cli,
     glue,
     lintr (>= 2.0.0),
+    rcmdcheck,
+    remotes,
     stringr,
     usethis
 Suggests: 

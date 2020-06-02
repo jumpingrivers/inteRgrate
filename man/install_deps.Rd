@@ -2,14 +2,11 @@
 % Please edit documentation in R/install.R
 \name{install_deps}
 \alias{install_deps}
-\alias{install_pkg}
 \title{Install package dependencies
 
 Install packages dependencies}
 \usage{
 install_deps(path = NULL)
-
-install_pkg(path = NULL)
 }
 \arguments{
 \item{path}{Default \code{.} The location of the package}

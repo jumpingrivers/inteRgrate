@@ -7,10 +7,10 @@
 #' @export
 check_lintr = function(readme = TRUE, vignettes = TRUE) {
   set_crayon()
-  msg_start("Checking lint...check_lintr()")
+  cli::cli_h3("Checking lint...check_lintr()")
 
   if (!file.exists(".lintr")) {
-    msg_info("No .lintr file found")
+    cli::cli_alert_info("No .lintr file found")
   }
 
   lints = lintr::lint_package()
@@ -18,27 +18,27 @@ check_lintr = function(readme = TRUE, vignettes = TRUE) {
     lapply(lints, print)
     msg_error("Please fix lints in R/", stop = TRUE)
   }
-  msg_ok("R/ scripts OK")
+  cli::cli_alert_success("R/ scripts OK")
 
   if (isTRUE(readme) && file.exists("README.Rmd")) {
-    msg_start("Checking README.Rmd")
+    cli::cli_h3("Checking README.Rmd")
     re_lints = lintr::lint("README.Rmd")
     if (length(re_lints) > 0) {
       lapply(re_lints, print)
       msg_error("Please fix lints in the README.Rmd", stop = TRUE)
     }
-    msg_ok("README.Rmd OK")
+    cli::cli_alert_success("README.Rmd OK")
   }
 
   if (isTRUE(vignettes) && file.exists("vignettes")) {
-    msg_start("Checking vignettes")
+    cli::cli_h3("Checking vignettes")
     vig_lints = lintr::lint_dir("vignettes", pattern = "*.Rmd")
     if (length(vig_lints) > 0) {
       lapply(vig_lints, print)
       msg_error("Please fix lints in vignettes/", stop = TRUE)
     }
-    msg_ok("Vignettes OK")
+    cli::cli_alert_success("Vignettes OK")
   }
-  msg_ok("Lint looks good")
+  cli::cli_alert_success("Lint looks good")
   return(invisible(NULL))
 }

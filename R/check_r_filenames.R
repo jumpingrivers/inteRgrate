@@ -6,14 +6,14 @@
 #' @export
 check_r_filenames = function(extension = "R") {
   set_crayon()
-  msg_start("Checking file extensions...check_r_filenames()")
+  cli::cli_h3("Checking file extensions...check_r_filenames()")
 
   fnames = list.files("R/", full.names = TRUE)
   ext = substr(fnames, nchar(fnames) - length(extension), nchar(fnames))
   if (!all(ext == paste0(".", extension))) {
     msg_error(paste("File extension for R files should be", extension), stop = TRUE)
   }
-  msg_ok("Extensions look good")
+  cli::cli_alert_success("Extensions look good")
   fnames = list.files("R")
   # Remove extension
   fnames = substr(fnames, 0, nchar(fnames) - 1 - length(extension))
@@ -21,6 +21,6 @@ check_r_filenames = function(extension = "R") {
     msg_error("File names should be lower case", stop = TRUE)
   }
 
-  msg_ok("Filenames look good")
+  cli::cli_alert_success("Filenames look good")
   return(invisible(NULL))
 }
