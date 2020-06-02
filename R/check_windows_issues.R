@@ -5,7 +5,7 @@
 #' @param permissions Default \code{TRUE}. Checks for file permissions.
 #' @param line_breaks Default \code{TRUE}. Checks for Windows line breaks.
 #' @export
-check_windows_issues  = function(permissions = TRUE, line_breaks = TRUE) {
+check_windows_issues = function(permissions = TRUE, line_breaks = TRUE) {
   if (isTRUE(permissions)) check_file_permissions()
   if (isTRUE(line_breaks)) check_line_breaks()
   return(invisible(NULL))
