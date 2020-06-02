@@ -9,13 +9,6 @@ check_version_format = function(description_path) {
   return(invisible(NULL))
 }
 
-#' Tidy description
-#'
-#' Checks for a tidy description file (via the \code{usethis} function
-#' \code{use_tidy_description}). It also checks that the version numbers conform
-#' to the tidy format - X.Y.Z or X.Y.Z.9ABC.
-#' @inheritParams check_pkg
-#' @export
 check_tidy_description = function(path = NULL) {
   set_crayon()
   cli::cli_h3("Checking tidy descriptions...check_tidy_descriptions()")
@@ -26,16 +19,15 @@ check_tidy_description = function(path = NULL) {
   check_version_format(des_path)
 
   r_old = readLines(des_path)
-  #message("Read ", des_path, " - ", length(r_old))
   usethis::use_tidy_description()
 
   r_new = readLines(des_path)
-  #message("Read ", des_path, " - ", length(r_new))
 
   if (length(r_old) == length(r_new) && all(r_old == r_new)) {
     cli::cli_alert_success("Your description is tidy!")
     return(invisible(NULL))
   }
+
   for (i in seq_along(r_old)) {
     if (is.na(r_new[i]) || r_old[i] != r_new[i]) {
       cli::cli_alert_warning(glue("  Current line {i}: {r_old[i]}"))
