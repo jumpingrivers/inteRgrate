@@ -4,17 +4,14 @@
 \alias{check_lintr}
 \title{The lintr check
 
-Runs lint from the \code{lintr} package.}
+Runs lint from the \code{lintr} package. Also scans for all
+\code{.Rmd} and \code{.R} files in other directories.}
 \usage{
-check_lintr(readme = TRUE, vignettes = TRUE)
-}
-\arguments{
-\item{readme}{Default \code{TRUE}. Should README.Rmd be checked}
-
-\item{vignettes}{Default \code{TRUE}. Should the vignettes be linted.}
+check_lintr()
 }
 \description{
 The lintr check
 
-Runs lint from the \code{lintr} package.
+Runs lint from the \code{lintr} package. Also scans for all
+\code{.Rmd} and \code{.R} files in other directories.
 }
