@@ -9,17 +9,19 @@ check_via_env()
 \description{
 Looks for environment variables and runs associated checks.
 This allows you to set environment variables at a project level, e.g. Gitlab.
+The default for all checks is \code{FALSE}.
 }
 \details{
 Current list of variables is
 \describe{
 \item{INTERGRATE_PKG}{check_pkg()}
-\item{INTERGRATE_R_FILENAMES}{check_r_filenames()}
-\item{INTERGRATE_TIDY_DESCRIPTION}{check_tidy_description()}
-\item{INTERGRATE_META}{check_meta()}
 \item{INTERGRATE_LINTR}{check_lintr()}
 \item{INTERGRATE_NAMESPACE}{check_namespace()}
+\item{INTERGRATE_R_FILENAMES}{check_r_filenames()}
 \item{INTERGRATE_VERSION}{check_version()}
-\item{INTERGRATE_TAG}{create_tag()}
+\item{INTERGRATE_GITIGNORE}{check_gitignore()}
+\item{INTERGRATE_WINDOWS_ISSUES}{check_windows_issues()}
+\item{INTERGRATE_TIDY_DESCRIPTION}{check_tidy_description()}
+\item{INTERGRATE_README}{check_readme()}
 }
 }

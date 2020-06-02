@@ -13,11 +13,14 @@ check_all(
   gitignore = NULL,
   windows_issues = NULL,
   tidy_description = NULL,
-  readme = NULL
+  readme = NULL,
+  tag = NULL
 )
 }
 \arguments{
 \item{pkg, lintr, namespace, r_filenames, version, gitignore, windows_issues, readme, tidy_description}{Default \code{NULL}. See details for further information.}
+
+\item{tag}{Default \code{NULL}. Create a tagged release.}
 }
 \description{
 This function will run all checks within the package.
