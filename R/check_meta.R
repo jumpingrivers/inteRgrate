@@ -53,6 +53,7 @@ check_meta = function() {
   check_tidy_description()
   check_readme()
   check_gitignore()
+  check_windows_issues()
   cli::cli_alert_success("Meta files look good")
   return(invisible(NULL))
 }
