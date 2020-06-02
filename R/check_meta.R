@@ -1,17 +1,19 @@
 check_readme = function() {
-  cli::cli_h3("Checking meta...check_meta()")
-  if (file.exists("README.Rmd")) {
-    cli::cli_alert_info("Checking README.Rmd timestamps")
-    if (file.info("README.Rmd")$ctime > file.info("README.md")$ctime) {
-      msg_error("README.md appears to be out of date", stop = TRUE)
-    }
-    cli::cli_alert_success("README OK")
+  if (!file.exists("README.Rmd")) return(invisible(NULL))
+
+  cli::cli_h3("Checking meta...check_readme()")
+  cli::cli_alert_info("Checking README.Rmd vs README.md timestamps")
+
+  if (file.info("README.Rmd")$ctime > file.info("README.md")$ctime) {
+    msg_error("README.md appears to be out of date", stop = TRUE)
   }
+  cli::cli_alert_success("README OK")
+
   return(invisible(NULL))
 }
 
 check_gitignore = function() {
-  cli::cli_h3("Checking .gitignore...check_meta()")
+  cli::cli_h3("Checking .gitignore...check_gitignore()")
   ## Get ignores and remove ignored files
   ignores = readLines(".gitignore")
   ignores = ignores[stringr::str_detect(ignores, pattern = "^#", negate = TRUE)]
@@ -47,6 +49,7 @@ check_gitignore = function() {
 #' @importFrom utils glob2rx
 check_meta = function() {
   set_crayon()
+  cli::cli_h2("Checking meta...check_meta()")
   check_tidy_description()
   check_readme()
   check_gitignore()
