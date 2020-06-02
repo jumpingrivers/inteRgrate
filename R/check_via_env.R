@@ -31,10 +31,3 @@ check_via_env = function() {
   if (Sys.getenv("INTERGRATE_TAG", "false") == "true") create_tag()
   return(invisible(NULL))
 }
-
-check_all (pkg = F, lintr = F,
-           namespace = F, r_filenames = F,
-           version = F, gitignore = NULL,
-           windows_issues = NULL, tidy_description = NULL,
-           readme = NULL)
-
