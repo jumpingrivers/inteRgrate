@@ -1,14 +1,13 @@
 check_readme = function() {
   if (!file.exists("README.Rmd")) return(invisible(NULL))
 
-  cli::cli_h3("Checking meta...check_readme()")
+  cli::cli_h3("Checking README.Rmd...check_readme()")
   cli::cli_alert_info("Checking README.Rmd vs README.md timestamps")
 
   if (file.info("README.Rmd")$ctime > file.info("README.md")$ctime) {
     msg_error("README.md appears to be out of date", stop = TRUE)
   }
   cli::cli_alert_success("README OK")
-
   return(invisible(NULL))
 }
 
@@ -39,6 +38,7 @@ check_gitignore = function() {
   }
   return(invisible(NULL))
 }
+
 #' Checks Meta files
 #'
 #' Checks for a tidy description file (via the \code{usethis} function
@@ -53,7 +53,6 @@ check_meta = function() {
   check_tidy_description()
   check_readme()
   check_gitignore()
-
   cli::cli_alert_success("Meta files look good")
   return(invisible(NULL))
 }
