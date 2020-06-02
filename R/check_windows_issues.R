@@ -48,7 +48,7 @@ check_file_permissions = function(repo_files = NULL) {
 }
 
 check_line_breaks = function(repo_files = NULL) {
-  cli::cli_alert_info("Checking line breaks...check_line_breaks()")
+  cli::cli_h3("Checking line breaks...check_line_breaks()")
   if (is.null(repo_files)) {
     repo_files = system2("git",
                          args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
