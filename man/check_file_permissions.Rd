@@ -14,3 +14,6 @@ vector of files can be passed instead.}
 This check tests for windows line breaks and file permissions. It ensures
 that the file is not executable (txt|md|Rmd|yml|json|).
 }
+\examples{
+check_file_permissions()
+}

@@ -1,6 +1,6 @@
 #' @title The lintr check
 #'
-#' Runs lint from the \code{lintr} package. Also scans for all
+#' @description Runs lint from the \code{lintr} package. Also scans for all
 #' \code{.Rmd} and \code{.R} files in other directories.
 #' @importFrom lintr lint_package lint_dir lint
 #' @export

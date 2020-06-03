@@ -20,7 +20,7 @@ git_global_ignore = c(
 )
 
 #' @title Check gitignore file
-#' Checks the gitignore files for recommended patterns. If any of these
+#' @description Checks the gitignore files for recommended patterns. If any of these
 #' patterns are missing, an error is raised.
 #' @importFrom utils glob2rx
 #' @export

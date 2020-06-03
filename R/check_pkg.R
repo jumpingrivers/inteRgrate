@@ -1,6 +1,9 @@
 #' Check R package
 #'
 #' Path is the CI project directory or \code{.}.
+#' Installs and checks the R package. The number of notes
+#' and warnings is specified by enviromental variables.
+#' Default number of Notes/Warnings is 0.
 #' @param path Default \code{.} The location of the package
 #' @importFrom glue glue glue_col
 #' @importFrom rcmdcheck rcmdcheck check_details

@@ -2,16 +2,11 @@
 % Please edit documentation in R/check_lintr.R
 \name{check_lintr}
 \alias{check_lintr}
-\title{The lintr check
-
-Runs lint from the \code{lintr} package. Also scans for all
-\code{.Rmd} and \code{.R} files in other directories.}
+\title{The lintr check}
 \usage{
 check_lintr()
 }
 \description{
-The lintr check
-
 Runs lint from the \code{lintr} package. Also scans for all
 \code{.Rmd} and \code{.R} files in other directories.
 }

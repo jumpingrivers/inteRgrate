@@ -11,4 +11,7 @@ check_pkg(path = NULL)
 }
 \description{
 Path is the CI project directory or \code{.}.
+Installs and checks the R package. The number of notes
+and warnings is specified by enviromental variables.
+Default number of Notes/Warnings is 0.
 }

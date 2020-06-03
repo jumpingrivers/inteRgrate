@@ -2,17 +2,11 @@
 % Please edit documentation in R/gitlab_instead_of.R
 \name{gitlab_instead_of}
 \alias{gitlab_instead_of}
-\title{Gitlab rewrite
-
-Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
-on successful builds. Uses the environment variable CI_SERVER_HOST to determine
-the HOST.}
+\title{Gitlab rewrite}
 \usage{
 gitlab_instead_of()
 }
 \description{
-Gitlab rewrite
-
 Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
 on successful builds. Uses the environment variable CI_SERVER_HOST to determine
 the HOST.

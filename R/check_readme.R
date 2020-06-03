@@ -1,5 +1,6 @@
 #' @title Check the README.Rmd
-#' If README.Rmd exists, the timestamp will be compared to README.md.
+#'
+#' @description If README.Rmd exists, the timestamp will be compared to README.md.
 #' An error will be raised if README.md is a newer file.
 #' @export
 #' @examples

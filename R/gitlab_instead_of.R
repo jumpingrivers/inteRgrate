@@ -1,7 +1,7 @@
 # nolint start
 #' @title Gitlab rewrite
 #'
-#' Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
+#' @description Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
 #' on successful builds. Uses the environment variable CI_SERVER_HOST to determine
 #' the HOST.
 #' @export

@@ -6,6 +6,8 @@ globalVariables("fname")
 #' @param repo_files By default, we use git to determine the files in the repo. By a
 #' vector of files can be passed instead.
 #' @export
+#' @examples
+#' check_file_permissions()
 check_file_permissions = function(repo_files = NULL) {
   cli::cli_h3("Checking file permissions...check_file_permissions()")
 

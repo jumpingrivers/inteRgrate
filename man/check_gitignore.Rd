@@ -2,14 +2,11 @@
 % Please edit documentation in R/check_gitignore.R
 \name{check_gitignore}
 \alias{check_gitignore}
-\title{Check gitignore file
-Checks the gitignore files for recommended patterns. If any of these
-patterns are missing, an error is raised.}
+\title{Check gitignore file}
 \usage{
 check_gitignore()
 }
 \description{
-Check gitignore file
 Checks the gitignore files for recommended patterns. If any of these
 patterns are missing, an error is raised.
 }

@@ -2,14 +2,11 @@
 % Please edit documentation in R/check_readme.R
 \name{check_readme}
 \alias{check_readme}
-\title{Check the README.Rmd
-If README.Rmd exists, the timestamp will be compared to README.md.
-An error will be raised if README.md is a newer file.}
+\title{Check the README.Rmd}
 \usage{
 check_readme()
 }
 \description{
-Check the README.Rmd
 If README.Rmd exists, the timestamp will be compared to README.md.
 An error will be raised if README.md is a newer file.
 }
