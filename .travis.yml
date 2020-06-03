@@ -26,6 +26,8 @@ before_install:
        paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
        ')'))" >> ~/.Rprofile.site
   - Rscript -e "install.packages('stringi')"
+  - Rscript -e "stringi::stri_c(1)"
+
 script:
   - echo $TRAVIS_R_VERSION
   - Rscript -e 'remotes::install_local(".", upgrade = "never", build_vignettes = TRUE, force = TRUE)'
