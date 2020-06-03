@@ -1,5 +1,7 @@
 language: r
 cache: packages
+dist: bionic
+
 env:
   global:
     - ALLOWED_WARNINGS=0
