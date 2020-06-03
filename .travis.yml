@@ -16,7 +16,9 @@ matrix:
     env: R_CURRENT=true
     deploy:
       provider: script
-      script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
+      script:
+        - R CMD build .
+        - Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
       skip_cleanup: true
   - r: oldrel
 
