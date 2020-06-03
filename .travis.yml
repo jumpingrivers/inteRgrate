@@ -1,6 +1,6 @@
 language: r
 cache: packages
-dist: bionic
+dist: xenial
 
 env:
   global:
@@ -21,8 +21,7 @@ matrix:
   - r: oldrel
 
 before_install:
-  - Rscript -e "install.packages('stringi')" # A hack, bug in RSPM
-  - echo "options(repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/bionic/latest'))" >> ~/.Rprofile.site
+  - echo "options(repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/xenial/latest'))" >> ~/.Rprofile.site
   - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
        paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
        ')'))" >> ~/.Rprofile.site
