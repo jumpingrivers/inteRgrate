@@ -9,7 +9,7 @@ env:
 
 matrix:
   include:
-  - r: devel
+#  - r: devel
   - r: release
     r_packages:
       - pkgdown
@@ -18,15 +18,14 @@ matrix:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
       skip_cleanup: true
-  - r: oldrel
+#  - r: oldrel
 
 before_install:
+  - Rscript -e "install.packages('stringi'); stringi::stri_c(1)"
   - echo "options(repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/bionic/latest'))" >> ~/.Rprofile.site
   - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
        paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
        ')'))" >> ~/.Rprofile.site
-  - Rscript -e "install.packages('stringi')"
-  - Rscript -e "stringi::stri_c(1)"
 
 script:
   - echo $TRAVIS_R_VERSION
