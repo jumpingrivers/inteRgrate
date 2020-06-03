@@ -1,7 +1,7 @@
 Type: Package
 Package: inteRgrate
 Title: Opinionated Package Coding Styles
-Version: 0.5.0
+Version: 1.0.0
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",

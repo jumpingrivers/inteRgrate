@@ -1,4 +1,5 @@
-# Version: 0.5
+# Version: 1.0.0
+  * Breaking changes
   * Feature: use `rcmdcheck` instead of `devtools`. This breaks/changes a few things.
   * Feature: `check_via_env()` now has arguments
   * Change: Remove explicit install and build functions.
