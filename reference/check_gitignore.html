@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adds a git hook — git_pre_commit • inteRgrate</title>
+<title>Check gitignore file
+Checks the gitignore files for recommended patterns. If any of these
+patterns are missing, an error is raised. — check_gitignore • inteRgrate</title>
 
 
 <!-- jquery -->
@@ -39,11 +41,12 @@
 
 
 
-<meta property="og:title" content="Adds a git hook — git_pre_commit" />
-<meta property="og:description" content="git_pre_commit only tests files that have changed.
-Makes things, especially linting a lot faster.
-Add a pre-commit or pre-push hook.
-Both hooks are identical. They just get triggered at different times." />
+<meta property="og:title" content="Check gitignore file
+Checks the gitignore files for recommended patterns. If any of these
+patterns are missing, an error is raised. — check_gitignore" />
+<meta property="og:description" content="Check gitignore file
+Checks the gitignore files for recommended patterns. If any of these
+patterns are missing, an error is raised." />
 
 
 
@@ -109,26 +112,25 @@ Both hooks are identical. They just get triggered at different times." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Adds a git hook</h1>
+    <h1>Check gitignore file
+Checks the gitignore files for recommended patterns. If any of these
+patterns are missing, an error is raised.</h1>
     
-    <div class="hidden name"><code>add_pre_commit.Rd</code></div>
+    <div class="hidden name"><code>check_gitignore.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>git_pre_commit only tests files that have changed.
-Makes things, especially linting a lot faster.</p>
-<p>Add a pre-commit or pre-push hook.
-Both hooks are identical. They just get triggered at different times.</p>
+    <p>Check gitignore file
+Checks the gitignore files for recommended patterns. If any of these
+patterns are missing, an error is raised.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>git_pre_commit</span>()
-
-<span class='fu'>add_pre_commit</span>()
-
-<span class='fu'>add_pre_push</span>()</pre>
+    <pre class="usage"><span class='fu'>check_gitignore</span>()</pre>
 
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>check_gitignore</span>()</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>── Checking .gitignore...check_gitignore() </span></div><div class='output co'>#&gt; <span class='message'>! .gitignore not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

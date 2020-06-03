@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Build R package — get_pkg_tar_ball • inteRgrate</title>
+<title>Check R package — check_pkg • inteRgrate</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Build R package — get_pkg_tar_ball" />
+<meta property="og:title" content="Check R package — check_pkg" />
 <meta property="og:description" content="Path is the CI project directory or .." />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Build R package</h1>
+    <h1>Check R package</h1>
     
     <div class="hidden name"><code>check_pkg.Rd</code></div>
     </div>
@@ -115,11 +115,7 @@
     <p>Path is the CI project directory or <code>.</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_pkg_tar_ball</span>()
-
-<span class='fu'>build_pkg</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='fu'>check_pkg</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>build</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>install</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>check_pkg</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,14 +123,6 @@
     <tr>
       <th>path</th>
       <td><p>Default <code>.</code> The location of the package</p></td>
-    </tr>
-    <tr>
-      <th>build</th>
-      <td><p>Default TRUE. Should the .tar.gz file be built and kept</p></td>
-    </tr>
-    <tr>
-      <th>install</th>
-      <td><p>Default <code>TRUE</code>. Call install_pkg() after checking</p></td>
     </tr>
     </table>
 

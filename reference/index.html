@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -137,17 +137,26 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="check_file_permissions.html">check_file_permissions()</a></code> </p>
+        </td>
+        <td><p>Detects standard Windows related issues</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="check_gitignore.html">check_gitignore()</a></code> </p>
+        </td>
+        <td><p>Check gitignore file
+Checks the gitignore files for recommended patterns. If any of these
+patterns are missing, an error is raised.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="check_lintr.html">check_lintr()</a></code> </p>
         </td>
         <td><p>The lintr check
 
-Runs lint from the <code>lintr</code> package.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="check_meta.html">check_meta()</a></code> </p>
-        </td>
-        <td><p>Checks Meta files</p></td>
+Runs lint from the <code>lintr</code> package. Also scans for all
+<code>.Rmd</code> and <code>.R</code> files in other directories.</p></td>
       </tr><tr>
         
         <td>
@@ -157,9 +166,9 @@ Runs lint from the <code>lintr</code> package.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="check_pkg.html">get_pkg_tar_ball()</a></code> <code><a href="check_pkg.html">build_pkg()</a></code> <code><a href="check_pkg.html">check_pkg()</a></code> </p>
+          <p><code><a href="check_pkg.html">check_pkg()</a></code> </p>
         </td>
-        <td><p>Build R package</p></td>
+        <td><p>Check R package</p></td>
       </tr><tr>
         
         <td>
@@ -169,9 +178,17 @@ Runs lint from the <code>lintr</code> package.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="check_readme.html">check_readme()</a></code> </p>
+        </td>
+        <td><p>Check the README.Rmd
+If README.Rmd exists, the timestamp will be compared to README.md.
+An error will be raised if README.md is a newer file.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="check_tidy_description.html">check_tidy_description()</a></code> </p>
         </td>
-        <td><p>Tidy description</p></td>
+        <td><p>Check tidy description</p></td>
       </tr><tr>
         
         <td>
@@ -183,13 +200,7 @@ Runs lint from the <code>lintr</code> package.</p></td>
         <td>
           <p><code><a href="check_via_env.html">check_via_env()</a></code> </p>
         </td>
-        <td><p>Run GITLAB checks via Environment variables</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="check_windows_issues.html">check_windows_issues()</a></code> </p>
-        </td>
-        <td><p>Detects standard Windows related issues</p></td>
+        <td><p>Run all checks</p></td>
       </tr><tr>
         
         <td>
@@ -206,14 +217,6 @@ Runs lint from the <code>lintr</code> package.</p></td>
 Rewrites the gitlab URL. This can be handy if you want to push to another GitLab repo
 on successful builds. Uses the environment variable CI_SERVER_HOST to determine
 the HOST.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="install_deps.html">install_deps()</a></code> <code><a href="install_deps.html">install_pkg()</a></code> </p>
-        </td>
-        <td><p>Install package dependencies
-
-Install packages dependencies</p></td>
       </tr><tr>
         
         <td>
