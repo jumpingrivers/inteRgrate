@@ -5,9 +5,10 @@
 #' @importFrom glue glue glue_col
 #' @importFrom rcmdcheck rcmdcheck check_details
 #' @importFrom remotes install_deps
+#' @importFrom utils packageVersion
 #' @export
 check_pkg = function(path = NULL) {
-  set_crayon()
+  cli::cli_h1(paste("inteRgrate version", packageVersion("inteRgrate")))
   if (is.null(path)) path = get_build_dir()
 
   ## Install package dependencies

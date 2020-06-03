@@ -2,26 +2,47 @@
 % Please edit documentation in R/check_via_env.R
 \name{check_via_env}
 \alias{check_via_env}
-\title{Run GITLAB checks via Environment variables}
+\title{Run all checks}
 \usage{
-check_via_env()
+check_via_env(
+  pkg = NULL,
+  lintr = NULL,
+  namespace = NULL,
+  r_filenames = NULL,
+  version = NULL,
+  gitignore = NULL,
+  tidy_description = NULL,
+  readme = NULL,
+  file_permissions = NULL,
+  line_breaks = NULL,
+  tag = NULL,
+  default = "false"
+)
+}
+\arguments{
+\item{pkg}{Build and check package. See details for further information.}
+
+\item{lintr, namespace, r_filenames, version, gitignore, readme, tidy_description}{Default \code{NULL}.}
+
+\item{file_permissions, line_breaks}{Windows related checks.}
+
+\item{tag}{Default \code{NULL}. Create a tagged release.}
+
+\item{default}{Default \code{false}. The default value the environment variable
+should take if missing.}
 }
 \description{
-Looks for environment variables and runs associated checks.
-This allows you to set environment variables at a project level, e.g. Gitlab.
-The default for all checks is \code{FALSE}.
+This function will run all checks within the package.
+See the corresponding check functions for details. When \code{default = "true"}, all
+checks will run unless the associated environment variable is \code{"false"}.
 }
 \details{
-Current list of variables is
-\describe{
-\item{INTERGRATE_PKG}{check_pkg()}
-\item{INTERGRATE_LINTR}{check_lintr()}
-\item{INTERGRATE_NAMESPACE}{check_namespace()}
-\item{INTERGRATE_R_FILENAMES}{check_r_filenames()}
-\item{INTERGRATE_VERSION}{check_version()}
-\item{INTERGRATE_GITIGNORE}{check_gitignore()}
-\item{INTERGRATE_WINDOWS_ISSUES}{check_windows_issues()}
-\item{INTERGRATE_TIDY_DESCRIPTION}{check_tidy_description()}
-\item{INTERGRATE_README}{check_readme()}
-}
+The arguments for the function correspond to a particular check, e.g. check_ARGNAME().
+By default, all arguments are \code{NULL} and hence run. However, a value of
+\code{FALSE} or changing the corresponding environment variable
+\code{INTERGRATE_ARGNAME} can turn off the check, e.g.\code{INTERGRATE_NAMESPACE}.
+
+On GitLab you can set environment variables at an organisation level.
+
+Note: As this package matures, this function will include the newer checks.
 }

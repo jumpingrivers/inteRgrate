@@ -23,8 +23,6 @@ globalVariables(c("token", "project"))
 #' @param in_development Logical default FALSE.
 #' @export
 create_tag = function(branch = "master", in_development = FALSE) {
-  set_crayon()
-
   cli::cli_h3("Creating a tag...create_tag()")
   if (!is_gitlab() && !is_github()) {
     cli::cli_alert_info("No tagging: doesn't seem to be a CI process")

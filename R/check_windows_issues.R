@@ -1,17 +1,11 @@
+globalVariables("fname")
 #' Detects standard Windows related issues
 #'
 #' This check tests for windows line breaks and file permissions. It ensures
 #' that the file is not executable (txt|md|Rmd|yml|json|).
-#' @param permissions Default \code{TRUE}. Checks for file permissions.
-#' @param line_breaks Default \code{TRUE}. Checks for Windows line breaks.
+#' @param repo_files By default, we use git to determine the files in the repo. By a
+#' vector of files can be passed instead.
 #' @export
-check_windows_issues = function(permissions = TRUE, line_breaks = TRUE) {
-  if (isTRUE(permissions)) check_file_permissions()
-  if (isTRUE(line_breaks)) check_line_breaks()
-  return(invisible(NULL))
-}
-
-globalVariables("fname")
 check_file_permissions = function(repo_files = NULL) {
   cli::cli_h3("Checking file permissions...check_file_permissions()")
 

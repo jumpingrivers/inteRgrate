@@ -1,6 +1,6 @@
 # Version: 0.5
   * Feature: use `rcmdcheck` instead of `devtools`. This breaks/changes a few things.
-  * Feature: `check_all()` for running all checks
+  * Feature: `check_via_env()` now has arguments
   * Change: Remove explicit install and build functions.
   * Change: Use `cli` exclusively.
   * Change: lint all Rmd and R files

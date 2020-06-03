@@ -7,7 +7,6 @@
 #' @examples
 #' check_r_filenames()
 check_r_filenames = function(extension = "R") {
-  set_crayon()
   cli::cli_h3("Checking file extensions...check_r_filenames()")
 
   fnames = list.files("R/", full.names = TRUE)

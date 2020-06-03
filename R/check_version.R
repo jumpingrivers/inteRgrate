@@ -52,7 +52,6 @@ has_pkg_changed = function(repo) {
 #' @param repo Default origin/master. The repo to compare against.
 #' @export
 check_version = function(repo = "origin/master") {
-  set_crayon()
   cli::cli_h3("Checking version...check_version()")
 
   pkg_changed = has_pkg_changed(repo)

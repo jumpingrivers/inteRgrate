@@ -5,7 +5,6 @@
 #' @importFrom lintr lint_package lint_dir lint
 #' @export
 check_lintr = function() {
-  set_crayon()
   cli::cli_h3("Checking lint...check_lintr()")
   lint_errors = FALSE
 

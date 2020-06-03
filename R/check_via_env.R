@@ -1,33 +1,53 @@
-#' Run GITLAB checks via Environment variables
-#'
-#' Looks for environment variables and runs associated checks.
-#' This allows you to set environment variables at a project level, e.g. Gitlab.
-#' The default for all checks is \code{FALSE}.
-#'
-#' Current list of variables is
-#' \describe{
-#' \item{INTERGRATE_PKG}{check_pkg()}
-#' \item{INTERGRATE_LINTR}{check_lintr()}
-#' \item{INTERGRATE_NAMESPACE}{check_namespace()}
-#' \item{INTERGRATE_R_FILENAMES}{check_r_filenames()}
-#' \item{INTERGRATE_VERSION}{check_version()}
-#' \item{INTERGRATE_GITIGNORE}{check_gitignore()}
-#' \item{INTERGRATE_WINDOWS_ISSUES}{check_windows_issues()}
-#' \item{INTERGRATE_TIDY_DESCRIPTION}{check_tidy_description()}
-#' \item{INTERGRATE_README}{check_readme()}
-#' }
-#' @export
-check_via_env = function() {
-  if (Sys.getenv("INTERGRATE_PKG", "false") == "true") check_pkg()
-  if (Sys.getenv("INTERGRATE_LINTR", "false") == "true") check_lintr()
-  if (Sys.getenv("INTERGRATE_NAMESPACE", "false") == "true") check_namespace()
-  if (Sys.getenv("INTERGRATE_R_FILENAMES", "false") == "true") check_r_filenames()
-  if (Sys.getenv("INTERGRATE_VERSION", "false") == "true") check_version()
-  if (Sys.getenv("INTERGRATE_GITIGNORE", "false") == "true") check_gitignore()
-  if (Sys.getenv("INTERGRATE_WINDOWS_ISSUES", "false") == "true") check_windows_issues()
-  if (Sys.getenv("INTERGRATE_TIDY_DESCRIPTION", "false") == "true") check_tidy_description()
-  if (Sys.getenv("INTERGRATE_README", "false") == "true") check_readme()
+# Unless the env_var is "false", the check will be called.
+call_check = function(var, value, default) {
 
-  if (Sys.getenv("INTERGRATE_TAG", "false") == "true") create_tag()
+  if (is.null(value)) {
+    env_var = toupper(paste0("INTERGRATE_", var))
+    value = Sys.getenv(env_var, default) == "true"
+  }
+  if (isTRUE(value)) {
+    if (var != "tag") {
+      do.call(paste0("check_", var), list())
+    } else {
+      create_tag()
+    }
+  }
+  return(invisible(NULL))
+}
+
+
+#' @title Run all checks
+#' @description This function will run all checks within the package.
+#' See the corresponding check functions for details. When \code{default = "true"}, all
+#' checks will run unless the associated environment variable is \code{"false"}.
+#' @param pkg Build and check package. See details for further information.
+#' @param lintr,namespace,r_filenames,version,gitignore,readme,tidy_description
+#' Default \code{NULL}.
+#' @param file_permissions,line_breaks Windows related checks.
+#' @param tag Default \code{NULL}. Create a tagged release.
+#' @param default Default \code{false}. The default value the environment variable
+#' should take if missing.
+#' @details The arguments for the function correspond to a particular check, e.g. check_ARGNAME().
+#' By default, all arguments are \code{NULL} and hence run. However, a value of
+#' \code{FALSE} or changing the corresponding environment variable
+#' \code{INTERGRATE_ARGNAME} can turn off the check, e.g.\code{INTERGRATE_NAMESPACE}.
+#'
+#' On GitLab you can set environment variables at an organisation level.
+#'
+#' Note: As this package matures, this function will include the newer checks.
+#' @export
+check_via_env  = function(pkg = NULL, lintr = NULL,
+                          namespace = NULL, r_filenames = NULL,
+                          version = NULL, gitignore = NULL,
+                          tidy_description = NULL, readme = NULL,
+                          file_permissions = NULL, line_breaks = NULL,
+                          tag = NULL, default = "false") {
+  # Extract all arguments and values
+  args = as.list(environment())
+  arg_names = names(args)
+  for (i in seq_along(args)) {
+    call_check(arg_names[i], args[[i]], default = default)
+  }
+
   return(invisible(NULL))
 }

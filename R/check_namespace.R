@@ -8,7 +8,6 @@
 #' 0.
 #' @export
 check_namespace = function(no_imports = NULL) {
-  set_crayon()
   if (is.null(no_imports)) {
     no_imports = get_env_variable("NO_IMPORTS", 0)
   }
