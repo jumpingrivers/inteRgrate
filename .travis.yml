@@ -25,7 +25,6 @@ before_install:
   - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
        paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
        ')'))" >> ~/.Rprofile.site
-  - Rscript -e "install.packages('stringi');stringi::stri_c(1)"
 
 script:
   - echo $TRAVIS_R_VERSION
