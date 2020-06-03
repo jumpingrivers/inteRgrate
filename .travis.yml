@@ -25,7 +25,7 @@ before_install:
   - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
        paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
        ')'))" >> ~/.Rprofile.site
-  - Rscript -e "install.packages('stingi')"
+  - Rscript -e "install.packages('stringi')"
 script:
   - echo $TRAVIS_R_VERSION
   - Rscript -e 'remotes::install_local(".", upgrade = "never", build_vignettes = TRUE, force = TRUE)'
