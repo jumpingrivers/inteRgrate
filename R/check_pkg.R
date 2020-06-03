@@ -12,7 +12,10 @@ check_pkg = function(path = NULL) {
   if (is.null(path)) path = get_build_dir()
 
   ## Install package dependencies
+  cli::cli_h2("Installing package")
   remotes::install_deps(path, dependencies = TRUE, upgrade = "never")
+  remotes::install_local(path, upgrade = "never", build_vignettes = TRUE, force = TRUE)
+
   check_output = rcmdcheck::rcmdcheck(path = ".",
                                       args = c("--timings", "--as-cran"),
                                       error_on = "error")
