@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Rscript -e "inteRgrate::check_pkg(build = FALSE, install = FALSE)"
+Rscript -e "inteRgrate::check_pkg()"
 if [ "$?" -eq 1 ]; then
   exit 1
 fi

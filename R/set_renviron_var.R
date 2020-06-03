@@ -7,7 +7,7 @@
 #' @export
 set_renviron_var = function(variable, value) {
   if (!is_github() && !is_gitlab()) {
-    msg_info("Not on CI, so not setting Renviron variable")
+    cli::cli_alert_info("Not on CI, so not setting Renviron variable")
     return(invisible(NULL))
   }
   line = glue::glue("{variable}={value}")

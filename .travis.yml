@@ -18,19 +18,18 @@ matrix:
       skip_cleanup: true
   - r: oldrel
 
+before_install:
+  - echo "options(repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/bionic/latest'))" >> ~/.Rprofile.site
+  - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
+       paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
+       ')'))" >> ~/.Rprofile.site
 script:
   - echo $TRAVIS_R_VERSION
-  - Rscript -e 'devtools::install(".", upgrade = "never", build_vignettes = TRUE)'
-  - Rscript -e "inteRgrate::check_pkg(install = FALSE)"
-  - Rscript -e "inteRgrate::check_r_filenames()"
-  - Rscript -e "inteRgrate::check_tidy_description()"
-  - Rscript -e "inteRgrate::check_lintr()"
-  - Rscript -e "inteRgrate::check_namespace()"
-  - Rscript -e "inteRgrate::check_version()"
+  - Rscript -e 'remotes::install_local(".", upgrade = "never", build_vignettes = TRUE, force = TRUE)'
+  - Rscript -e "inteRgrate::check_via_env(tag = FALSE, default = 'true')"
   - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag()"
 
 notifications:
   email:
     on_success: change
     on_failure: change
-

@@ -2,15 +2,12 @@
 % Please edit documentation in R/check_tidy_description.R
 \name{check_tidy_description}
 \alias{check_tidy_description}
-\title{Tidy description}
+\title{Check tidy description}
 \usage{
-check_tidy_description(path = NULL)
-}
-\arguments{
-\item{path}{Default \code{.} The location of the package}
+check_tidy_description()
 }
 \description{
 Checks for a tidy description file (via the \code{usethis} function
 \code{use_tidy_description}). It also checks that the version numbers conform
-to the tidy format - X.Y.Z or X.Y.Z.9ABC.
+to the tidy format - X.Y.Z or X.Y.Z.9ABC
 }

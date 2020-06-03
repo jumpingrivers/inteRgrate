@@ -52,12 +52,11 @@ has_pkg_changed = function(repo) {
 #' @param repo Default origin/master. The repo to compare against.
 #' @export
 check_version = function(repo = "origin/master") {
-  set_crayon()
-  msg_start("Checking version...check_version()")
+  cli::cli_h3("Checking version...check_version()")
 
   pkg_changed = has_pkg_changed(repo)
   if (isFALSE(pkg_changed)) {
-    msg_ok("Your version is fine!")
+    cli::cli_alert_success("Your version is fine!")
     return(invisible(NULL))
   }
 
@@ -80,6 +79,6 @@ check_version = function(repo = "origin/master") {
     msg_error("Please update the package version", stop = TRUE)
   }
 
-  msg_ok("Version looks good")
+  cli::cli_alert_success("Version looks good")
   return(invisible(NULL))
 }

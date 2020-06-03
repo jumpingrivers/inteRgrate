@@ -1,19 +1,13 @@
+globalVariables("fname")
 #' Detects standard Windows related issues
 #'
 #' This check tests for windows line breaks and file permissions. It ensures
 #' that the file is not executable (txt|md|Rmd|yml|json|).
-#' @param permissions Default \code{TRUE}. Checks for file permissions.
-#' @param line_breaks Default \code{TRUE}. Checks for Windows line breaks.
+#' @param repo_files By default, we use git to determine the files in the repo. By a
+#' vector of files can be passed instead.
 #' @export
-check_windows_issues  = function(permissions = TRUE, line_breaks = TRUE) {
-  if (isTRUE(permissions)) check_file_permissions()
-  if (isTRUE(line_breaks)) check_line_breaks()
-  return(invisible(NULL))
-}
-
-globalVariables("fname")
 check_file_permissions = function(repo_files = NULL) {
-  msg_info("Checking file permissions...check_file_permissions()")
+  cli::cli_h3("Checking file permissions...check_file_permissions()")
 
   # Get all repos files
   if (is.null(repo_files)) {
@@ -21,7 +15,8 @@ check_file_permissions = function(repo_files = NULL) {
                          args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
                          stdout = TRUE)
   }
-
+  # Remove deleted files
+  repo_files = repo_files[file.exists(repo_files)]
   # Grab the permissions and split
   modes = file.info(repo_files, extra_cols = FALSE)[, "mode"]
   modes_list = stringr::str_split(modes, pattern = "")
@@ -34,7 +29,7 @@ check_file_permissions = function(repo_files = NULL) {
   is_executable = is_executable & file_type
 
   if (!any(is_executable)) {
-    msg_info("File modes looks good")
+    cli::cli_alert_success("File modes looks good")
     return(invisible(NULL))
   }
 
@@ -48,19 +43,21 @@ check_file_permissions = function(repo_files = NULL) {
 }
 
 check_line_breaks = function(repo_files = NULL) {
-  msg_info("Checking line breaks...check_line_breaks()")
+  cli::cli_h3("Checking line breaks...check_line_breaks()")
   if (is.null(repo_files)) {
     repo_files = system2("git",
                          args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
                          stdout = TRUE)
   }
+  # Remove deleted files
+  repo_files = repo_files[file.exists(repo_files)]
   line_breaks = vapply(repo_files,
                        function(fname) system2("grep", args = c("--binary-files=without-match",
                                                                 "-Um1", "$'\015'", fname)),
                        FUN.VALUE = integer(1))
   line_breaks = names(line_breaks[line_breaks == 0])
   if (length(line_breaks) == 0L) {
-    msg_info("Line breaks look good")
+    cli::cli_alert_success("Line breaks look good")
     return(invisible(NULL))
   }
   msg_error("The following files have Windows line breaks")

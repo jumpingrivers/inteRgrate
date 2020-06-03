@@ -56,20 +56,21 @@ functions that are useful for CI:
     package, before running package check. By default, **any** notes or
     warnings will raise an error message. This can be changed by setting
     the environment variables `ALLOWED_NOTES` and `ALLOWED_WARNINGS`.
+  - `check_lintr()` - runs lintr on the package, README.Rmd and
+    vignettes.
   - `check_namespace()` - check for instances of `import()` in the
     NAMESPACE file. By default, no imports are allowed. This can be
     changed via the environment variable `NO_IMPORTS`
-  - `check_lintr()` - runs lintr on the package, README.Rmd and
-    vignettes.
   - `check_r_filenames()` - ensures file extensions are `.R` and all
     names are lower case.
-  - `check_meta()` - ensure that the DESCRIPTION file is tidy, via
-    `usethis::use_tidy_description()`, checks README.Rmd timestamps,
-    checks .gitignore contains standard files.
   - `check_version()` - ensures that the package description has been
     updated.
-  - `check_windows_isses()` - ensures that linux line breaks are used
-    and file permissions are sensible.
+  - `check_gitignore()` - .gitignore contains standard files.
+  - `check_readme()` - checks README.Rmd timestamps
+  - `check_tidy_description()` - ensure that the DESCRIPTION file is
+    tidy, via `usethis::use_tidy_description()`
+  - `check_file_permissions()`, `check_line_breaks()` - ensures that
+    linux line breaks are used and file permissions are sensible.
   - `create_tag()` - autotag via the CI.
 
 See the help pages for customisation.
@@ -80,6 +81,10 @@ checks will be run before committing.
 
 ### Example .travis.yml file
 
+Within a CI file, it’s often better to use `check_via_env()` that will
+automatically call all checks. Specific checks can be switch on/off via
+environment variables.
+
     language: r
     cache: packages
     env:
@@ -89,12 +94,7 @@ checks will be run before committing.
         - NO_IMPORTS=0
     
     script:
-      - Rscript -e "inteRgrate::check_pkg()"
-      - Rscript -e "inteRgrate::check_r_filenames()"
-      - Rscript -e "inteRgrate::check_tidy_description()"
-      - Rscript -e "inteRgrate::check_lintr()"
-      - Rscript -e "inteRgrate::check_namespace()"
-      - Rscript -e "inteRgrate::check_version()"
+      - Rscript -e "inteRgrate::check_via_env(default = 'true')"
 
 ### Example .gitlab.yml file
 
@@ -110,11 +110,7 @@ checks will be run before committing.
     
     check:
       script:
-        - Rscript -e "inteRgrate::check_pkg()"
-        - Rscript -e "inteRgrate::check_r_filenames()"
-        - Rscript -e "inteRgrate::check_tidy_description()"
-        - Rscript -e "inteRgrate::check_lintr()"
-        - Rscript -e "inteRgrate::check_namespace()"
+        - Rscript -e "inteRgrate::check_via_env(default = 'true')"
 
 ### Command line
 

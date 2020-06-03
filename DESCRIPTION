@@ -1,21 +1,22 @@
 Type: Package
 Package: inteRgrate
-Title: GitLab CI Package
-Version: 0.4.1.9005
+Title: Opinionated Package Coding Styles
+Version: 1.0.0
 Authors@R: 
     person(given = "Jumping",
            family = "Rivers",
            role = c("aut", "cre"),
            email = "info@jumpingrivers.com")
-Description: Helper functions for CI runners, such as GitHub and
-    GitLab.
+Description: A set of functions to enforce styling in functions.
+    This package would typically be used in with a CI platform, such as
+    GitHub and GitLab.
 License: GPL-2 | GPL-3
-Imports: 
-    clisymbols,
-    crayon,
-    devtools,
+Imports:
+    cli,
     glue,
     lintr (>= 2.0.0),
+    rcmdcheck,
+    remotes,
     stringr,
     usethis
 Suggests: 

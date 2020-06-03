@@ -1,8 +1,12 @@
-# DEV
-  * Bug: Remove binary files from Windows checks
-  * Feature: Detect RSPM and skip if used
-  * Bug: pre_commit when there is nothing to commit
-  
+# Version: 1.0.0
+  * Breaking changes
+  * Feature: use `rcmdcheck` instead of `devtools`. This breaks/changes a few things.
+  * Feature: `check_via_env()` now has arguments
+  * Change: Remove explicit install and build functions.
+  * Change: Use `cli` exclusively.
+  * Change: lint all Rmd and R files
+  * Change: Remove `check_meta()` - expand to separate functions
+
 # Version 0.4.1
   * Bug: .Rbuildignore files are case insensitive!
   * Bug: Parsing .gitlab-ci files

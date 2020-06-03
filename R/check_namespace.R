@@ -8,16 +8,15 @@
 #' 0.
 #' @export
 check_namespace = function(no_imports = NULL) {
-  set_crayon()
   if (is.null(no_imports)) {
     no_imports = get_env_variable("NO_IMPORTS", 0)
   }
-  msg_start("Checking namespace for imports()...check_namespace()")
+  cli::cli_h3("Checking namespace for imports()...check_namespace()")
   namespace = readLines("NAMESPACE")
   imports_only = namespace[substr(namespace, 1, 7) == "import("]
   if (length(imports_only) <= no_imports) {
     msg = glue("Imports look good - {length(imports_only)} found, {no_imports} allowed")
-    msg_ok(msg)
+    cli::cli_alert_success(msg)
     return(invisible(NULL))
   }
 

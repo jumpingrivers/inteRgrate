@@ -24,12 +24,12 @@ git_pre_commit = function() {
   if (any(stringr::str_detect(fnames, "^DESCRIPTION$")) ||
       any(stringr::str_detect(fnames, "^README\\.")) ||
       any(stringr::str_detect(fnames, "^\\.gitignore"))) {
-    check_meta()
+    #check_meta()
   }
   has_error = FALSE
   fnames = fnames[stringr::str_detect(fnames, "\\.R$|\\.r$|\\.Rmd$")]
   for (fname in fnames) {
-    msg_info(paste("Checking ", fname))
+    cli::cli_alert_info(paste("Checking ", fname))
     l = lintr::lint(fname)
     if (length(l) > 0) {
       print(l)
@@ -39,7 +39,7 @@ git_pre_commit = function() {
   if (isTRUE(has_error)) {
     msg_error("Linting errors", stop = TRUE)
   } else if (length(fnames) > 0L) {
-    msg_ok("Linting OK")
+    cli::cli_alert_success("Linting OK")
   }
   return(invisible(NULL))
 }
@@ -51,8 +51,8 @@ add_hook = function(type, fname) {
   }
   usethis::use_git_hook(type, fname)
 
-  msg_info("check_version() hasn't been added - it's hard")
-  msg_info("The hook is a link to the file in the pkg.")
+  cli::cli_alert_info("check_version() hasn't been added - it's hard")
+  cli::cli_alert_info("The hook is a link to the file in the pkg.")
   return(invisible(NULL))
 }
 

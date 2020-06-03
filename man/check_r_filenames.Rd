@@ -10,6 +10,9 @@ check_r_filenames(extension = "R")
 \item{extension}{Preferred R file extension. Default \code{R}.}
 }
 \description{
-Checks that all filenames are lower case and the file extension matches
-.\code{extension}
+Checks that all filenames in the directory \code{R/}
+are lower case and the file extension matches .\code{extension}
+}
+\examples{
+check_r_filenames()
 }
