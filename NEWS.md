@@ -1,5 +1,6 @@
 # Dev Version
-
+  * Feature: Ensure files end with a line break
+  
 # Version: 1.0.1
   * Breaking changes
   * Feature: use `rcmdcheck` instead of `devtools`. This breaks/changes a few things.
