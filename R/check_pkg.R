@@ -20,7 +20,7 @@ check_pkg = function(path = NULL) {
   remotes::install_local(path, upgrade = "never", build_vignettes = TRUE, force = TRUE)
 
   check_output = rcmdcheck::rcmdcheck(path = ".",
-                                      args = c("--timings", "--as-cran"),
+                                      args = c("--timings"), # Add option for as--cran?
                                       error_on = "error")
   check_output = rcmdcheck::check_details(check_output)
 
