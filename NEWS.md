@@ -1,5 +1,6 @@
 # Dev Version
   * Feature: Ensure files end with a line break
+  * Feature: Build pkgs and set ENV variables
   
 # Version: 1.0.1
   * Breaking changes
