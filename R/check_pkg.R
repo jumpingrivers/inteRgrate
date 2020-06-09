@@ -42,7 +42,7 @@ check_pkg = function(path = NULL) {
   }
 
   if (no_of_warnings > allowed_warnings || no_of_notes > allowed_notes) {
-    msg_error("You have too many warnings and/or notes", stop = TRUE)
+    msg_error("You have too many WARNINGS and/or NOTES", stop = TRUE)
   }
   return(invisible(NULL))
 }

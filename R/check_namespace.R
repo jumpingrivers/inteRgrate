@@ -6,6 +6,7 @@
 #' @param no_imports Default NULL. Number of package imports via \code{import()} allowed in the
 #' NAMESPACE. If \code{NULL}, checks for environment variable NO_IMPORTS, otherwise
 #' 0.
+#' @importFrom cli cli_alert_warning
 #' @export
 check_namespace = function(no_imports = NULL) {
   if (is.null(no_imports)) {
@@ -14,9 +15,14 @@ check_namespace = function(no_imports = NULL) {
   cli::cli_h3("Checking namespace for imports()...check_namespace()")
   namespace = readLines("NAMESPACE")
   imports_only = namespace[substr(namespace, 1, 7) == "import("]
-  if (length(imports_only) <= no_imports) {
+  if (length(imports_only) == no_imports) {
     msg = glue("Imports look good - {length(imports_only)} found, {no_imports} allowed")
     cli::cli_alert_success(msg)
+    return(invisible(NULL))
+  } else if (length(imports_only) < no_imports) {
+    msg = glue("Imports look good - {length(imports_only)} found, {no_imports} allowed.
+               But you could reduce the number of imports allowed")
+    cli::cli_alert_warning(msg)
     return(invisible(NULL))
   }
 
