@@ -25,7 +25,7 @@ call_check = function(var, value, default) {
 #' Default \code{NULL}.
 #' @param file_permissions,line_breaks Windows related checks.
 #' @param tag Default \code{NULL}. Create a tagged release.
-#' @param default Default \code{false}. The default value the environment variable
+#' @param default Default \code{FALSE}. The default value the environment variable
 #' should take if missing.
 #' @details The arguments for the function correspond to a particular check, e.g. check_ARGNAME().
 #' By default, all arguments are \code{NULL} and hence run. However, a value of
@@ -41,7 +41,10 @@ check_via_env  = function(pkg = NULL, lintr = NULL,
                           version = NULL, gitignore = NULL,
                           tidy_description = NULL, readme = NULL,
                           file_permissions = NULL, line_breaks = NULL,
-                          tag = NULL, default = "false") {
+                          tag = NULL, default = FALSE) {
+  if (isTRUE(default)) default = "true"
+  if (isFALSE(default)) default = "false"
+
   # Extract all arguments and values
   args = as.list(environment())
   arg_names = names(args)
