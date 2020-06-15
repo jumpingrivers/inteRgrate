@@ -22,7 +22,8 @@ get_rproj = function() {
   rproj = rproj[nchar(rproj) > 0]
   # key-value tibble
   key_values = stringr::str_split(rproj, ": ")
-  key_values = lapply(key_values, function(i) tibble::tibble(key = i[1], value = as.character(i[2])))
+  key_values = lapply(key_values,
+                      function(i) tibble::tibble(key = i[1], value = as.character(i[2])))
   do.call(rbind.data.frame, key_values)
 }
 
