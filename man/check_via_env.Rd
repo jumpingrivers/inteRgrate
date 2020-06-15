@@ -16,7 +16,7 @@ check_via_env(
   file_permissions = NULL,
   line_breaks = NULL,
   tag = NULL,
-  default = "false"
+  default = FALSE
 )
 }
 \arguments{
@@ -28,7 +28,7 @@ check_via_env(
 
 \item{tag}{Default \code{NULL}. Create a tagged release.}
 
-\item{default}{Default \code{false}. The default value the environment variable
+\item{default}{Default \code{FALSE}. The default value the environment variable
 should take if missing.}
 }
 \description{
