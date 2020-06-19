@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Run all checks — check_via_env • inteRgrate</title>
+<title>Check the .Rproj file — get_default_rproj • inteRgrate</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Run all checks — check_via_env" />
-<meta property="og:description" content="This function will run all checks within the package.
-See the corresponding check functions for details. When default = &quot;true&quot;, all
-checks will run unless the associated environment variable is &quot;false&quot;." />
+<meta property="og:title" content="Check the .Rproj file — get_default_rproj" />
+<meta property="og:description" content="If a .Rproj file exists, then the values should correspond to those given by
+get_default_rproj. If more than one .Rproj file exists, an error is raised." />
 
 
 
@@ -108,67 +107,32 @@ checks will run unless the associated environment variable is &quot;false&quot;.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Run all checks</h1>
+    <h1>Check the .Rproj file</h1>
     
-    <div class="hidden name"><code>check_via_env.Rd</code></div>
+    <div class="hidden name"><code>check_rproj.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function will run all checks within the package.
-See the corresponding check functions for details. When <code>default = "true"</code>, all
-checks will run unless the associated environment variable is <code>"false"</code>.</p>
+    <p>If a .Rproj file exists, then the values should correspond to those given by
+<code>get_default_rproj</code>. If more than one .Rproj file exists, an error is raised.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_via_env</span>(
-  <span class='kw'>pkg</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lintr</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>namespace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>r_filenames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gitignore</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tidy_description</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>readme</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>file_permissions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>line_breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tag</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>get_default_rproj</span>()
+
+<span class='fu'>check_rproj</span>(<span class='kw'>default_rproj</span> <span class='kw'>=</span> <span class='fu'>get_default_rproj</span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pkg</th>
-      <td><p>Build and check package. See details for further information.</p></td>
-    </tr>
-    <tr>
-      <th>lintr, namespace, r_filenames, version, gitignore, readme, tidy_description</th>
-      <td><p>Default <code>NULL</code>.</p></td>
-    </tr>
-    <tr>
-      <th>file_permissions, line_breaks</th>
-      <td><p>Windows related checks.</p></td>
-    </tr>
-    <tr>
-      <th>tag</th>
-      <td><p>Default <code>NULL</code>. Create a tagged release.</p></td>
-    </tr>
-    <tr>
-      <th>default</th>
-      <td><p>Default <code>FALSE</code>. The default value the environment variable
-should take if missing.</p></td>
+      <th>default_rproj</th>
+      <td><p>Default Rproj values.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The arguments for the function correspond to a particular check, e.g. check_ARGNAME().
-By default, all arguments are <code>NULL</code> and hence run. However, a value of
-<code>FALSE</code> or changing the corresponding environment variable
-<code>INTERGRATE_ARGNAME</code> can turn off the check, e.g.<code>INTERGRATE_NAMESPACE</code>.</p>
-<p>On GitLab you can set environment variables at an organisation level.</p>
-<p>Note: As this package matures, this function will include the newer checks.</p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='check_readme.html'>check_readme</a></span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
