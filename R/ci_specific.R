@@ -61,7 +61,7 @@ is_gitlab = function() nchar(Sys.getenv("GITLAB_CI")) != 0
 
 get_gitlab_env_var = function(env_variable, default = NULL) {
   r = readLines(".gitlab-ci.yml")
-  env = r[str_detect(r, env_variable)]
+  env = r[str_detect(r, paste0("^(\\W)*", env_variable))]
   if (length(env) == 0L) {
     allowed = default
   } else {
