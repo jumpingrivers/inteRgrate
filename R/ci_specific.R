@@ -66,7 +66,7 @@ get_gitlab_env_var = function(env_variable, default = NULL) {
     allowed = default
   } else {
     env = stringr::str_remove(env, "#(.*)$")
-    env = stringr::str_match(env, "=(.*)")[2]
+    env = stringr::str_match(env, ":(.*)")[2]
     allowed = as.numeric(str_trim(env))
   }
   return(allowed)
