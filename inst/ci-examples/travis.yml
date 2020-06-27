@@ -1,0 +1,10 @@
+language: r
+cache: packages
+dist: xenial
+
+env:
+  global:
+    - SPACE = 10
+    - NO_SPACE=10
+    - COMMENT = 10 # A comment
+
