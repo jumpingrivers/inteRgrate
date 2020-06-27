@@ -44,12 +44,14 @@ is_github = function() nchar(Sys.getenv("TRAVIS")) != 0
 
 get_github_env_var = function(env_variable, default = NULL) {
   r = readLines(".travis.yml")
-  env = r[str_detect(r, env_variable)]
+  env = r[str_detect(r, paste0("^(\\W)*-(\\W)*", env_variable))]
   if (length(env) == 0L) {
     allowed = default
   } else {
+    env = stringr::str_remove(env, "#(.*)$")
+    env = stringr::str_match(env, "=(.*)")[2]
     env = str_split(env, "=")[[1]]
-    allowed = as.numeric(str_trim(env)[2])
+    allowed = as.numeric(str_trim(env))
   }
   return(allowed)
 }
@@ -61,12 +63,12 @@ is_gitlab = function() nchar(Sys.getenv("GITLAB_CI")) != 0
 
 get_gitlab_env_var = function(env_variable, default = NULL) {
   r = readLines(".gitlab-ci.yml")
-  env = r[str_detect(r, env_variable)]
+  env = r[str_detect(r, paste0("^(\\W)*", env_variable))]
   if (length(env) == 0L) {
     allowed = default
   } else {
     env = stringr::str_remove(env, "#(.*)$")
-    env = stringr::str_match(env, "=(.*)")[2]
+    env = stringr::str_match(env, ":(.*)")[2]
     allowed = as.numeric(str_trim(env))
   }
   return(allowed)

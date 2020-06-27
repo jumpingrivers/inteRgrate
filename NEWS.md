@@ -1,6 +1,7 @@
-# Dev Version
+# Version: 1.0.2
   * Feature: Ensure files end with a line break
   * Feature: Build pkgs and set ENV variables
+  * Feature: Add tests for yml parsing
   
 # Version: 1.0.1
   * Breaking changes
