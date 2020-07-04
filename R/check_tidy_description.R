@@ -1,3 +1,7 @@
+is_major_version = function(version) {
+  stringr::str_detect(version, "^[0-9]*\\.[0-9]*\\.[0-9]*$")
+}
+
 check_version_format = function(description_path) {
   des = read.dcf(description_path)[1, ]
   version = des[names(des) == "Version"]

@@ -1,7 +1,4 @@
-# inteRgrate 1.0.3 _2020-07-04_
-  * Feature: Add `check_news()`
-
-# inteRgrate 1.0.2
+# inteRgrate 1.0.2 _2020-06-10_
   * Feature: Ensure files end with a line break
   * Feature: Build pkgs and set ENV variables
   * Feature: Add tests for yml parsing
@@ -45,8 +42,8 @@
 
 # inteRgrate 0.2.0
   * Feature (check): lintr checks to vignettes
-  * Feature (check): Adding check_inteRgrate
-  * Feature (check): Check inteRgrate number is tidyverse compliant
+  * Feature (check): Adding check_version
+  * Feature (check): Check version number is tidyverse compliant
   * Feature (check): Run checks via environment variables
   * Feature: Install dependencies by default
   * Feature: Set PKG_TARBALL in the .Renviron on build step
@@ -54,4 +51,4 @@
   * Other: pkgdown site
 
 # inteRgrate 0.1.0
-  * Initial inteRgrate
+  * Initial version

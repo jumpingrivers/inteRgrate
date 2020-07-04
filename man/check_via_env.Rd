@@ -16,6 +16,7 @@ check_via_env(
   file_permissions = NULL,
   line_breaks = NULL,
   tag = NULL,
+  news = NULL,
   default = FALSE
 )
 }
@@ -27,6 +28,8 @@ check_via_env(
 \item{file_permissions, line_breaks}{Windows related checks.}
 
 \item{tag}{Default \code{NULL}. Create a tagged release.}
+
+\item{news}{Check the top line of NEWS.md}
 
 \item{default}{Default \code{FALSE}. The default value the environment variable
 should take if missing.}
