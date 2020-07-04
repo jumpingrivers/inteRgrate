@@ -14,7 +14,7 @@ check_news = function(pattern = NULL) {
     msg_error("NEWS.md is missing", stop = TRUE)
   }
   description = read.dcf("DESCRIPTION")[1, ]
-  pkg_name = as.vector(description["Package"])
+  pkg_name = as.vector(description["Package"]) #nolint
   version = as.vector(description["Version"])
   news = readLines("NEWS.md")
 
