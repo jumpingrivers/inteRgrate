@@ -15,7 +15,6 @@ call_check = function(var, value, default) {
   return(invisible(NULL))
 }
 
-
 #' @title Run all checks
 #' @description This function will run all checks within the package.
 #' See the corresponding check functions for details. When \code{default = "true"}, all
@@ -24,6 +23,7 @@ call_check = function(var, value, default) {
 #' @param lintr,namespace,r_filenames,version,gitignore,readme,tidy_description
 #' Default \code{NULL}.
 #' @param file_permissions,line_breaks Windows related checks.
+#' @param news Check the top line of NEWS.md
 #' @param tag Default \code{NULL}. Create a tagged release.
 #' @param default Default \code{FALSE}. The default value the environment variable
 #' should take if missing.
@@ -41,7 +41,7 @@ check_via_env  = function(pkg = NULL, lintr = NULL,
                           version = NULL, gitignore = NULL,
                           tidy_description = NULL, readme = NULL,
                           file_permissions = NULL, line_breaks = NULL,
-                          tag = NULL, default = FALSE) {
+                          tag = NULL, news = NULL, default = FALSE) {
   if (isTRUE(default)) default = "true"
   if (isFALSE(default)) default = "false"
 
