@@ -1,3 +1,6 @@
+# inteRgrate (developmental version)
+  * Minor: Tidy up NEWS.md
+
 # inteRgrate 1.0.3 _2020-07-04_
   * Feature: Add `check_news()`
 
@@ -17,7 +20,7 @@
 
 # inteRgrate 0.4.1
   * Bug: .Rbuildignore files are case insensitive!
-  * Bug: Parsing .gitlab-ci files
+  * Bug: Parsing `.gitlab-ci` files
   * Bug: Remove deleted files in pre-commit check
   * Feature: Raise an error on when `readLines()` doesn't end with a new line
   * Feature: Check for Windows line breaks
@@ -45,11 +48,11 @@
 
 # inteRgrate 0.2.0
   * Feature (check): lintr checks to vignettes
-  * Feature (check): Adding check_inteRgrate
-  * Feature (check): Check inteRgrate number is tidyverse compliant
+  * Feature (check): Adding `check_version()`
+  * Feature (check): Check version number is tidyverse compliant
   * Feature (check): Run checks via environment variables
   * Feature: Install dependencies by default
-  * Feature: Set PKG_TARBALL in the .Renviron on build step
+  * Feature: Set PKG_TARBALL in the `.Renviron` on build step
   * Feature: Auto tagging via Gitlab CI
   * Other: pkgdown site
 
