@@ -1,4 +1,4 @@
-# inteRgrate (developmental version)
+# inteRgrate (development version)
   * Minor: Tidy up NEWS.md
 
 # inteRgrate 1.0.3 _2020-07-04_
