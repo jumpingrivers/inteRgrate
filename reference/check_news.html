@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Namespace checks — check_namespace • inteRgrate</title>
+<title>Check NEWS format — check_news • inteRgrate</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,10 @@
 
 
 
-<meta property="og:title" content="Namespace checks — check_namespace" />
-<meta property="og:description" content="Importing too many packages can cause bugs due to namespace clashes. This check
-enforces a set number of imports. As a rule of thumb, if you only use a few functions from
-a package, use importFrom instead of import in your NAMESPACE file." />
+<meta property="og:title" content="Check NEWS format — check_news" />
+<meta property="og:description" content="Checks that NEWS.md exists and title lines follow the correct format.
+If the pattern is NULL, then the expected format is either:
+# pkg_name Version _YYYY-MM-DD_ or # pkg_name _(development version)_" />
 
 
 
@@ -108,30 +108,34 @@ a package, use importFrom instead of import in your NAMESPACE file." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Namespace checks</h1>
+    <h1>Check NEWS format</h1>
     
-    <div class="hidden name"><code>check_namespace.Rd</code></div>
+    <div class="hidden name"><code>check_news.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Importing too many packages can cause bugs due to namespace clashes. This check
-enforces a set number of imports. As a rule of thumb, if you only use a few functions from
-a package, use <code>importFrom</code> instead of <code>import</code> in your NAMESPACE file.</p>
+    <p>Checks that NEWS.md exists and title lines follow the correct format.
+If the <code>pattern</code> is <code>NULL</code>, then the expected format is either:
+<code># pkg_name Version _YYYY-MM-DD_</code> or <code># pkg_name _(development version)_</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_namespace</span>(<span class='kw'>no_imports</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>check_news</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>check_all_news</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>no_imports</th>
-      <td><p>Default NULL. Number of package imports via <code>import()</code> allowed in the
-NAMESPACE. If <code>NULL</code>, checks for environment variable NO_IMPORTS, otherwise
-0.</p></td>
+      <th>pattern</th>
+      <td><p>Regular expression NEWS title.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The <code>check_all_news()</code> function isn't used in the CI. It's a
+convient command line function to quickly assess your NEWS.md file</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

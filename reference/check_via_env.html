@@ -74,7 +74,7 @@ checks will run unless the associated environment variable is &quot;false&quot;.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -131,6 +131,7 @@ checks will run unless the associated environment variable is <code>"false"</cod
   <span class='kw'>file_permissions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>line_breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tag</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>news</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>default</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
@@ -152,6 +153,10 @@ checks will run unless the associated environment variable is <code>"false"</cod
     <tr>
       <th>tag</th>
       <td><p>Default <code>NULL</code>. Create a tagged release.</p></td>
+    </tr>
+    <tr>
+      <th>news</th>
+      <td><p>Check the top line of NEWS.md</p></td>
     </tr>
     <tr>
       <th>default</th>
