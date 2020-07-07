@@ -4,9 +4,11 @@
 \alias{check_r_filenames}
 \title{Check R/ filenames}
 \usage{
-check_r_filenames(extension = "R")
+check_r_filenames(dir = "R", extension = "R")
 }
 \arguments{
+\item{dir}{Default location for R files.}
+
 \item{extension}{Preferred R file extension. Default \code{R}.}
 }
 \description{
