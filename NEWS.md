@@ -1,5 +1,6 @@
 # inteRgrate (development version)
   * Minor: Tidy up NEWS.md
+  * Adding tests
 
 # inteRgrate 1.0.3 _2020-07-04_
   * Feature: Add `check_news()`

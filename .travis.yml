@@ -19,6 +19,8 @@ matrix:
       script:
         - R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
       skip_cleanup: true
+    after_success:
+      - Rscript -e 'covr::codecov()'
   - r: oldrel
 
 before_install:
