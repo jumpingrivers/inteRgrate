@@ -4,7 +4,10 @@
 \alias{check_gitignore}
 \title{Check gitignore file}
 \usage{
-check_gitignore()
+check_gitignore(dir = ".")
+}
+\arguments{
+\item{dir}{Default location for R files.}
 }
 \description{
 Checks the gitignore files for recommended patterns. If any of these

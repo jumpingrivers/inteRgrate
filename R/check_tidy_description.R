@@ -17,13 +17,13 @@ check_version_format = function(description_path) {
 #' @description Checks for a tidy description file (via the \code{usethis} function
 #' \code{use_tidy_description}). It also checks that the version numbers conform
 #' to the tidy format - X.Y.Z or X.Y.Z.9ABC
+#' @inheritParams check_r_filenames
 #' @export
-check_tidy_description = function() {
+check_tidy_description = function(dir = ".") {
   set_crayon()
   cli::cli_h3("Checking tidy descriptions...check_tidy_descriptions()")
 
-  path = get_build_dir()
-  des_path = file.path(path, "DESCRIPTION")
+  des_path = file.path(dir, "DESCRIPTION")
   if (!file.exists(des_path)) msg_error("Missing DESCRIPTION file", stop = TRUE)
   check_version_format(des_path)
 
