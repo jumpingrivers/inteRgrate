@@ -1,4 +1,6 @@
 test_that("Testing gitignore", {
-  expect_error(check_gitignore(dir = "."))
-  expect_null(check_gitignore(system.file("test_gitignore", package = "inteRgrate")))
+  good_pkg = system.file("good_pkg", package = "inteRgrate")
+
+  expect_error(check_gitignore(path = "."))
+  expect_null(check_gitignore(path = good_pkg))
 })

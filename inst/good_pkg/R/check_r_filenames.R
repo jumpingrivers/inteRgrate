@@ -7,19 +7,17 @@
 #' @export
 #' @examples
 #' check_r_filenames()
-check_r_filenames = function(extension = "R", path = ".") {
+check_r_filenames = function(extension = "R", path = "R") {
   cli::cli_h3("Checking file extensions...check_r_filenames()")
-  op = setwd(path)
-  on.exit(setwd(op))
 
-  fnames = list.files("R", full.names = TRUE, pattern = "(\\.R|\\.r)$")
+  fnames = list.files(path, full.names = TRUE, pattern = "(\\.R|\\.r)$")
   ext = substr(fnames, nchar(fnames) - length(extension), nchar(fnames))
   if (!all(ext == paste0(".", extension))) {
     msg_error(paste("File extension for R files should be", extension), stop = TRUE)
   }
   cli::cli_alert_info("{length(fnames)} R files found")
   cli::cli_alert_success("Extensions look good")
-  fnames = list.files("R", pattern = "(\\.R|\\.r)$")
+  fnames = list.files(path, pattern = "(\\.R|\\.r)$")
   # Remove extension
   fnames = substr(fnames, 0, nchar(fnames) - 1 - length(extension))
   if (!all(fnames == tolower(fnames))) {
