@@ -13,6 +13,3 @@ check_gitignore(path = ".")
 Checks the gitignore files for recommended patterns. If any of these
 patterns are missing, an error is raised.
 }
-\examples{
-check_gitignore()
-}

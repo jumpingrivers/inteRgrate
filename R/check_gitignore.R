@@ -25,8 +25,6 @@ git_global_ignore = c(
 #' @inheritParams check_pkg
 #' @importFrom utils glob2rx
 #' @export
-#' @examples
-#' check_gitignore()
 check_gitignore = function(path = ".") {
   cli::cli_h3("Checking .gitignore...check_gitignore()")
   gitignore = file.path(path, ".gitignore")
