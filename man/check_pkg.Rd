@@ -4,10 +4,10 @@
 \alias{check_pkg}
 \title{Check R package}
 \usage{
-check_pkg(path = NULL)
+check_pkg(path = ".")
 }
 \arguments{
-\item{path}{Default \code{.} The location of the package}
+\item{path}{Location of the package}
 }
 \description{
 Path is the CI project directory or \code{.}.

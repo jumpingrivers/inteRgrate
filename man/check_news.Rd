@@ -5,12 +5,14 @@
 \alias{check_all_news}
 \title{Check NEWS format}
 \usage{
-check_news(pattern = NULL)
+check_news(pattern = NULL, path = ".")
 
 check_all_news(pattern = NULL)
 }
 \arguments{
 \item{pattern}{Regular expression NEWS title.}
+
+\item{path}{Location of the package}
 }
 \description{
 Checks that NEWS.md exists and title lines follow the correct format.

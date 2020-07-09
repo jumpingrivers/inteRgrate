@@ -4,7 +4,10 @@
 \alias{check_lintr}
 \title{The lintr check}
 \usage{
-check_lintr()
+check_lintr(path = ".")
+}
+\arguments{
+\item{path}{Location of the package}
 }
 \description{
 Runs lint from the \code{lintr} package. Also scans for all

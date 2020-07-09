@@ -22,19 +22,19 @@ git_global_ignore = c(
 #' @title Check gitignore file
 #' @description Checks the gitignore files for recommended patterns. If any of these
 #' patterns are missing, an error is raised.
+#' @inheritParams check_pkg
 #' @importFrom utils glob2rx
-#' @inheritParams check_r_filenames
 #' @export
 #' @examples
 #' check_gitignore()
-check_gitignore = function(dir = ".") {
+check_gitignore = function(path = ".") {
   cli::cli_h3("Checking .gitignore...check_gitignore()")
-  gitignore = file.path(dir, ".gitignore")
-  if (!file.exists(gitignore)) {
+  if (!file.exists(".gitignore")) {
     cli::cli_alert_warning(".gitignore not found")
     return(invisible(NULL))
   }
   ## Get ignores and remove ignored files
+  gitignore = file.path(path, ".gitignore")
   ignores = readLines(gitignore)
   ignores = ignores[stringr::str_detect(ignores, pattern = "^#", negate = TRUE)]
   ignores = ignores[nchar(ignores) > 0L]

@@ -5,12 +5,14 @@ globalVariables("fname")
 #' that the file is not executable (txt|md|Rmd|yml|json|).
 #' @param repo_files By default, we use git to determine the files in the repo. By a
 #' vector of files can be passed instead.
+#' @inheritParams check_pkg
 #' @export
 #' @examples
 #' check_file_permissions()
-check_file_permissions = function(repo_files = NULL) {
+check_file_permissions = function(repo_files = NULL, path = ".") {
   cli::cli_h3("Checking file permissions...check_file_permissions()")
-
+  op = setwd(path)
+  on.exit(setwd(path))
   # Get all repos files
   if (is.null(repo_files)) {
     repo_files = system2("git",

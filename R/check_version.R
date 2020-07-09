@@ -50,8 +50,11 @@ has_pkg_changed = function(repo) {
 #' Technically we only check for a change in the Version line of the DESCRIPTION file, not an
 #' actual version increase.
 #' @param repo Default origin/master. The repo to compare against.
+#' @inheritParams check_pkg
 #' @export
-check_version = function(repo = "origin/master") {
+check_version = function(repo = "origin/master", path = ".") {
+  op = setwd(path)
+  on.exit(setwd(op))
   cli::cli_h3("Checking version...check_version()")
 
   pkg_changed = has_pkg_changed(repo)

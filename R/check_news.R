@@ -6,17 +6,17 @@
 #' If the \code{pattern} is \code{NULL}, then the expected format is either:
 #' \code{# pkg_name Version _YYYY-MM-DD_} or \code{# pkg_name _(development version)_}
 #' @param pattern Regular expression NEWS title.
+#' @inheritParams check_pkg
 #' @export
-check_news = function(pattern = NULL) {
+check_news = function(pattern = NULL, path = ".") {
   cli::cli_h3("Checking NEWS.md...check_news()")
-
-  if (!file.exists("NEWS.md")) {
+  if (!file.exists(file.path(path, "NEWS.md"))) {
     msg_error("NEWS.md is missing", stop = TRUE)
   }
-  description = read.dcf("DESCRIPTION")[1, ]
+  description = read.dcf(file.path(path, "DESCRIPTION"))[1, ]
   pkg_name = as.vector(description["Package"]) #nolint
   version = as.vector(description["Version"])
-  news = readLines("NEWS.md")
+  news = readLines(file.path(path, "NEWS.md"))
 
   if (is_major_version(version)) {
     pattern = glue::glue("^# <pkg_name> <version> _20\\d{2}-\\d{2}-\\d{2}_$",

@@ -4,10 +4,12 @@
 \alias{check_version}
 \title{Version check}
 \usage{
-check_version(repo = "origin/master")
+check_version(repo = "origin/master", path = ".")
 }
 \arguments{
 \item{repo}{Default origin/master. The repo to compare against.}
+
+\item{path}{Location of the package}
 }
 \description{
 Check if the package version has been updated compared to the a

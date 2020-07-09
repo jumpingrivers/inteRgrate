@@ -1,4 +1,4 @@
 test_that("Testing R filenames", {
-  expect_null(check_r_filenames(dir = "."))
-  expect_error(check_r_filenames(dir = ".", extension = "r"))
+  expect_null(check_r_filenames(path = "."))
+  expect_error(check_r_filenames(path = ".", extension = "r"))
 })

@@ -4,12 +4,14 @@
 \alias{check_namespace}
 \title{Namespace checks}
 \usage{
-check_namespace(no_imports = NULL)
+check_namespace(no_imports = NULL, path = ".")
 }
 \arguments{
 \item{no_imports}{Default NULL. Number of package imports via \code{import()} allowed in the
 NAMESPACE. If \code{NULL}, checks for environment variable NO_IMPORTS, otherwise
 0.}
+
+\item{path}{Location of the package}
 }
 \description{
 Importing too many packages can cause bugs due to namespace clashes. This check

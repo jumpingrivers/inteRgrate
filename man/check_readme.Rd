@@ -4,7 +4,10 @@
 \alias{check_readme}
 \title{Check the README.Rmd}
 \usage{
-check_readme()
+check_readme(path = ".")
+}
+\arguments{
+\item{path}{Location of the package}
 }
 \description{
 If README.Rmd exists, the timestamp will be compared to README.md.

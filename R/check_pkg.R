@@ -4,15 +4,14 @@
 #' Installs and checks the R package. The number of notes
 #' and warnings is specified by enviromental variables.
 #' Default number of Notes/Warnings is 0.
-#' @param path Default \code{.} The location of the package
+#' @param path Location of the package
 #' @importFrom glue glue glue_col
 #' @importFrom rcmdcheck rcmdcheck check_details
 #' @importFrom remotes install_deps
 #' @importFrom utils packageVersion
 #' @export
-check_pkg = function(path = NULL) {
+check_pkg = function(path = ".") {
   cli::cli_h1(paste("inteRgrate version", packageVersion("inteRgrate")))
-  if (is.null(path)) path = get_build_dir()
 
   ## Install package dependencies
   cli::cli_h2("Installing package")

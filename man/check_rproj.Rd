@@ -7,10 +7,12 @@
 \usage{
 get_default_rproj()
 
-check_rproj(default_rproj = get_default_rproj())
+check_rproj(default_rproj = get_default_rproj(), path = ".")
 }
 \arguments{
 \item{default_rproj}{Default Rproj values.}
+
+\item{path}{Location of the package}
 }
 \description{
 If a .Rproj file exists, then the values should correspond to those given by

@@ -4,11 +4,13 @@
 \alias{check_file_permissions}
 \title{Detects standard Windows related issues}
 \usage{
-check_file_permissions(repo_files = NULL)
+check_file_permissions(repo_files = NULL, path = ".")
 }
 \arguments{
 \item{repo_files}{By default, we use git to determine the files in the repo. By a
 vector of files can be passed instead.}
+
+\item{path}{Location of the package}
 }
 \description{
 This check tests for windows line breaks and file permissions. It ensures

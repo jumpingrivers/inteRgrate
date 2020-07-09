@@ -9,8 +9,8 @@ get_default_rproj = function() {
                   "Encoding", "UTF-8")
 }
 
-get_rproj = function() {
-  rproj_fname = list.files(path = ".", pattern = "\\.Rproj$")
+get_rproj = function(path) {
+  rproj_fname = list.files(path = path, pattern = "\\.Rproj$")
   if (length(rproj_fname) > 1) {
     stop("More than 1 .Rproj file found.")
   } else if (length(rproj_fname)  == 0L) {
@@ -40,12 +40,13 @@ print_bad_values = function(rproj) {
 #' @description If a .Rproj file exists, then the values should correspond to those given by
 #' \code{get_default_rproj}. If more than one .Rproj file exists, an error is raised.
 #' @param default_rproj Default Rproj values.
+#' @inheritParams check_pkg
 #' @export
 #' @examples
 #' check_readme()
-check_rproj = function(default_rproj = get_default_rproj()) {
+check_rproj = function(default_rproj = get_default_rproj(), path = ".") {
   cli::cli_h3("Checking Rproj...check_rproj()")
-  rproj = get_rproj()
+  rproj = get_rproj(path = path)
   if (nrow(rproj) == 0L) {
     cli::cli_alert_info("No {.file .Rproj} files detected")
     return(invisible(NULL))

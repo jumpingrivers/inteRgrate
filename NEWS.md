@@ -1,8 +1,8 @@
 # inteRgrate (development version)
-  * Change: Add directory option on `check_r_filenames()`
+  * Change: Add `path` argument to all `check_*()` functions
   * Minor: Tidy up NEWS.md
   * Adding tests
-  * Clean NEWS entries
+  * Cleanings NEWS entries
 
 # inteRgrate 1.0.3 _2020-07-04_
   * Feature: Add `check_news()`

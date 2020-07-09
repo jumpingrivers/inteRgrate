@@ -23,10 +23,13 @@ lint_files = function() {
 #'
 #' @description Runs lint from the \code{lintr} package. Also scans for all
 #' \code{.Rmd} and \code{.R} files in other directories.
+#' @inheritParams check_pkg
 #' @importFrom lintr lint_package lint_dir lint
 #' @export
-check_lintr = function() {
+check_lintr = function(path = ".") {
   cli::cli_h3("Checking lint...check_lintr()")
+  op = setwd(path)
+  on.exit(setwd(op))
 
   if (!file.exists(".lintr")) {
     cli::cli_alert_info("No .lintr file found")

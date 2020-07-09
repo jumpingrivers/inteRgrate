@@ -4,10 +4,10 @@
 \alias{check_tidy_description}
 \title{Check tidy description}
 \usage{
-check_tidy_description(dir = ".")
+check_tidy_description(path = ".")
 }
 \arguments{
-\item{dir}{Default location for R files.}
+\item{path}{Location of the package}
 }
 \description{
 Checks for a tidy description file (via the \code{usethis} function
