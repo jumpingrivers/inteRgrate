@@ -29,12 +29,11 @@ git_global_ignore = c(
 #' check_gitignore()
 check_gitignore = function(path = ".") {
   cli::cli_h3("Checking .gitignore...check_gitignore()")
-  if (!file.exists(".gitignore")) {
-    cli::cli_alert_warning(".gitignore not found")
-    return(invisible(NULL))
+  gitignore = file.path(path, ".gitignore")
+  if (!file.exists(gitignore)) {
+    msg_error(".gitignore not found", stop = TRUE)
   }
   ## Get ignores and remove ignored files
-  gitignore = file.path(path, ".gitignore")
   ignores = readLines(gitignore)
   ignores = ignores[stringr::str_detect(ignores, pattern = "^#", negate = TRUE)]
   ignores = ignores[nchar(ignores) > 0L]
