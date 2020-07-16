@@ -1,5 +1,5 @@
 test_that("Testing NEWS.md", {
-  on.exit({file.remove("DESCRIPTION"); file.remove("NEWS.md")})
+  on.exit(file.remove(c("DESCRIPTION","NEWS.md")))
 
   ## No DESCRIPTION file
   expect_error(check_news())
