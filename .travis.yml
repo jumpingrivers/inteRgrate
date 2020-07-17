@@ -1,3 +1,4 @@
+os: linux
 language: r
 cache: packages
 dist: xenial
@@ -14,7 +15,6 @@ before_install:
        ')'))" >> ~/.Rprofile.site
 
 jobs:
-  include:
   - r: devel
   - r: oldrel
   - r: release
