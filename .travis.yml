@@ -8,33 +8,20 @@ env:
     - ALLOWED_WARNINGS=0
     - ALLOWED_NOTES=0
 
-before_install:
-  - echo "options(repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/xenial/latest'))" >> ~/.Rprofile.site
-  - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
-       paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
-       ')'))" >> ~/.Rprofile.site
-matrix:
+jobs:
   include:
-  if: branch != master
-    - r: devel
-    - r: oldrel
-    - r: release
-  include:
-  if: branch == master
-    - r: devel
-    - r: oldrel
-  #
-  # if: branch = master
-  #   r_packages:
-  #     - pkgdown
-  #     - covr
-  #   env: R_CURRENT=true
-  #   deploy:
-  #     provider: script
-  #     script:
-  #       - R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
-  #     skip_cleanup: true
-
+  - r: devel
+  - r: release
+    r_packages:
+      - pkgdown
+      - covr
+    env: R_CURRENT=true
+    deploy:
+      provider: script
+      script:
+        R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
+      cleanup: true
+  - r: oldrel
 
 before_install:
   - echo "options(repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/xenial/latest'))" >> ~/.Rprofile.site
@@ -46,9 +33,11 @@ script:
   - echo $TRAVIS_R_VERSION
   - Rscript -e 'remotes::install_local(".", upgrade = "never", build_vignettes = TRUE, force = TRUE)'
   - Rscript -e "inteRgrate::check_via_env(tag = FALSE, default = 'true')"
-  - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag()"
+  - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag(); covr::codecov()"
+
 
 notifications:
   email:
     on_success: change
     on_failure: change
+
