@@ -13,6 +13,7 @@ matrix:
   - r: release
     r_packages:
       - pkgdown
+      - covr
     env: R_CURRENT=true
     deploy:
       provider: script
