@@ -18,6 +18,7 @@ matrix:
       provider: script
       script:
         - R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
+        - Rscript -e 'covr::codecov()'
       skip_cleanup: true
     after_success:
       - Rscript -e 'covr::codecov()'
