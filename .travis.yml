@@ -13,17 +13,16 @@ before_install:
   - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
        paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
        ')'))" >> ~/.Rprofile.site
+r:
+  - devel
+  - oldrel
+  - release
 
 jobs:
-  - r: devel
-  - r: oldrel
-  - r: release
-    exclude:
-      if: branch = master
-  - r: release
-    include:
-      if: branch = master
-      r_packages:
+  include:
+    if: branch = master
+    r: release
+    r_packages:
         - pkgdown
         - covr
       deploy:
