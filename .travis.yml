@@ -23,19 +23,18 @@ jobs:
   - r: release
     include:
       if: branch = master
-    r_packages:
-      - pkgdown
-      - covr
-    env: R_CURRENT=true
-    deploy:
-      provider: script
-      script:
-        - R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
+      r_packages:
+        - pkgdown
+        - covr
+      deploy:
+        provider: script
+        script:
+          - R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
+          - Rscript -e 'covr::codecov()'
+        cleanup: false
+      after_success:
         - Rscript -e 'covr::codecov()'
-      cleanup: false
-    after_success:
-      - Rscript -e 'covr::codecov()'
-      - Rscript -e 'inteRgrate::create_tag()'
+        - Rscript -e 'inteRgrate::create_tag()'
 
 script:
   - echo $TRAVIS_R_VERSION
