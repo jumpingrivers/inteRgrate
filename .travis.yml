@@ -19,10 +19,11 @@ r:
   - release
 
 jobs:
+
   include:
     if: branch = master
     r: release
-    r_packages:
+      r_packages:
         - pkgdown
         - covr
       deploy:
