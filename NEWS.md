@@ -1,8 +1,8 @@
-# inteRgrate (development version)
+# inteRgrate 1.0.4 _2020-07-17_
   * Change: Add `path` argument to all `check_*()` functions
   * Minor: Tidy up NEWS.md
   * Adding tests
-  * Cleanings NEWS entries
+  * Cleaning NEWS entries
 
 # inteRgrate 1.0.3 _2020-07-04_
   * Feature: Add `check_news()`
