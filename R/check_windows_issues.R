@@ -12,7 +12,7 @@ globalVariables("fname")
 check_file_permissions = function(repo_files = NULL, path = ".") {
   cli::cli_h3("Checking file permissions...check_file_permissions()")
   op = setwd(path)
-  on.exit(setwd(path))
+  on.exit(setwd(op))
   # Get all repos files
   if (is.null(repo_files)) {
     repo_files = system2("git",
