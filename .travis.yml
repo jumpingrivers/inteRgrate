@@ -13,18 +13,16 @@ before_install:
        paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
        ')'))" >> ~/.Rprofile.site
 
-matrix:
+jobs:
   include:
   - r: devel
   - r: oldrel
   - r: release
-    branches:
-      except:
-        master
+    exclude:
+      if: branch = master
   - r: release
-    branches:
-      only:
-        master
+    include:
+      if: branch = master
     r_packages:
       - pkgdown
       - covr
@@ -34,7 +32,7 @@ matrix:
       script:
         - R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
         - Rscript -e 'covr::codecov()'
-      skip_cleanup: true
+      cleanup: false
     after_success:
       - Rscript -e 'covr::codecov()'
       - Rscript -e 'inteRgrate::create_tag()'
