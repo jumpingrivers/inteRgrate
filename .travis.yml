@@ -33,7 +33,7 @@ script:
   - echo $TRAVIS_R_VERSION
   - Rscript -e 'remotes::install_local(".", upgrade = "never", build_vignettes = TRUE, force = TRUE)'
   - Rscript -e "inteRgrate::check_via_env(tag = FALSE, default = 'true')"
-  - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag(); covr::codecov()"
+  - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag()"
 
 
 notifications:
