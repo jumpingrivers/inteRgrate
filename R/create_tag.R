@@ -30,7 +30,7 @@ create_tag = function(branch = "master", in_development = FALSE) {
   }
 
   if (is_tagging_branch()) {
-    cli::cli_alert_info("No tagging: This looks like a tagging CI process")
+    cli::cli_alert_info("No tagging: this looks like a tagging CI process")
     return(invisible(NULL))
   }
 
@@ -39,15 +39,18 @@ create_tag = function(branch = "master", in_development = FALSE) {
     return(invisible(NULL))
   }
 
+  message("XXX ", Sys.getenv("TRAVIS_PULL_REQUEST"))
+  message("YYY ", get_current_branch())
+
   # Check branch
   if (get_current_branch() != branch) {
-    cli::cli_alert_info(paste("No tagging: Not on", branch))
+    cli::cli_alert_info(paste("No tagging: not on", branch))
     return(invisible(NULL))
   }
 
   # Has the package actually changed?
   if (isFALSE(has_pkg_changed(repo = paste0("origin/", branch)))) {
-    cli::cli_alert_info("No tagging: Package hasn't changed")
+    cli::cli_alert_info("No tagging: package hasn't changed")
     return(invisible(NULL))
   }
 
