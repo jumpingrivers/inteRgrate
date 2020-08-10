@@ -39,11 +39,8 @@ create_tag = function(branch = "master", in_development = FALSE) {
     return(invisible(NULL))
   }
 
-  message("XXX ", Sys.getenv("TRAVIS_PULL_REQUEST"))
-  message("YYY ", get_current_branch())
-
   # Check branch
-  if (get_current_branch() != branch) {
+  if (get_current_branch() != branch ) {
     cli::cli_alert_info(paste("No tagging: not on", branch))
     return(invisible(NULL))
   }

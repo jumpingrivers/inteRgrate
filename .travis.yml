@@ -35,7 +35,6 @@ script:
   - Rscript -e "inteRgrate::check_via_env(tag = FALSE, default = 'true')"
   - Rscript -e "if(Sys.getenv('R_CURRENT') == 'true') inteRgrate::create_tag()"
 
-
 notifications:
   email:
     on_success: change
