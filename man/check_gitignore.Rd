@@ -4,12 +4,12 @@
 \alias{check_gitignore}
 \title{Check gitignore file}
 \usage{
-check_gitignore()
+check_gitignore(path = ".")
+}
+\arguments{
+\item{path}{Location of the package}
 }
 \description{
 Checks the gitignore files for recommended patterns. If any of these
 patterns are missing, an error is raised.
-}
-\examples{
-check_gitignore()
 }

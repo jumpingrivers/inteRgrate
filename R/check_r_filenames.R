@@ -3,19 +3,23 @@
 #' Checks that all filenames in the directory \code{R/}
 #' are lower case and the file extension matches .\code{extension}
 #' @param extension Preferred R file extension. Default \code{R}.
+#' @inheritParams check_pkg
 #' @export
 #' @examples
 #' check_r_filenames()
-check_r_filenames = function(extension = "R") {
+check_r_filenames = function(path = ".", extension = "R") {
   cli::cli_h3("Checking file extensions...check_r_filenames()")
+  op = setwd(path)
+  on.exit(setwd(op))
 
-  fnames = list.files("R/", full.names = TRUE)
+  fnames = list.files("R", full.names = TRUE, pattern = "(\\.R|\\.r)$")
   ext = substr(fnames, nchar(fnames) - length(extension), nchar(fnames))
   if (!all(ext == paste0(".", extension))) {
     msg_error(paste("File extension for R files should be", extension), stop = TRUE)
   }
+  cli::cli_alert_info("{length(fnames)} R files found")
   cli::cli_alert_success("Extensions look good")
-  fnames = list.files("R")
+  fnames = list.files("R", pattern = "(\\.R|\\.r)$")
   # Remove extension
   fnames = substr(fnames, 0, nchar(fnames) - 1 - length(extension))
   if (!all(fnames == tolower(fnames))) {

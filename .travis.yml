@@ -1,3 +1,4 @@
+os: linux
 language: r
 cache: packages
 dist: xenial
@@ -7,18 +8,19 @@ env:
     - ALLOWED_WARNINGS=0
     - ALLOWED_NOTES=0
 
-matrix:
+jobs:
   include:
   - r: devel
   - r: release
     r_packages:
       - pkgdown
+      - covr
     env: R_CURRENT=true
     deploy:
       provider: script
       script:
-        - R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
-      skip_cleanup: true
+        R CMD build . && Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE, tarball = ".")'
+      cleanup: true
   - r: oldrel
 
 before_install:
@@ -37,3 +39,4 @@ notifications:
   email:
     on_success: change
     on_failure: change
+

@@ -1,5 +1,9 @@
-# inteRgrate (development version)
+# inteRgrate 1.0.4 _2020-08-10_
+  * Change: Add `path` argument to all `check_*()` functions
+  * Bug: Travis started tagging on branches
   * Minor: Tidy up NEWS.md
+  * Adding tests
+  * Cleaning NEWS entries
 
 # inteRgrate 1.0.3 _2020-07-04_
   * Feature: Add `check_news()`
@@ -11,10 +15,10 @@
   
 # inteRgrate 1.0.1
   * Breaking changes
-  * Feature: use `rcmdcheck` instead of `devtools`. This breaks/changes a few things.
+  * Feature: use __rcmdcheck__ instead of __devtools__. This breaks/changes a few things.
   * Feature: `check_via_env()` now has arguments
   * Change: Remove explicit install and build functions.
-  * Change: Use `cli` exclusively.
+  * Change: Use __cli__ exclusively
   * Change: lint all Rmd and R files
   * Change: Remove `check_meta()` - expand to separate functions
 
@@ -54,7 +58,7 @@
   * Feature: Install dependencies by default
   * Feature: Set PKG_TARBALL in the `.Renviron` on build step
   * Feature: Auto tagging via Gitlab CI
-  * Other: pkgdown site
+  * Other: __pkgdown__ site
 
 # inteRgrate 0.1.0
-  * Initial inteRgrate
+  * Initial version of inteRgrate
