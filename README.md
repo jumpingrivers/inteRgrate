@@ -13,6 +13,8 @@ Status](https://travis-ci.org/jumpingrivers/inteRgrate.png?branch=master,dev)](h
 <!-- [![codecov.io](https://codecov.io/github/csgillespie/poweRlaw/coverage.svg?branch=master)](https://codecov.io/github/csgillespie/poweRlaw?branch=master) -->
 <!-- [![Downloads](http://cranlogs.r-pkg.org/badges/poweRlaw?color=brightgreen)](https://cran.r-project.org/package=poweRlaw) -->
 
+[![Codecov test
+coverage](https://codecov.io/gh/jumpingrivers/inteRgrate/branch/master/graph/badge.svg)](https://codecov.io/gh/jumpingrivers/inteRgrate?branch=master)
 <!-- badges: end -->
 
 The goal of inteRgrate is to provide an very opinionated set of rules
