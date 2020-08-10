@@ -4,12 +4,12 @@
 \alias{check_r_filenames}
 \title{Check R/ filenames}
 \usage{
-check_r_filenames(extension = "R", path = ".")
+check_r_filenames(path = ".", extension = "R")
 }
 \arguments{
-\item{extension}{Preferred R file extension. Default \code{R}.}
-
 \item{path}{Location of the package}
+
+\item{extension}{Preferred R file extension. Default \code{R}.}
 }
 \description{
 Checks that all filenames in the directory \code{R/}

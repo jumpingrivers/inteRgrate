@@ -7,7 +7,7 @@
 #' @export
 #' @examples
 #' check_r_filenames()
-check_r_filenames = function(extension = "R", path = ".") {
+check_r_filenames = function(path = ".", extension = "R") {
   cli::cli_h3("Checking file extensions...check_r_filenames()")
   op = setwd(path)
   on.exit(setwd(op))
