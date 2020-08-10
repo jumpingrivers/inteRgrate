@@ -74,7 +74,7 @@ If the pattern is NULL, then the expected format is either:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -119,7 +119,7 @@ If the <code>pattern</code> is <code>NULL</code>, then the expected format is ei
 <code># pkg_name Version _YYYY-MM-DD_</code> or <code># pkg_name _(development version)_</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_news</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>check_news</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>)
 
 <span class='fu'>check_all_news</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
@@ -129,6 +129,10 @@ If the <code>pattern</code> is <code>NULL</code>, then the expected format is ei
     <tr>
       <th>pattern</th>
       <td><p>Regular expression NEWS title.</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>Location of the package</p></td>
     </tr>
     </table>
 

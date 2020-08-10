@@ -73,7 +73,7 @@ are lower case and the file extension matches .extension" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -117,11 +117,15 @@ are lower case and the file extension matches .extension" />
 are lower case and the file extension matches .<code>extension</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_r_filenames</span>(<span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>"R"</span>)</pre>
+    <pre class="usage"><span class='fu'>check_r_filenames</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>"R"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>path</th>
+      <td><p>Location of the package</p></td>
+    </tr>
     <tr>
       <th>extension</th>
       <td><p>Preferred R file extension. Default <code>R</code>.</p></td>
@@ -130,7 +134,7 @@ are lower case and the file extension matches .<code>extension</code></p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>check_r_filenames</span>()</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>── Checking file extensions...check_r_filenames() </span></div><div class='output co'>#&gt; <span class='message'>✔ Extensions look good</span></div><div class='output co'>#&gt; <span class='message'>✔ Filenames look good</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>check_r_filenames</span>()</div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>── Checking file extensions...check_r_filenames() </span></div><div class='output co'>#&gt; <span class='message'>ℹ 0 R files found</span></div><div class='output co'>#&gt; <span class='message'>✔ Extensions look good</span></div><div class='output co'>#&gt; <span class='message'>✔ Filenames look good</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

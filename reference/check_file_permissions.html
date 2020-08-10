@@ -73,7 +73,7 @@ that the file is not executable (txt|md|Rmd|yml|json|)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">inteRgrate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@ that the file is not executable (txt|md|Rmd|yml|json|)." />
 that the file is not executable (txt|md|Rmd|yml|json|).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_file_permissions</span>(<span class='kw'>repo_files</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>check_file_permissions</span>(<span class='kw'>repo_files</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -126,6 +126,10 @@ that the file is not executable (txt|md|Rmd|yml|json|).</p>
       <th>repo_files</th>
       <td><p>By default, we use git to determine the files in the repo. By a
 vector of files can be passed instead.</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>Location of the package</p></td>
     </tr>
     </table>
 
