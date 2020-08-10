@@ -1,5 +1,6 @@
-# inteRgrate 1.0.4 _2020-07-17_
+# inteRgrate 1.0.4 _2020-08-10_
   * Change: Add `path` argument to all `check_*()` functions
+  * Bug: Travis started tagging on branches
   * Minor: Tidy up NEWS.md
   * Adding tests
   * Cleaning NEWS entries
