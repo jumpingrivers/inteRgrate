@@ -17,7 +17,7 @@ check_all_news(pattern = NULL)
 \description{
 Checks that NEWS.md exists and title lines follow the correct format.
 If the \code{pattern} is \code{NULL}, then the expected format is either:
-\code{# pkg_name Version _YYYY-MM-DD_} or \code{# pkg_name _(development version)_}
+\code{# pkg_name Version _YYYY-MM-DD_} or \code{# pkg_name (development version)}
 }
 \details{
 The \code{check_all_news()} function isn't used in the CI. It's a

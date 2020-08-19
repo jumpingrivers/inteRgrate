@@ -1,3 +1,6 @@
+# inteRgrate (development version)
+  * Docs: Incorrect description of NEWS format
+
 # inteRgrate 1.0.4 _2020-08-10_
   * Change: Add `path` argument to all `check_*()` functions
   * Bug: Travis started tagging on branches
