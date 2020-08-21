@@ -4,7 +4,7 @@
 #'
 #' @description Checks that NEWS.md exists and title lines follow the correct format.
 #' If the \code{pattern} is \code{NULL}, then the expected format is either:
-#' \code{# pkg_name Version _YYYY-MM-DD_} or \code{# pkg_name _(development version)_}
+#' \code{# pkg_name Version _YYYY-MM-DD_} or \code{# pkg_name (development version)}
 #' @param pattern Regular expression NEWS title.
 #' @inheritParams check_pkg
 #' @export
