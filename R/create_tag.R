@@ -39,9 +39,6 @@ create_tag = function(branch = "master", in_development = FALSE) {
     return(invisible(NULL))
   }
 
-  message("XXX ", Sys.getenv("TRAVIS_PULL_REQUEST"))
-  message("YYY ", get_current_branch())
-
   # Check branch
   if (get_current_branch() != branch ||
       Sys.getenv("TRAVIS_PULL_REQUEST", "false") != "false") {

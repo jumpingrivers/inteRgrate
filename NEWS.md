@@ -1,4 +1,5 @@
-# inteRgrate (development version)
+# inteRgrate 1.0.5 _2020-10-23_
+  * Feature: parse `.lintr` file for file exclusions
   * Docs: Incorrect description of NEWS format
 
 # inteRgrate 1.0.4 _2020-08-10_
@@ -26,7 +27,7 @@
   * Change: Remove `check_meta()` - expand to separate functions
 
 # inteRgrate 0.4.1
-  * Bug: .Rbuildignore files are case insensitive!
+  * Bug: `.Rbuildignore` files are case insensitive!
   * Bug: Parsing `.gitlab-ci` files
   * Bug: Remove deleted files in pre-commit check
   * Feature: Raise an error on when `readLines()` doesn't end with a new line
