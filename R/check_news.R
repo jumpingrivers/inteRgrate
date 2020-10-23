@@ -19,7 +19,7 @@ check_news = function(pattern = NULL, path = ".") {
   news = readLines(file.path(path, "NEWS.md"))
 
   if (is_major_version(version)) {
-    pattern = glue::glue("^# <pkg_name> <version> _20\\d{2}-\\d{2}-\\d{2}_$",
+    pattern = glue::glue("^# <pkg_name> <version> [_\\*]20\\d{2}-\\d{2}-\\d{2}[_\\*]$",
                          .open = "<", .close = ">")
     if (stringr::str_detect(news[1], pattern = pattern, negate = TRUE)) {
       msg = glue::glue("Top line of NEWS.md not have correct format. It should be

@@ -1,3 +1,6 @@
+# inteRgrate 1.0.6 _2020-10-23_
+  * Feature: allow `*` as emphasis indicator
+
 # inteRgrate 1.0.5 _2020-10-23_
   * Feature: parse `.lintr` file for file exclusions
   * Docs: Incorrect description of NEWS format
