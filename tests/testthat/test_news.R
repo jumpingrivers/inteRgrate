@@ -10,7 +10,7 @@ test_that("Testing NEWS.md", {
   news = file.path(system.file("test_news", package = "inteRgrate"), "NEWS-major.md")
   file.copy(news, to = "NEWS.md", overwrite = TRUE)
   expect_null(check_news())
-  
+
   news = file.path(system.file("test_news", package = "inteRgrate"), "NEWS-alternative.md")
   file.copy(news, to = "NEWS.md", overwrite = TRUE)
   expect_null(check_news())
