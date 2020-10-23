@@ -1,3 +1,19 @@
+get_exclusions = function() {
+  if (!file.exists(".lintr")) return("^R/")
+
+  exclusions = read.dcf(".lintr", all = TRUE)$exclusions
+  if (is.null(exclusions)) return("^R/")
+
+  ## Clean up string
+  exclusions = stringr::str_remove_all(exclusions, "(list\\(|\\)|\")")
+  exclusions = stringr::str_squish(str_split(exclusions, pattern = ",")[[1]])
+  exclusions = paste0("^", exclusions)
+  ## Convert to regular expression
+  pattern = paste0("(", paste0(c(exclusions, "^R/"), collapse = "|"), ")")
+  return(pattern)
+}
+
+
 lint_files = function() {
   lint_errors = FALSE
   lints = lintr::lint_package()
@@ -7,7 +23,8 @@ lint_files = function() {
   }
 
   fnames = list.files(path = ".", pattern = "\\.(Rmd|R|r)$", recursive = TRUE)
-  fnames = fnames[stringr::str_detect(fnames, pattern = "^R/", negate = TRUE)]
+  pattern = get_exclusions()
+  fnames = fnames[stringr::str_detect(fnames, pattern = pattern, negate = TRUE)]
   for (fname in fnames) {
     r_lint = lintr::lint(fname)
     if (length(r_lint) > 0) {

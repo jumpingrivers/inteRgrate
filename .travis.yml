@@ -24,6 +24,7 @@ jobs:
   - r: oldrel
 
 before_install:
+  - Rscript -e "install.packages('Rcpp')"
   - echo "options(repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/xenial/latest'))" >> ~/.Rprofile.site
   - echo "options(HTTPUserAgent = paste0('R/', getRversion(), ' R (',
        paste(getRversion(), R.version['platform'], R.version['arch'], R.version['os']),
