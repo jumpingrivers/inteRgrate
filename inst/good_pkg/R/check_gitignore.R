@@ -55,7 +55,7 @@ check_gitignore = function(path = ".") {
       msg_error(paste("Missing", ignore, " from .gitignore"))
     }
     msg_error("Copying github.com/github/gitignore/blob/master/R.gitignore is a good start.")
-    msg_error("Please update your .gitignore", stop = TRUE)
+    msg_error("Please update your .gitignore")
   }
   cli::cli_alert_success(".gitignore looks good")
   return(invisible(NULL))

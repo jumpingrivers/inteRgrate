@@ -3,6 +3,7 @@
 export(add_pre_commit)
 export(add_pre_push)
 export(build_pkg)
+export(check_all)
 export(check_file_permissions)
 export(check_gitignore)
 export(check_lintr)

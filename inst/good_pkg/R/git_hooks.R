@@ -37,7 +37,7 @@ git_pre_commit = function() {
     }
   }
   if (isTRUE(has_error)) {
-    msg_error("Linting errors", stop = TRUE)
+    msg_error("Linting errors")
   } else if (length(fnames) > 0L) {
     cli::cli_alert_success("Linting OK")
   }

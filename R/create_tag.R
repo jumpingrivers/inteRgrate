@@ -24,6 +24,11 @@ globalVariables(c("token", "project"))
 #' @export
 create_tag = function(branch = "master", in_development = FALSE) {
   cli::cli_h3("Creating a tag...create_tag()")
+  if (isTRUE(.check$error)) {
+    cli::cli_alert_info("No tagging: fix checking errors")
+    return(invisible(NULL))
+  }
+
   if (!is_gitlab() && !is_github()) {
     cli::cli_alert_info("No tagging: doesn't seem to be a CI process")
     return(invisible(NULL))
@@ -96,7 +101,7 @@ gitlab_tag = function(tag_name) {
                 stderr = TRUE, stdout = TRUE)
 
   if (!is.null(attr(out, "status"))) {
-    msg_error("Tagging didn't work", stop = TRUE)
+    msg_error("Tagging didn't work")
   }
   return(invisible(NULL))
 }

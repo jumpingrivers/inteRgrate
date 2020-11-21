@@ -1,5 +1,5 @@
 # Unless the env_var is "false", the check will be called.
-call_check = function(var, value, default) {
+call_check = function(var, value, default = NULL) {
 
   if (is.null(value)) {
     env_var = toupper(paste0("INTERGRATE_", var))

@@ -9,7 +9,7 @@ readLines = function(con = stdin(), n = -1L, ok = TRUE, warn = TRUE,
                warning = function(w) w)
   if ("warning" %in% class(out)) {
     msg = paste0("Files should end with an empty line. Check \n", normalizePath(con))
-    msg_error(msg, stop = TRUE)
+    msg_error(msg)
   }
   out
 }

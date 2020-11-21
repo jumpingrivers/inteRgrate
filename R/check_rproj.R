@@ -60,5 +60,4 @@ check_rproj = function(default_rproj = get_default_rproj(), path = ".") {
     return(invisible(TRUE))
   }
   print_bad_values(join_rproj)
-  stop()
 }

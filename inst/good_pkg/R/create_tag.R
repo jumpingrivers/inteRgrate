@@ -95,7 +95,7 @@ gitlab_tag = function(tag_name) {
                 stderr = TRUE, stdout = TRUE)
 
   if (!is.null(attr(out, "status"))) {
-    msg_error("Tagging didn't work", stop = TRUE)
+    msg_error("Tagging didn't work")
   }
   return(invisible(NULL))
 }
