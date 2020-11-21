@@ -21,7 +21,7 @@ check_version_format = function(description_path) {
 #' @export
 check_tidy_description = function(path = ".") {
   set_crayon()
-  cli::cli_h3("Checking tidy descriptions...check_tidy_descriptions()")
+  cli::cli_h3("Checking tidy description...check_tidy_descriptions()")
 
   des_path = file.path(path, "DESCRIPTION")
   if (!file.exists(des_path)) msg_error("Missing DESCRIPTION file")
