@@ -1,4 +1,4 @@
-# inteRgrate (development version)
+# inteRgrate 1.0.7 _2020-11-25_
   * Feature: `check_all()` to run all checks
   * Feature: Call `stop()` at the of the checks 
 
