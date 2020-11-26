@@ -14,7 +14,7 @@ get_default_rproj = function() {
 get_rproj = function(path) {
   rproj_fname = list.files(path = path, pattern = "\\.Rproj$")
   if (length(rproj_fname) == 0 || length(rproj_fname) > 1) {
-    inteRgrate:::msg_error("{length(rproj_fname)} {.file .Rproj} file{?s} detected")
+    msg_error("{length(rproj_fname)} {.file .Rproj} file{?s} detected")
     return(tibble::tibble(key = character(0), value = character(0)))
   }
 
