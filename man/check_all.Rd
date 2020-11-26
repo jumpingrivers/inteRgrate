@@ -16,7 +16,8 @@ check_all(
   file_permissions = TRUE,
   line_breaks = TRUE,
   tag = TRUE,
-  news = TRUE
+  news = TRUE,
+  rproj = TRUE
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ check_all(
 \item{tag}{Create a tagged release.}
 
 \item{news}{Check the top line of NEWS.md}
+
+\item{rproj}{Runs check_rproj}
 }
 \description{
 This function will run all checks within the package.

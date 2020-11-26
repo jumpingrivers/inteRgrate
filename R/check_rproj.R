@@ -6,16 +6,18 @@ get_default_rproj = function() {
                   "Version", "1.0",
                   "UseSpacesForTab", "Yes",
                   "NumSpacesForTab", "2",
-                  "Encoding", "UTF-8")
+                  "Encoding", "UTF-8",
+                  "AutoAppendNewline", "Yes",
+                  "StripTrailingWhitespace", "Yes")
 }
 
 get_rproj = function(path) {
   rproj_fname = list.files(path = path, pattern = "\\.Rproj$")
-  if (length(rproj_fname) > 1) {
-    stop("More than 1 .Rproj file found.")
-  } else if (length(rproj_fname)  == 0L) {
+  if (length(rproj_fname) == 0 || length(rproj_fname) > 1) {
+    inteRgrate:::msg_error("{length(rproj_fname)} {.file .Rproj} file{?s} detected")
     return(tibble::tibble(key = character(0), value = character(0)))
   }
+
   cli::cli_alert_info("Reading {.file {rproj_fname}}")
   # Read rproj and remove blank lines
   rproj = base::readLines(rproj_fname, warn = FALSE)
@@ -30,8 +32,7 @@ get_rproj = function(path) {
 print_bad_values = function(rproj) {
   for (i in seq_len(nrow(rproj))) {
     cli::cli_alert_danger("{.key {rproj$key[i]}} \\
-    should be {rproj$prop_value[i]} \\
-    not {rproj$value[i]}")
+    should be {rproj$prop_value[i]} not {rproj$value[i]}")
   }
 }
 
@@ -47,11 +48,9 @@ print_bad_values = function(rproj) {
 check_rproj = function(default_rproj = get_default_rproj(), path = ".") {
   cli::cli_h3("Checking Rproj...check_rproj()")
   rproj = get_rproj(path = path)
-  if (nrow(rproj) == 0L) {
-    cli::cli_alert_info("No {.file .Rproj} files detected")
-    return(invisible(NULL))
-  }
-  # Do an join then iterate
+  if (nrow(rproj) == 0L) return(invisible(NULL))
+
+  # Do a join then iterate
   join_rproj = merge(rproj, default_rproj, by.x = "key", by.y = "prop_key")
   join_rproj = join_rproj[!(join_rproj$value == join_rproj$prop_value), ]
 
