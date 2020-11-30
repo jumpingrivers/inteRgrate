@@ -58,9 +58,9 @@ check_lintr = function(path = ".") {
   lapply(rfiles, readLines) #Uses inteRgrate readlines
 
   if (isTRUE(lint_errors)) {
-    msg_error("Please fix linting errors", stop = TRUE)
+    msg_error("Please fix linting errors")
+  } else {
+    cli::cli_alert_success("Lint looks good")
   }
-
-  cli::cli_alert_success("Lint looks good")
   return(invisible(NULL))
 }

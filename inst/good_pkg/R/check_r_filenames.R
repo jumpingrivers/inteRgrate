@@ -13,7 +13,7 @@ check_r_filenames = function(extension = "R", path = "R") {
   fnames = list.files(path, full.names = TRUE, pattern = "(\\.R|\\.r)$")
   ext = substr(fnames, nchar(fnames) - length(extension), nchar(fnames))
   if (!all(ext == paste0(".", extension))) {
-    msg_error(paste("File extension for R files should be", extension), stop = TRUE)
+    msg_error(paste("File extension for R files should be", extension))
   }
   cli::cli_alert_info("{length(fnames)} R files found")
   cli::cli_alert_success("Extensions look good")
@@ -21,7 +21,7 @@ check_r_filenames = function(extension = "R", path = "R") {
   # Remove extension
   fnames = substr(fnames, 0, nchar(fnames) - 1 - length(extension))
   if (!all(fnames == tolower(fnames))) {
-    msg_error("File names should be lower case", stop = TRUE)
+    msg_error("File names should be lower case")
   }
 
   cli::cli_alert_success("Filenames look good")

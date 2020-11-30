@@ -1,3 +1,7 @@
+# inteRgrate 1.0.7 _2020-11-25_
+  * Feature: `check_all()` to run all checks
+  * Feature: Call `stop()` at the of the checks 
+
 # inteRgrate 1.0.6 _2020-10-23_
   * Feature: allow `*` as emphasis indicator
 
@@ -29,15 +33,13 @@
   * Change: lint all Rmd and R files
   * Change: Remove `check_meta()` - expand to separate functions
 
-# inteRgrate 0.4.1
+# inteRgrate 0.4.*
   * Bug: `.Rbuildignore` files are case insensitive!
   * Bug: Parsing `.gitlab-ci` files
   * Bug: Remove deleted files in pre-commit check
   * Feature: Raise an error on when `readLines()` doesn't end with a new line
   * Feature: Check for Windows line breaks
   * Feature: Check file permission
-
-# inteRgrate 0.4.0
   * Feature: Add env variable to check_meta
   * Feature: Add `check_tidy_des()` to `check_meta()`.
 
@@ -47,17 +49,11 @@
   * Feature: `create_tag()` on travis
   * Bug: parsing `.gitlab-ci` now removes comments
 
-# inteRgrate 0.2.3
+# inteRgrate 0.2.*
   * Other: Remove dashes from tag
-
-# inteRgrate 0.2.2
   * Bug: fixes when detecting tagging
-
-# inteRgrate 0.2.1
   * Other: Standardisation of messages & colours
   * Improvement: Don't tag if package hasn't changed
-
-# inteRgrate 0.2.0
   * Feature (check): lintr checks to vignettes
   * Feature (check): Adding `check_version()`
   * Feature (check): Check version number is tidyverse compliant

@@ -11,7 +11,7 @@
 check_news = function(pattern = NULL, path = ".") {
   cli::cli_h3("Checking NEWS.md...check_news()")
   if (!file.exists(file.path(path, "NEWS.md"))) {
-    msg_error("NEWS.md is missing", stop = TRUE)
+    msg_error("NEWS.md is missing")
   }
   description = read.dcf(file.path(path, "DESCRIPTION"))[1, ]
   pkg_name = as.vector(description["Package"]) #nolint
@@ -24,14 +24,14 @@ check_news = function(pattern = NULL, path = ".") {
     if (stringr::str_detect(news[1], pattern = pattern, negate = TRUE)) {
       msg = glue::glue("Top line of NEWS.md not have correct format. It should be
                        # {pkg_name} {version} _{Sys.Date()}_")
-      msg_error(msg, stop = TRUE)
+      msg_error(msg)
     }
   } else {
     pattern = glue::glue("^# {pkg_name} \\(development version\\)$")
     if (stringr::str_detect(news[1], pattern = pattern, negate = TRUE)) {
       msg = glue::glue("Top line of NEWS.md not have correct format. It should be
                        # {pkg_name} (development version)")
-      msg_error(msg, stop = TRUE)
+      msg_error(msg)
     }
   }
   cli::cli_alert_success("Your NEWS.md has the correct format")
@@ -52,7 +52,7 @@ check_all_news = function(pattern = NULL) {
   news = news[stringr::str_detect(news, "^# ")]
   bad_news = news[!stringr::str_detect(news, pattern)]
   if (length(bad_news) > 0L) {
-    msg_error("NEWS titles don't have the correct format. See lines", stop = FALSE)
+    msg_error("NEWS titles don't have the correct format. See lines")
     vapply(bad_news, cli::cli_alert_danger, FUN.VALUE = character(1))
     stop(call. = FALSE)
   }

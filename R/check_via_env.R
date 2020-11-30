@@ -1,5 +1,5 @@
 # Unless the env_var is "false", the check will be called.
-call_check = function(var, value, default) {
+call_check = function(var, value, default = NULL) {
 
   if (is.null(value)) {
     env_var = toupper(paste0("INTERGRATE_", var))
@@ -24,6 +24,7 @@ call_check = function(var, value, default) {
 #' Default \code{NULL}.
 #' @param file_permissions,line_breaks Windows related checks.
 #' @param news Check the top line of NEWS.md
+#' @param rproj Check Rproject file
 #' @param tag Default \code{NULL}. Create a tagged release.
 #' @param default Default \code{FALSE}. The default value the environment variable
 #' should take if missing.
@@ -41,7 +42,8 @@ check_via_env  = function(pkg = NULL, lintr = NULL,
                           version = NULL, gitignore = NULL,
                           tidy_description = NULL, readme = NULL,
                           file_permissions = NULL, line_breaks = NULL,
-                          tag = NULL, news = NULL, default = FALSE) {
+                          tag = NULL, news = NULL,
+                          rproj = NULL, default = FALSE) {
   if (isTRUE(default)) default = "true"
   if (isFALSE(default)) default = "false"
 

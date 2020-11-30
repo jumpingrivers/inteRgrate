@@ -29,7 +29,8 @@ check_gitignore = function(path = ".") {
   cli::cli_h3("Checking .gitignore...check_gitignore()")
   gitignore = file.path(path, ".gitignore")
   if (!file.exists(gitignore)) {
-    msg_error(".gitignore not found", stop = TRUE)
+    msg_error(".gitignore not found")
+    return(invisible(NULL))
   }
   ## Get ignores and remove ignored files
   ignores = readLines(gitignore)
@@ -52,8 +53,9 @@ check_gitignore = function(path = ".") {
       msg_error(paste("Missing", ignore, " from .gitignore"))
     }
     msg_error("Copying github.com/github/gitignore/blob/master/R.gitignore is a good start.")
-    msg_error("Please update your .gitignore", stop = TRUE)
+    msg_error("Please update your .gitignore")
+  } else {
+    cli::cli_alert_success(".gitignore looks good")
   }
-  cli::cli_alert_success(".gitignore looks good")
   return(invisible(NULL))
 }

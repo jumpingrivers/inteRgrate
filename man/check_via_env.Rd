@@ -17,6 +17,7 @@ check_via_env(
   line_breaks = NULL,
   tag = NULL,
   news = NULL,
+  rproj = NULL,
   default = FALSE
 )
 }
@@ -30,6 +31,8 @@ check_via_env(
 \item{tag}{Default \code{NULL}. Create a tagged release.}
 
 \item{news}{Check the top line of NEWS.md}
+
+\item{rproj}{Check Rproject file}
 
 \item{default}{Default \code{FALSE}. The default value the environment variable
 should take if missing.}

@@ -43,7 +43,6 @@ check_file_permissions = function(repo_files = NULL, path = ".") {
     fname = normalizePath(executable[i])
     msg_error(glue::glue("File {i} of {length(executable)}: {fname}"))
   }
-  stop(call. = FALSE)
 }
 
 check_line_breaks = function(repo_files = NULL) {
@@ -69,5 +68,4 @@ check_line_breaks = function(repo_files = NULL) {
     fname = normalizePath(line_breaks[i])
     msg_error(glue::glue("File {i} of {length(line_breaks)}: {fname}"))
   }
-  stop(call. = FALSE)
 }

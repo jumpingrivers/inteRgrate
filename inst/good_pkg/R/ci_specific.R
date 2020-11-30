@@ -9,14 +9,14 @@ get_auth_token = function() {
   if (is_gitlab()) {
     token = Sys.getenv("GITLAB_TOKEN", NA) #nolint
     if (is.na(token)) {
-      msg_error("GITLAB_TOKEN missing. Required for tagging", stop = TRUE)
+      msg_error("GITLAB_TOKEN missing. Required for tagging")
     }
   }
 
   if (is_github()) {
     token = Sys.getenv("GITHUB_PAT", NA)
     if (is.na(token)) {
-      msg_error("GITHUB_PAT missing. Required for tagging", stop = TRUE)
+      msg_error("GITHUB_PAT missing. Required for tagging")
     }
   }
   return(token)

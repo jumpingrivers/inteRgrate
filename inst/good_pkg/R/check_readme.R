@@ -13,7 +13,7 @@ check_readme = function(path = ".") {
 
   cli::cli_h3("Checking README.Rmd...check_readme()")
   if (file.info(readme_rmd)$ctime > file.info(readme_md)$ctime) {
-    msg_error("README.md appears to be out of date", stop = TRUE)
+    msg_error("README.md appears to be out of date")
   }
   cli::cli_alert_success("README timestamps OK")
   return(invisible(NULL))

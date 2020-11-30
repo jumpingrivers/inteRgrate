@@ -79,7 +79,7 @@ check_version = function(repo = "origin/master", path = ".") {
   ## Works even if DESCRIPTION hasn't been changed
   des_diff = des_diff[-1:-5]
   if (length(grep("Version:", des_diff)) == 0L) {
-    msg_error("Please update the package version", stop = TRUE)
+    msg_error("Please update the package version")
   }
 
   cli::cli_alert_success("Version looks good")
