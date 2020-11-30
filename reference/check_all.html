@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Version check — check_version • inteRgrate</title>
+<title>Run all checks — check_all • inteRgrate</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Version check — check_version" />
-<meta property="og:description" content="Check if the package version has been updated compared to the a
-master repo (default is origin/master). This ensures that when branches are merged
-the package version is bumped." />
+<meta property="og:title" content="Run all checks — check_all" />
+<meta property="og:description" content="This function will run all checks within the package.
+See the corresponding check functions for details." />
 
 
 
@@ -108,37 +107,65 @@ the package version is bumped." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Version check</h1>
+    <h1>Run all checks</h1>
     
-    <div class="hidden name"><code>check_version.Rd</code></div>
+    <div class="hidden name"><code>check_all.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Check if the package version has been updated compared to the a
-master repo (default is origin/master). This ensures that when branches are merged
-the package version is bumped.</p>
+    <p>This function will run all checks within the package.
+See the corresponding check functions for details.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_version</span><span class='op'>(</span>repo <span class='op'>=</span> <span class='st'>"origin/master"</span>, path <span class='op'>=</span> <span class='st'>"."</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>check_all</span><span class='op'>(</span>
+  pkg <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  lintr <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  namespace <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  r_filenames <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  version <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  gitignore <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  tidy_description <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  readme <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  file_permissions <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  line_breaks <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  tag <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  news <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  rproj <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>repo</th>
-      <td><p>Default origin/master. The repo to compare against.</p></td>
+      <th>pkg</th>
+      <td><p>Build and check package. See details for further information.</p></td>
     </tr>
     <tr>
-      <th>path</th>
-      <td><p>Location of the package</p></td>
+      <th>lintr, namespace, r_filenames, version, gitignore, readme, tidy_description</th>
+      <td><p>Checks</p></td>
+    </tr>
+    <tr>
+      <th>file_permissions, line_breaks</th>
+      <td><p>Windows related checks.</p></td>
+    </tr>
+    <tr>
+      <th>tag</th>
+      <td><p>Create a tagged release.</p></td>
+    </tr>
+    <tr>
+      <th>news</th>
+      <td><p>Check the top line of NEWS.md</p></td>
+    </tr>
+    <tr>
+      <th>rproj</th>
+      <td><p>Runs check_rproj</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Files listed in .Rbuildignore don't count as changes.</p>
-<p>Technically we only check for a change in the Version line of the DESCRIPTION file, not an
-actual version increase.</p>
+    <p>The arguments for the function correspond to a particular check, e.g. check_ARGNAME().
+Note: As this package matures, this function will include the newer checks.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
