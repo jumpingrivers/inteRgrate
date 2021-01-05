@@ -7,6 +7,10 @@ env:
   global:
     - ALLOWED_WARNINGS=0
     - ALLOWED_NOTES=0
+addons:
+  apt:
+    packages:
+    - libgit2-dev
 
 jobs:
   include:
