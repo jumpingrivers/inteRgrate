@@ -1,5 +1,6 @@
 # inteRgrate 1.0.8 _2021-01-05_
   * Feature: `check_version()` now works with multiple pkgs in a repo
+  * Bug: `check_lintr()` ignores `R/*.rda` files (fixes #33)
   
 # inteRgrate 1.0.7 _2020-11-25_
   * Feature: `check_all()` to run all checks

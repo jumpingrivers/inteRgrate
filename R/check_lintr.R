@@ -54,7 +54,7 @@ check_lintr = function(path = ".") {
 
   lint_errors = lint_files()
   # Ensure files end with newlines
-  rfiles = list.files("R", full.names = TRUE)
+  rfiles = list.files("R", full.names = TRUE, pattern = "\\.(R|r)$")
   lapply(rfiles, readLines) #Uses inteRgrate readlines
 
   if (isTRUE(lint_errors)) {
