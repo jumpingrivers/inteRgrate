@@ -1,3 +1,6 @@
+# inteRgrate 1.0.9 _2021-01-22_
+  * Bug: multiple pkgs in a repo
+
 # inteRgrate 1.0.8 _2021-01-05_
   * Feature: `check_version()` now works with multiple pkgs in a repo
   * Bug: `check_lintr()` ignores `R/*.rda` files (fixes #33)

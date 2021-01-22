@@ -39,7 +39,7 @@ has_pkg_changed = function(repo) {
   ## Remove any files not in this repo
   repo_root = system2("git", args = c("rev-parse", "--show-toplevel"), stdout = TRUE)
   committed_files = file.path(repo_root, committed_files)
-  committed_files = stringr::str_detect(getwd(), committed_files)
+  committed_files = committed_files[stringr::str_detect(getwd(), committed_files)]
 
   any_changes = length(committed_files) != 0L
   return(any_changes)
