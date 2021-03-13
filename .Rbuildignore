@@ -9,3 +9,4 @@
 ^pkgdown$
 ^\.tar\.gz$
 ^codecov\.yml$
+^\.github$
