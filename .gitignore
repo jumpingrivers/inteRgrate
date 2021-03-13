@@ -1,8 +1,8 @@
 # Ignore testthat files
 tests/testthat/.gitlab-ci.yml
 tests/testthat/.travis.yml
-
-
+tests/testthat/DESCRIPTION
+tests/testthat/.Rbuildignore
 #########################################
 # R ignore files
 # https://github.com/github/gitignore/blob/master/R.gitignore

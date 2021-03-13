@@ -17,12 +17,12 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Build Status](https://travis-ci.org/jumpingrivers/inteRgrate.png?branch=master,dev)](https://travis-ci.org/jumpingrivers/inteRgrate) 
 [![CRAN](http://www.r-pkg.org/badges/version/inteRgrate)](https://cran.r-project.org/package=inteRgrate)
 <!-- [![codecov.io](https://codecov.io/github/csgillespie/poweRlaw/coverage.svg?branch=master)](https://codecov.io/github/csgillespie/poweRlaw?branch=master) -->
 <!-- [![Downloads](http://cranlogs.r-pkg.org/badges/poweRlaw?color=brightgreen)](https://cran.r-project.org/package=poweRlaw) -->
 
 [![Codecov test coverage](https://codecov.io/gh/jumpingrivers/inteRgrate/branch/master/graph/badge.svg)](https://codecov.io/gh/jumpingrivers/inteRgrate?branch=master)
+[![R-CMD-check](https://github.com/jumpingrivers/inteRgrate/workflows/R-CMD-check/badge.svg)](https://github.com/jumpingrivers/inteRgrate/actions)
 <!-- badges: end -->
 
 The goal of inteRgrate is to provide an very opinionated set of rules for R package development.

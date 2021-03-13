@@ -16,7 +16,7 @@ get_exclusions = function() {
 
 lint_files = function() {
   lint_errors = FALSE
-  lints = lintr::lint_package()
+  lints = lintr::lint_package(list("R/RcppExports.R", "renv", "packrat"))
   if (length(lints) > 0) {
     lapply(lints, print)
     lint_errors = TRUE
