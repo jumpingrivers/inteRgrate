@@ -1,3 +1,6 @@
+# inteRgrate 1.0.10 _2021-03-11_
+  * Bug: don't lint renv or packrat folders
+
 # inteRgrate 1.0.9 _2021-01-22_
   * Bug: multiple pkgs in a repo
 
