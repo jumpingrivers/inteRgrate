@@ -16,7 +16,7 @@ coverage](https://codecov.io/gh/jumpingrivers/inteRgrate/branch/master/graph/bad
 [![R-CMD-check](https://github.com/jumpingrivers/inteRgrate/workflows/R-CMD-check/badge.svg)](https://github.com/jumpingrivers/inteRgrate/actions)
 <!-- badges: end -->
 
-The goal of inteRgrate is to provide an very opinionated set of rules
+The goal of {inteRgrate} is to provide an very opinionated set of rules
 for R package development. The idea is that when many people contribute
 to a package, it’s easy for standards to diverge. We think that CI can
 help here. This package has the same functions for both travis and
