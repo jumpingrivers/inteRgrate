@@ -1,3 +1,6 @@
+# inteRgrate 1.0.11 _2021-03-14_
+  * Bug: Previous bug fix caused issues
+
 # inteRgrate 1.0.10 _2021-03-11_
   * Bug: don't lint renv or packrat folders
 
