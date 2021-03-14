@@ -6,7 +6,7 @@
 #' @param value The value
 #' @export
 set_renviron_var = function(variable, value) {
-  if (!is_github() && !is_gitlab()) {
+  if (!is_github() && !is_travis() && !is_ga()) {
     cli::cli_alert_info("Not on CI, so not setting Renviron variable")
     return(invisible(NULL))
   }

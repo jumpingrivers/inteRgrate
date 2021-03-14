@@ -29,7 +29,7 @@ create_tag = function(branch = "master", in_development = FALSE) {
     return(invisible(NULL))
   }
 
-  if (!is_gitlab() && !is_github()) {
+  if (!is_gitlab() && !is_travis() && !is_ga()) {
     cli::cli_alert_info("No tagging: doesn't seem to be a CI process")
     return(invisible(NULL))
   }
@@ -45,7 +45,7 @@ create_tag = function(branch = "master", in_development = FALSE) {
   }
 
   # Check branch
-  if (get_current_branch() != branch ||
+  if (get_current_branch(branch) != branch ||
       Sys.getenv("TRAVIS_PULL_REQUEST", "false") != "false") {
     cli::cli_alert_info(paste("No tagging: not on", branch))
     return(invisible(NULL))

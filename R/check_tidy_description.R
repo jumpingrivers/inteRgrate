@@ -20,7 +20,7 @@ check_version_format = function(description_path) {
 #' @inheritParams check_pkg
 #' @export
 check_tidy_description = function(path = ".") {
-  set_crayon()
+  #set_crayon()
   cli::cli_h3("Checking tidy descriptions...check_tidy_descriptions()")
 
   des_path = file.path(path, "DESCRIPTION")

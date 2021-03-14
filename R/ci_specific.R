@@ -14,7 +14,7 @@ get_auth_token = function() {
     }
   }
 
-  if (is_github()) {
+  if (is_travis() || is_ga()) {
     token = Sys.getenv("GITHUB_PAT", NA)
     if (is.na(token)) {
       msg_error("GITHUB_PAT missing. Required for tagging")
@@ -24,27 +24,58 @@ get_auth_token = function() {
   return(token)
 }
 
-
 #' @importFrom stringr str_detect str_trim str_split
 get_env_variable = function(env_variable, default = NULL) {
-  if (is_gitlab() || is_github()) {
-    var = as.numeric(Sys.getenv(env_variable, default))
+  if (is_gitlab() || is_travis() || is_ga()) {
+    as.numeric(Sys.getenv(env_variable, default))
   } else if (file.exists(".gitlab-ci.yml")) {
-    var = get_gitlab_env_var(env_variable, default)
+     get_gitlab_env_var(env_variable, default)
   } else if (file.exists(".travis.yml")) {
-    var = get_github_env_var(env_variable, default)
+     get_github_env_var(env_variable, default)
+  } else if (file.exists(".github/workflows/")) {
+    get_ga_env_var(env_variable, default)
   } else {
-    var = 0
+    0 # Bug? Should be default?
   }
-  return(var)
 }
 
 #############################################
-## GITHUB
+## Github Action
 #############################################
-is_github = function() nchar(Sys.getenv("TRAVIS")) != 0
 
-get_github_env_var = function(env_variable, default = NULL) {
+is_ga = function() !is.na(Sys.getenv("CI", NA))
+
+ga_tree_walker = function(ci, env = "RSPM", value = NULL) {
+  if (!is.null(value)) return(value)
+  n = names(ci)
+  for (i in seq_along(n)) {
+    if (n[i] == "env" &&  env %in% names(ci[[i]])) {
+      return(ci[[i]][[env]])
+    } else {
+      value = ga_tree_walker(ci = ci[[i]], env = env, value)
+    }
+  }
+  return(value)
+}
+
+# There are multiple github action files
+# Walk up and down tree. Stop a first success
+get_ga_env_var = function(env_variable, default = NULL) {
+  yamls = list.files(".github/workflows/", full.names = TRUE)
+  for (i in seq_along(yamls)) {
+    ci = yaml::read_yaml(yamls[i])
+    value = ga_tree_walker(ci, env_variable)
+    if (!is.null(value)) return(value)
+  }
+  return(default)
+}
+
+#############################################
+## travis
+#############################################
+is_travis = function() nchar(Sys.getenv("TRAVIS")) != 0
+
+get_travis_env_var = function(env_variable, default = NULL) {
   r = readLines(".travis.yml")
   env = r[str_detect(r, paste0("^(\\W)*-(\\W)*", env_variable))]
   if (length(env) == 0L) {
@@ -75,19 +106,3 @@ get_gitlab_env_var = function(env_variable, default = NULL) {
   }
   return(allowed)
 }
-
-# ##############################################
-# ## Build dir
-# #############################################
-# get_build_dir = function(path = NULL) {
-#   if (is.null(path)) {
-#     if (is_github()) {
-#       path = Sys.getenv("TRAVIS_BUILD_DIR", getwd())
-#     } else if (is_gitlab()) {
-#       path = Sys.getenv("CI_PROJECT_DIR", getwd())
-#     } else {
-#       path = getwd()
-#     }
-#   }
-#   return(path)
-# }

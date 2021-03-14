@@ -1,5 +1,20 @@
-get_current_branch = function() Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
-get_sha_range = function() Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
+get_current_branch = function(branch) {
+  if (is_travis())  Sys.getenv("TRAVIS_BRANCH", branch)
+  else if (is_gitlab()) Sys.getenv("CI_COMMIT_BRANCH", branch)
+  else if (is_ga()) {
+    branch = Sys.getenv("GITHUB_REF")
+    branch = stringr::str_match_all(branch, ".*/(.*)$")[[1]]
+    branch[length(branch)]
+  } else {
+    branch
+  }
+}
+get_sha_range = function() {
+  if (is_travis()) Sys.getenv("TRAVIS_COMMIT_RANGE")
+  else if (is_gitlab()) Sys.getenv("CI_COMMIT_BEFORE_SHA")
+  else if (is_ga()) Sys.getenv("GITHUB_SHA")
+
+}
 is_tagging_branch = function() {
   !is.na(Sys.getenv("CI_COMMIT_TAG", Sys.getenv("TRAVIS_TAG", NA)))
 }
