@@ -1,3 +1,5 @@
+# inteRgrate 1.0.12 _2021-03-17_
+  * Bug: detecting version changes
 # inteRgrate 1.0.11 _2021-03-14_
   * Bug: Previous bug fix caused issues
 
