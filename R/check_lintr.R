@@ -1,22 +1,22 @@
 get_exclusions = function() {
-  if (!file.exists(".lintr")) return("^R/")
+  if (!file.exists(".lintr")) return(c("^R/", "^cache/"))
 
   exclusions = read.dcf(".lintr", all = TRUE)$exclusions
-  if (is.null(exclusions)) return("^R/")
+  if (is.null(exclusions)) return(c("^R/", "^cache/"))
 
   ## Clean up string
   exclusions = stringr::str_remove_all(exclusions, "(list\\(|\\)|\")")
   exclusions = stringr::str_squish(str_split(exclusions, pattern = ",")[[1]])
   exclusions = paste0("^", exclusions)
   ## Convert to regular expression
-  pattern = paste0("(", paste0(c(exclusions, "^R/"), collapse = "|"), ")")
+  pattern = paste0("(", paste0(c(exclusions, "^R/", "^cache/"), collapse = "|"), ")")
   return(pattern)
 }
 
 
 lint_files = function() {
   lint_errors = FALSE
-  lints = lintr::lint_package(exclusions = list("R/RcppExports.R", "renv", "packrat"))
+  lints = lintr::lint_package(exclusions = list("R/RcppExports.R", "renv", "packrat", "cache"))
   if (length(lints) > 0) {
     lapply(lints, print)
     lint_errors = TRUE
