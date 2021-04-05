@@ -1,4 +1,4 @@
-# inteRgrate 1.0.14 _2021-04-05_
+# inteRgrate 1.0.15 _2021-04-05_
   * Exclude cache/ from linting
 
 # inteRgrate 1.0.12 _2021-03-17_
