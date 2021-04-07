@@ -8,6 +8,8 @@ get_exclusions = function() {
   exclusions = stringr::str_remove(exclusions, "list\\W?\\(")
   exclusions = stringr::str_remove(exclusions, "\\)$")
   exclusions = stringr::str_squish(exclusions)
+  exclusions = stringr::str_remove_all(exclusions, ("^\"|\"$"))
+
   ## Convert to regular expression
   pattern = paste0(c(exclusions, "^R/", "^cache/"), collapse = "|")
   return(pattern)
