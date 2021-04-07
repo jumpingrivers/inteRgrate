@@ -1,3 +1,6 @@
+# inteRgrate 1.0.16 _2021-04-07_
+  * Fix exclusions parsing (again!)
+
 # inteRgrate 1.0.15 _2021-04-05_
   * Exclude cache/ from linting
 
