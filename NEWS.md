@@ -1,3 +1,6 @@
+# inteRgrate 1.0.17 _2021-04-10_
+  * Add more exclusions (again)
+
 # inteRgrate 1.0.16 _2021-04-07_
   * Fix exclusions parsing (again!)
 
