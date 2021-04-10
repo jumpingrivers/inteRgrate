@@ -1,9 +1,9 @@
 get_exclusions = function() {
-  if (!file.exists(".lintr")) return(c("^R/|^cache/"))
+  if (!file.exists(".lintr")) return(c("^R/|^cache/|^packrat/|^renv/"))
 
   exclusions = read.dcf(".lintr", all = TRUE)$exclusions
 
-  if (is.null(exclusions)) return(c("^R/|^cache/"))
+  if (is.null(exclusions)) return(c("^R/|^cache/|^packrat/|^renv/"))
   exclusions = stringr::str_split(exclusions, ",")[[1]]
   exclusions = stringr::str_remove(exclusions, "list\\W?\\(")
   exclusions = stringr::str_remove(exclusions, "\\)$")
@@ -11,7 +11,7 @@ get_exclusions = function() {
   exclusions = stringr::str_remove_all(exclusions, ("^\"|\"$"))
 
   ## Convert to regular expression
-  pattern = paste0(c(exclusions, "^R/", "^cache/"), collapse = "|")
+  pattern = paste0(c(exclusions, "^R/", "^cache/", "^packrat/", "^renv/"), collapse = "|")
   return(pattern)
 }
 
