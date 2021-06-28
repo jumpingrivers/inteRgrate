@@ -4,10 +4,10 @@
 \alias{create_tag}
 \title{Auto-tagging via CI}
 \usage{
-create_tag(branch = "master", in_development = FALSE)
+create_tag(branch = get_origin_name(), in_development = FALSE)
 }
 \arguments{
-\item{branch}{The branch where the tagging will occur. Default master.}
+\item{branch}{The branch where the tagging will occur. Default master or main.}
 
 \item{in_development}{Logical default FALSE.}
 }
