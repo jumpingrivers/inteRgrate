@@ -19,10 +19,10 @@ globalVariables(c("token", "project"))
 #'
 #' If the version contains an in development component (e.g. X.Y.Z.9001), by
 #' default a tag isn't created.
-#' @param branch The branch where the tagging will occur. Default master.
+#' @param branch The branch where the tagging will occur. Default master or main.
 #' @param in_development Logical default FALSE.
 #' @export
-create_tag = function(branch = "master", in_development = FALSE) {
+create_tag = function(branch = get_origin_name(), in_development = FALSE) {
   cli::cli_h3("Creating a tag...create_tag()")
   if (isTRUE(.check$error)) {
     cli::cli_alert_info("No tagging: fix checking errors")

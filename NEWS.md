@@ -1,3 +1,6 @@
+# inteRgrate 1.0.18 _2021-06-28_
+  * Add support for main
+
 # inteRgrate 1.0.17 _2021-04-10_
   * Add more exclusions (again)
 
