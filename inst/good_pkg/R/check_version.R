@@ -4,14 +4,13 @@ is_tagging_branch = function() {
   !is.na(Sys.getenv("CI_COMMIT_TAG", Sys.getenv("TRAVIS_TAG", NA)))
 }
 
-
 has_pkg_changed = function(repo) {
   current_branch = get_current_branch()
   sha_range = get_sha_range()
 
-  if (current_branch != "master") {
-    system2("git", args = c("remote", "set-branches", "--add", "origin", "master"))
-    system2("git", args = "fetch")
+  if (!(current_branch %in% c("master", "main"))) {
+    system2("git", args = c("remote", "set-branches", "--add", "origin", get_origin_name()))
+    system2("git", args = c("fetch", "origin", get_origin_name()))
     committed_files = system2("git", args = c("diff", "--name-only", repo),
                               stdout = TRUE)
   } else {
@@ -42,17 +41,22 @@ has_pkg_changed = function(repo) {
 #' Version check
 #'
 #' Check if the package version has been updated compared to the a
-#' master repo (default is origin/master). This ensures that when branches are merged
+#' master/main repo (default is origin/master).
+#' This ensures that when branches are merged
 #' the package version is bumped.
 #'
 #' Files listed in .Rbuildignore don't count as changes.
 #'
 #' Technically we only check for a change in the Version line of the DESCRIPTION file, not an
 #' actual version increase.
-#' @param repo Default origin/master. The repo to compare against.
+#' @param repo If NULL, then defaults to  origin/master or origin/mian.
+#' The repo to compare against.
 #' @inheritParams check_pkg
 #' @export
-check_version = function(repo = "origin/master", path = ".") {
+check_version = function(repo = NULL, path = ".") {
+  if (is.null(repo)) {
+    repo = paste0("origin/", get_origin_name())
+  }
   op = setwd(path)
   on.exit(setwd(op))
   cli::cli_h3("Checking version...check_version()")
@@ -65,7 +69,7 @@ check_version = function(repo = "origin/master", path = ".") {
 
   current_branch = get_current_branch()
   ## Check if version has been updated
-  if (current_branch != "master") {
+  if (!(current_branch %in% get_origin_name())) {
     des_diff = system2("git",
                        args = c("diff", "--unified=0", repo, "DESCRIPTION"),
                        stdout = TRUE)

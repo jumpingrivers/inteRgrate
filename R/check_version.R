@@ -4,14 +4,20 @@ is_tagging_branch = function() {
   !is.na(Sys.getenv("CI_COMMIT_TAG", Sys.getenv("TRAVIS_TAG", NA)))
 }
 
+get_origin_name = function() {
+  origin = system2("git", c("branch"), stdout = TRUE)
+  origin = stringr::str_trim(origin)
+  is_main = any(stringr::str_detect(origin, "^main$"))
+  if (is_main) "main" else "master"
+}
 
 has_pkg_changed = function(repo) {
   current_branch = get_current_branch()
   sha_range = get_sha_range()
 
-  if (current_branch != "master") {
-    system2("git", args = c("remote", "set-branches", "--add", "origin", "master"))
-    system2("git", args = "fetch")
+  if (!(current_branch %in% c("master", "main"))) {
+    system2("git", args = c("remote", "set-branches", "--add", "origin", get_origin_name()))
+    system2("git", args = c("fetch", "origin", get_origin_name()))
     committed_files = system2("git", args = c("diff", "--name-only", repo),
                               stdout = TRUE)
   } else {
@@ -55,10 +61,13 @@ has_pkg_changed = function(repo) {
 #'
 #' Technically we only check for a change in the Version line of the DESCRIPTION file, not an
 #' actual version increase.
-#' @param repo Default origin/master. The repo to compare against.
+#' @param repo Default origin/master or origin/main. The repo to compare against.
 #' @inheritParams check_pkg
 #' @export
-check_version = function(repo = "origin/master", path = ".") {
+check_version = function(repo = NULL, path = ".") {
+  if (is.null(repo)) {
+    repo = paste0("origin/", get_origin_name())
+  }
   op = setwd(path)
   on.exit(setwd(op))
   cli::cli_h3("Checking version...check_version()")
@@ -71,7 +80,7 @@ check_version = function(repo = "origin/master", path = ".") {
 
   current_branch = get_current_branch()
   ## Check if version has been updated
-  if (current_branch != "master") {
+  if (!(current_branch %in% c("master", "main"))) {
     des_diff = system2("git",
                        args = c("diff", "--unified=0", repo, "DESCRIPTION"),
                        stdout = TRUE)
