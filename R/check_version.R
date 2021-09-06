@@ -7,7 +7,7 @@ is_tagging_branch = function() {
 get_origin_name = function() {
   origin = system2("git", c("branch"), stdout = TRUE)
   origin = stringr::str_trim(origin)
-  is_main = any(stringr::str_detect(origin, "^main$"))
+  is_main = any(stringr::str_detect(origin, "main$"))
   if (is_main) "main" else "master"
 }
 

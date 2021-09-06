@@ -1,3 +1,6 @@
+# inteRgrate 1.0.19 _2021-09-06_
+  * Bug: support for main
+
 # inteRgrate 1.0.18 _2021-06-28_
   * Add support for main
 
