@@ -7,8 +7,8 @@ is_tagging_branch = function() {
 get_origin_name = function() {
   origin = system2("git", c("branch"), stdout = TRUE)
   origin = stringr::str_trim(origin)
-  is_main = any(stringr::str_detect(origin, "main$"))
-  if (is_main) "main" else "master"
+  is_master = any(stringr::str_detect(origin, "master$"))
+  if (is_master) "master" else "main"
 }
 
 has_pkg_changed = function(repo) {

@@ -1,3 +1,6 @@
+# inteRgrate 1.0.20 _2021-10-04_
+  * Default branch for getting repo is now `main`
+
 # inteRgrate 1.0.19 _2021-09-06_
   * Bug: support for main
 
