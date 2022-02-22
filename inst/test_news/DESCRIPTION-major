@@ -3,10 +3,7 @@ Package: inteRgrate
 Title: Opinionated Package Coding Styles
 Version: 1.0.2
 Authors@R: 
-    person(given = "Jumping",
-           family = "Rivers",
-           role = c("aut", "cre"),
-           email = "info@jumpingrivers.com")
+    person("Jumping", "Rivers", , "info@jumpingrivers.com", role = c("aut", "cre"))
 Description: A set of functions to enforce styling in functions.  This
     package would typically be used in with a CI platform, such as GitHub
     and GitLab.
