@@ -1,7 +1,7 @@
 Type: Package
 Package: inteRgrate
 Title: Opinionated Package Coding Styles
-Version: 1.0.20
+Version: 1.0.21
 Authors@R:
     person("Jumping", "Rivers", , "info@jumpingrivers.com", role = c("aut", "cre"))
 Description: A set of functions to enforce styling in functions.  This
