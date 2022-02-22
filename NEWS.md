@@ -1,3 +1,7 @@
+# inteRgrate 1.0.21 _2022-02-22_
+  * Ensure Authors@R field is tidy in tests on `check_tidy_description()`
+    - See [https://github.com/r-lib/desc/issues/78]()
+
 # inteRgrate 1.0.20 _2021-10-04_
   * Default branch for getting repo is now `main`
 
