@@ -24,7 +24,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: rcmdcheck
-         run: |
+        run: |
           remotes::install_local(".")
           inteRgrate::check_all()
         shell: Rscript {0}
