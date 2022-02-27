@@ -75,7 +75,7 @@ jobs:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
           options(crayon.enabled = TRUE)
-          R CMD INSTALL .
+          remotes::install_local(".")
           inteRgrate::check_all()
         shell: Rscript {0}
 
