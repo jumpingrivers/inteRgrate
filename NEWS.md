@@ -1,3 +1,6 @@
+# inteRgrate 1.0.22 _2022-05-25_
+  * Bug: Remove empty lines from .Rbuildignore for `check_version()`
+
 # inteRgrate 1.0.21 _2022-02-22_
   * Ensure Authors@R field is tidy in tests on `check_tidy_description()`
     - See [https://github.com/r-lib/desc/issues/78]()

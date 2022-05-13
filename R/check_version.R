@@ -33,6 +33,7 @@ has_pkg_changed = function(repo) {
   ## Get ignores and remove ignored files
   ## .Rbuildignore is case insensitive
   ignores = stringr::str_to_lower(readLines(".Rbuildignore"))
+  ignores = ignores[nchar(ignores) > 0L]
   lower_committed = stringr::str_to_lower(committed_files)
   list_ignores = sapply(ignores,
                         function(ignore) stringr::str_detect(lower_committed, ignore))
