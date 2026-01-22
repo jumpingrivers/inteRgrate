@@ -1,5 +1,3 @@
-
-
 #' @title Check NEWS format
 #'
 #' @description Checks that NEWS.md exists and title lines follow the correct format.
@@ -19,25 +17,31 @@ check_news = function(pattern = NULL, path = ".") {
   news = readLines(file.path(path, "NEWS.md"))
 
   if (is_major_version(version)) {
-    pattern = glue::glue("^# <pkg_name> <version> _20\\d{2}-\\d{2}-\\d{2}_$",
-                         .open = "<", .close = ">")
+    pattern = glue::glue(
+      "^# <pkg_name> <version> _20\\d{2}-\\d{2}-\\d{2}_$",
+      .open = "<",
+      .close = ">"
+    )
     if (stringr::str_detect(news[1], pattern = pattern, negate = TRUE)) {
-      msg = glue::glue("Top line of NEWS.md not have correct format. It should be
-                       # {pkg_name} {version} _{Sys.Date()}_")
+      msg = glue::glue(
+        "Top line of NEWS.md not have correct format. It should be
+                       # {pkg_name} {version} _{Sys.Date()}_"
+      )
       msg_error(msg)
     }
   } else {
     pattern = glue::glue("^# {pkg_name} \\(development version\\)$")
     if (stringr::str_detect(news[1], pattern = pattern, negate = TRUE)) {
-      msg = glue::glue("Top line of NEWS.md not have correct format. It should be
-                       # {pkg_name} (development version)")
+      msg = glue::glue(
+        "Top line of NEWS.md not have correct format. It should be
+                       # {pkg_name} (development version)"
+      )
       msg_error(msg)
     }
   }
   cli::cli_alert_success("Your NEWS.md has the correct format")
-  return(invisible(NULL))
+  invisible(NULL)
 }
-
 
 #' @rdname check_news
 #' @details The \code{check_all_news()} function isn't used in the CI. It's a
@@ -57,5 +61,5 @@ check_all_news = function(pattern = NULL) {
     stop(call. = FALSE)
   }
   cli::cli_alert_success("Your NEWS.md has the correct format")
-  return(invisible(NULL))
+  invisible(NULL)
 }

@@ -18,7 +18,7 @@ build_pkg = function() {
   set_renviron_var("PKG_TARBALL_PATH", full_path)
   cli::cli_alert_info("PKG_TARBALL_PATH {full_path}")
 
-  return(pkg_tar_ball)
+  pkg_tar_ball
 }
 
 #' @rdname build_pkg

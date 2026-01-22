@@ -45,8 +45,10 @@ create_tag = function(branch = get_origin_name(), in_development = FALSE) {
   }
 
   # Check branch
-  if (get_current_branch() != branch ||
-      Sys.getenv("TRAVIS_PULL_REQUEST", "false") != "false") {
+  if (
+    get_current_branch() != branch ||
+      Sys.getenv("TRAVIS_PULL_REQUEST", "false") != "false"
+  ) {
     cli::cli_alert_info(paste("No tagging: not on", branch))
     return(invisible(NULL))
   }
@@ -64,12 +66,15 @@ create_tag = function(branch = get_origin_name(), in_development = FALSE) {
     github_tag(tag_name)
   }
   cli::cli_alert_success("Tagging good")
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 github_tag = function(tag_name) {
   # Set a sensible name for the commit
-  system2("git", args = c("config", "--global", "user.email",  "'travis.tagger@example.com'"))
+  system2(
+    "git",
+    args = c("config", "--global", "user.email", "'travis.tagger@example.com'")
+  )
   system2("git", args = c("config", "--global", "user.name", "'Travis tagger'"))
 
   # Get token
@@ -81,10 +86,12 @@ github_tag = function(tag_name) {
   system2("git", args = c("remote", "set-url", "origin", git_url))
 
   # Tag and push
-  system2("git", args = c("tag", "-a", tag_name,  "-m", glue::glue("'Version {tag_name}'")))
+  system2(
+    "git",
+    args = c("tag", "-a", tag_name, "-m", glue::glue("'Version {tag_name}'"))
+  )
   system2("git", args = c("push", "--tags"))
-  return(invisible(NULL))
-
+  invisible(NULL)
 }
 
 gitlab_tag = function(tag_name) {
@@ -94,16 +101,21 @@ gitlab_tag = function(tag_name) {
   CI_COMMIT_SHA = Sys.getenv("CI_COMMIT_SHA") #nolint
   token = get_auth_token()
 
-  url = glue::glue("'https://{SERVER_HOST}/api/v4/projects/{project}/repository/tags?\\
-           tag_name={tag_name}&ref={CI_COMMIT_SHA}&private_token={token}'")
-  out = system2("curl",
-                args = c("-X", "POST", "--silent", "--show-error", "--fail", url),
-                stderr = TRUE, stdout = TRUE)
+  url = glue::glue(
+    "'https://{SERVER_HOST}/api/v4/projects/{project}/repository/tags?\\
+           tag_name={tag_name}&ref={CI_COMMIT_SHA}&private_token={token}'"
+  )
+  out = system2(
+    "curl",
+    args = c("-X", "POST", "--silent", "--show-error", "--fail", url),
+    stderr = TRUE,
+    stdout = TRUE
+  )
 
   if (!is.null(attr(out, "status"))) {
     msg_error("Tagging didn't work")
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 ## We use tokens instead of ssh, but I suppose we could do both

@@ -16,11 +16,18 @@ check_pkg = function(path = ".") {
   ## Install package dependencies
   cli::cli_h2("Installing package")
   remotes::install_deps(path, dependencies = TRUE, upgrade = "never")
-  remotes::install_local(path, upgrade = "never", build_vignettes = TRUE, force = TRUE)
+  remotes::install_local(
+    path,
+    upgrade = "never",
+    build_vignettes = TRUE,
+    force = TRUE
+  )
 
-  check_output = rcmdcheck::rcmdcheck(path = ".",
-                                      args = c("--timings"), # Add option for as--cran?
-                                      error_on = "error")
+  check_output = rcmdcheck::rcmdcheck(
+    path = ".",
+    args = c("--timings"), # Add option for as--cran?
+    error_on = "error"
+  )
   check_output = rcmdcheck::check_details(check_output)
 
   allowed_notes = get_env_variable("ALLOWED_NOTES", 0)
@@ -43,5 +50,5 @@ check_pkg = function(path = ".") {
   if (no_of_warnings > allowed_warnings || no_of_notes > allowed_notes) {
     msg_error("You have too many WARNINGS and/or NOTES")
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }

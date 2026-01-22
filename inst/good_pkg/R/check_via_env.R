@@ -1,6 +1,5 @@
 # Unless the env_var is "false", the check will be called.
 call_check = function(var, value, default) {
-
   if (is.null(value)) {
     env_var = toupper(paste0("INTERGRATE_", var))
     value = Sys.getenv(env_var, default) == "true"
@@ -12,7 +11,7 @@ call_check = function(var, value, default) {
       create_tag()
     }
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 #' @title Run all checks
@@ -36,14 +35,27 @@ call_check = function(var, value, default) {
 #'
 #' Note: As this package matures, this function will include the newer checks.
 #' @export
-check_via_env  = function(pkg = NULL, lintr = NULL,
-                          namespace = NULL, r_filenames = NULL,
-                          version = NULL, gitignore = NULL,
-                          tidy_description = NULL, readme = NULL,
-                          file_permissions = NULL, line_breaks = NULL,
-                          tag = NULL, news = NULL, default = FALSE) {
-  if (isTRUE(default)) default = "true"
-  if (isFALSE(default)) default = "false"
+check_via_env = function(
+  pkg = NULL,
+  lintr = NULL,
+  namespace = NULL,
+  r_filenames = NULL,
+  version = NULL,
+  gitignore = NULL,
+  tidy_description = NULL,
+  readme = NULL,
+  file_permissions = NULL,
+  line_breaks = NULL,
+  tag = NULL,
+  news = NULL,
+  default = FALSE
+) {
+  if (isTRUE(default)) {
+    default = "true"
+  }
+  if (isFALSE(default)) {
+    default = "false"
+  }
 
   # Extract all arguments and values
   args = as.list(environment())
@@ -52,5 +64,5 @@ check_via_env  = function(pkg = NULL, lintr = NULL,
     call_check(arg_names[i], args[[i]], default = default)
   }
 
-  return(invisible(NULL))
+  invisible(NULL)
 }

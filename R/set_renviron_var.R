@@ -13,5 +13,5 @@ set_renviron_var = function(variable, value) {
   line = glue::glue("{variable}={value}")
   write(line, file = "~/.Renviron", append = TRUE)
   readRenviron("~/.Renviron")
-  return(invisible(NULL))
+  invisible(NULL)
 }

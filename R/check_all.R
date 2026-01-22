@@ -10,13 +10,21 @@
 #' @details The arguments for the function correspond to a particular check, e.g. check_ARGNAME().
 #' Note: As this package matures, this function will include the newer checks.
 #' @export
-check_all  = function(pkg = TRUE, lintr = TRUE,
-                      namespace = TRUE, r_filenames = TRUE,
-                      version = TRUE, gitignore = TRUE,
-                      tidy_description = TRUE, readme = TRUE,
-                      file_permissions = TRUE, line_breaks = TRUE,
-                      tag = TRUE, news = TRUE,
-                      rproj = TRUE) {
+check_all = function(
+  pkg = TRUE,
+  lintr = TRUE,
+  namespace = TRUE,
+  r_filenames = TRUE,
+  version = TRUE,
+  gitignore = TRUE,
+  tidy_description = TRUE,
+  readme = TRUE,
+  file_permissions = TRUE,
+  line_breaks = TRUE,
+  tag = TRUE,
+  news = TRUE,
+  rproj = TRUE
+) {
   .check$all = TRUE
   # Extract all arguments and values
   args = as.list(environment())
@@ -30,5 +38,5 @@ check_all  = function(pkg = TRUE, lintr = TRUE,
     msg_error("Issues Detected")
     stop("Please fix")
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }

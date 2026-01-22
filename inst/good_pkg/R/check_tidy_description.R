@@ -10,7 +10,7 @@ check_version_format = function(description_path) {
   if (isFALSE(check)) {
     msg_error("Version format is incorrect. Should be X.Y.Z or X.Y.Z.9ABC")
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 #' @title Check tidy description
@@ -24,7 +24,9 @@ check_tidy_description = function(path = ".") {
   cli::cli_h3("Checking tidy description...check_tidy_descriptions()")
 
   des_path = file.path(path, "DESCRIPTION")
-  if (!file.exists(des_path)) msg_error("Missing DESCRIPTION file")
+  if (!file.exists(des_path)) {
+    msg_error("Missing DESCRIPTION file")
+  }
   check_version_format(des_path)
 
   r_old = readLines(des_path)

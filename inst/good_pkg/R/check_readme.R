@@ -9,12 +9,14 @@
 check_readme = function(path = ".") {
   readme_rmd = file.path(path, "README.Rmd")
   readme_md = file.path(path, "README.md")
-  if (!file.exists(readme_rmd)) return(invisible(NULL))
+  if (!file.exists(readme_rmd)) {
+    return(invisible(NULL))
+  }
 
   cli::cli_h3("Checking README.Rmd...check_readme()")
   if (file.info(readme_rmd)$ctime > file.info(readme_md)$ctime) {
     msg_error("README.md appears to be out of date")
   }
   cli::cli_alert_success("README timestamps OK")
-  return(invisible(NULL))
+  invisible(NULL)
 }

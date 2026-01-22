@@ -16,7 +16,7 @@ lint_files = function() {
     }
   }
 
-  return(lint_errors)
+  lint_errors
 }
 
 #' @title The lintr check
@@ -45,5 +45,5 @@ check_lintr = function(path = ".") {
   } else {
     cli::cli_alert_success("Lint looks good")
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }

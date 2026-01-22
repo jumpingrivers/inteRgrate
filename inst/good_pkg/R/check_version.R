@@ -1,5 +1,9 @@
-get_current_branch = function() Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
-get_sha_range = function() Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
+get_current_branch = function() {
+  Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
+}
+get_sha_range = function() {
+  Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
+}
 is_tagging_branch = function() {
   !is.na(Sys.getenv("CI_COMMIT_TAG", Sys.getenv("TRAVIS_TAG", NA)))
 }
@@ -9,14 +13,23 @@ has_pkg_changed = function(repo) {
   sha_range = get_sha_range()
 
   if (!(current_branch %in% c("master", "main"))) {
-    system2("git", args = c("remote", "set-branches", "--add", "origin", get_origin_name()))
+    system2(
+      "git",
+      args = c("remote", "set-branches", "--add", "origin", get_origin_name())
+    )
     system2("git", args = c("fetch", "origin", get_origin_name()))
-    committed_files = system2("git", args = c("diff", "--name-only", repo),
-                              stdout = TRUE)
+    committed_files = system2(
+      "git",
+      args = c("diff", "--name-only", repo),
+      stdout = TRUE
+    )
   } else {
     # TRAVIS_COMMIT_RANGE returns empty on first commit
-    committed_files = system2("git", args = c("diff", "--name-only", sha_range),
-                              stdout = TRUE)
+    committed_files = system2(
+      "git",
+      args = c("diff", "--name-only", sha_range),
+      stdout = TRUE
+    )
   }
 
   if (length(committed_files) == 0L) {
@@ -27,15 +40,19 @@ has_pkg_changed = function(repo) {
   ## .Rbuildignore is case insensitive
   ignores = stringr::str_to_lower(readLines(".Rbuildignore"))
   lower_committed = stringr::str_to_lower(committed_files)
-  list_ignores = sapply(ignores,
-                        function(ignore) stringr::str_detect(lower_committed, ignore))
-  mat_ignores = matrix(list_ignores, ncol = length(committed_files), byrow = TRUE)
+  list_ignores = sapply(ignores, function(ignore) {
+    stringr::str_detect(lower_committed, ignore)
+  })
+  mat_ignores = matrix(
+    list_ignores,
+    ncol = length(committed_files),
+    byrow = TRUE
+  )
 
   ignore_files = apply(mat_ignores, 2, any)
   committed_files = committed_files[!ignore_files]
   any_changes = length(committed_files) != 0L
-  return(any_changes)
-
+  any_changes
 }
 
 #' Version check
@@ -70,13 +87,17 @@ check_version = function(repo = NULL, path = ".") {
   current_branch = get_current_branch()
   ## Check if version has been updated
   if (!(current_branch %in% get_origin_name())) {
-    des_diff = system2("git",
-                       args = c("diff", "--unified=0", repo, "DESCRIPTION"),
-                       stdout = TRUE)
+    des_diff = system2(
+      "git",
+      args = c("diff", "--unified=0", repo, "DESCRIPTION"),
+      stdout = TRUE
+    )
   } else {
-    des_diff = system2("git",
-                       args = c("diff", "--unified=0", get_sha_range(), "DESCRIPTION"),
-                       stdout = TRUE)
+    des_diff = system2(
+      "git",
+      args = c("diff", "--unified=0", get_sha_range(), "DESCRIPTION"),
+      stdout = TRUE
+    )
   }
 
   ## Remove standard diff header
@@ -87,5 +108,5 @@ check_version = function(repo = NULL, path = ".") {
   }
 
   cli::cli_alert_success("Version looks good")
-  return(invisible(NULL))
+  invisible(NULL)
 }

@@ -3,10 +3,16 @@
 #' @description git_pre_commit only tests files that have changed.
 #' Makes things, especially linting a lot faster.
 git_pre_commit = function() {
-  out = system2("git",  args = c("diff", "--name-only", "--cached"), stdout = TRUE)
+  out = system2(
+    "git",
+    args = c("diff", "--name-only", "--cached"),
+    stdout = TRUE
+  )
   fnames = unlist(stringr::str_split(out, "\n"))
   # Exit early
-  if (length(fnames) == 0) return(invisible(NULL))
+  if (length(fnames) == 0) {
+    return(invisible(NULL))
+  }
 
   # Remove deleted files!
   fnames = fnames[file.exists(fnames)]
@@ -21,9 +27,11 @@ git_pre_commit = function() {
     check_namespace()
   }
 
-  if (any(stringr::str_detect(fnames, "^DESCRIPTION$")) ||
+  if (
+    any(stringr::str_detect(fnames, "^DESCRIPTION$")) ||
       any(stringr::str_detect(fnames, "^README\\.")) ||
-      any(stringr::str_detect(fnames, "^\\.gitignore"))) {
+      any(stringr::str_detect(fnames, "^\\.gitignore"))
+  ) {
     #check_meta()
   }
   has_error = FALSE
@@ -41,7 +49,7 @@ git_pre_commit = function() {
   } else if (length(fnames) > 0L) {
     cli::cli_alert_success("Linting OK")
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 add_hook = function(type, fname) {
@@ -53,7 +61,7 @@ add_hook = function(type, fname) {
 
   cli::cli_alert_info("check_version() hasn't been added - it's hard")
   cli::cli_alert_info("The hook is a link to the file in the pkg.")
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 #' Adds a git hook

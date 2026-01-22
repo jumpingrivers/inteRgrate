@@ -1,7 +1,11 @@
-get_current_branch = function() Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
-get_sha_range = function() Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
+get_current_branch = function() {
+  Sys.getenv("TRAVIS_BRANCH", Sys.getenv("CI_COMMIT_BRANCH"))
+}
+get_sha_range = function() {
+  Sys.getenv("TRAVIS_COMMIT_RANGE", Sys.getenv("CI_COMMIT_BEFORE_SHA"))
+}
 is_tagging_branch = function() {
-  !is.na(Sys.getenv("CI_COMMIT_TAG", NA))  ||
+  !is.na(Sys.getenv("CI_COMMIT_TAG", NA)) ||
     nchar(Sys.getenv("TRAVIS_TAG")) > 0L
 }
 
@@ -21,7 +25,7 @@ get_auth_token = function() {
       stop()
     }
   }
-  return(token)
+  token
 }
 
 
@@ -36,7 +40,7 @@ get_env_variable = function(env_variable, default = NULL) {
   } else {
     var = 0
   }
-  return(var)
+  var
 }
 
 #############################################
@@ -55,7 +59,7 @@ get_github_env_var = function(env_variable, default = NULL) {
     env = str_split(env, "=")[[1]]
     allowed = as.numeric(str_trim(env))
   }
-  return(allowed)
+  allowed
 }
 
 #############################################
@@ -73,7 +77,7 @@ get_gitlab_env_var = function(env_variable, default = NULL) {
     env = stringr::str_match(env, ":(.*)")[2]
     allowed = as.numeric(str_trim(env))
   }
-  return(allowed)
+  allowed
 }
 
 # ##############################################
