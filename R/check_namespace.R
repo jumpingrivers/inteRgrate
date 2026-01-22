@@ -16,25 +16,33 @@ check_namespace = function(no_imports = NULL, path = ".") {
   cli::cli_h3("Checking namespace for imports()...check_namespace()")
   namespace = readLines(file.path(path, "NAMESPACE"))
 
-  imports_only = namespace[substr(namespace, 1, 7) == "import("]
+  imports_only = namespace[startsWith(namespace, "import(")]
   if (length(imports_only) == no_imports) {
-    msg = glue("Imports look good - {length(imports_only)} found, {no_imports} allowed")
+    msg = glue(
+      "Imports look good - {length(imports_only)} found, {no_imports} allowed"
+    )
     cli::cli_alert_success(msg)
     return(invisible(NULL))
   } else if (length(imports_only) < no_imports) {
-    msg = glue("Imports look good - {length(imports_only)} found, {no_imports} allowed.
-               But you could reduce the number of imports allowed")
+    msg = glue(
+      "Imports look good - {length(imports_only)} found, {no_imports} allowed.
+               But you could reduce the number of imports allowed"
+    )
     cli::cli_alert_warning(msg)
     return(invisible(NULL))
   }
 
   imports_only = substr(imports_only, 8, nchar(imports_only) - 1)
   for (import in imports_only) {
-    msg = glue::glue("The package {import} is being directly imported - \\
-               use importFrom instead.")
+    msg = glue::glue(
+      "The package {import} is being directly imported - \\
+               use importFrom instead."
+    )
     msg_error(msg)
   }
-  msg = glue::glue("A total of {length(imports_only)} imports detected. \\
-                   But only {no_imports} are allowed.")
+  msg = glue::glue(
+    "A total of {length(imports_only)} imports detected. \\
+                   But only {no_imports} are allowed."
+  )
   msg_error(msg)
 }

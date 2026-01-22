@@ -10,7 +10,7 @@ check_version_format = function(description_path) {
   if (isFALSE(check)) {
     msg_error("Version format is incorrect. Should be X.Y.Z or X.Y.Z.9ABC")
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 #' @title Check tidy description

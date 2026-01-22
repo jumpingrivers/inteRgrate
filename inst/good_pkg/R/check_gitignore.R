@@ -43,10 +43,16 @@ check_gitignore = function(path = ".") {
   ## .e.g *.synctex(busy)
   ignores = ignores[!stringr::str_detect(ignores, pattern = "\\(|\\)")]
 
-  list_ignores = sapply(glob2rx(ignores, trim.head = FALSE, trim.tail = FALSE),
-                        function(ignore) stringr::str_detect(git_global_ignore, ignore))
+  list_ignores = sapply(
+    glob2rx(ignores, trim.head = FALSE, trim.tail = FALSE),
+    function(ignore) stringr::str_detect(git_global_ignore, ignore)
+  )
 
-  mat_ignores = matrix(list_ignores, ncol = length(git_global_ignore), byrow = TRUE)
+  mat_ignores = matrix(
+    list_ignores,
+    ncol = length(git_global_ignore),
+    byrow = TRUE
+  )
 
   ignore_files = apply(mat_ignores, 2, any)
   missing_ignores = git_global_ignore[!ignore_files]
@@ -54,9 +60,11 @@ check_gitignore = function(path = ".") {
     for (ignore in missing_ignores) {
       msg_error(paste("Missing", ignore, " from .gitignore"))
     }
-    msg_error("Copying github.com/github/gitignore/blob/master/R.gitignore is a good start.")
+    msg_error(
+      "Copying github.com/github/gitignore/blob/master/R.gitignore is a good start."
+    )
     msg_error("Please update your .gitignore")
   }
   cli::cli_alert_success(".gitignore looks good")
-  return(invisible(NULL))
+  invisible(NULL)
 }

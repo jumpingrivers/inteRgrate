@@ -29,6 +29,8 @@ check_r_filenames = function(path = ".", extension = "R") {
     is_ok = FALSE
   }
 
-  if (isTRUE(is_ok)) cli::cli_alert_success("Filenames look good")
-  return(invisible(NULL))
+  if (isTRUE(is_ok)) {
+    cli::cli_alert_success("Filenames look good")
+  }
+  invisible(NULL)
 }

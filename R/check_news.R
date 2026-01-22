@@ -1,9 +1,14 @@
 check_news_major = function(news, pkg_name, version) {
-  pattern = glue::glue("^# <pkg_name> <version> [_\\*]20\\d{2}-\\d{2}-\\d{2}[_\\*]$",
-                       .open = "<", .close = ">")
+  pattern = glue::glue(
+    "^# <pkg_name> <version> [_\\*]20\\d{2}-\\d{2}-\\d{2}[_\\*]$",
+    .open = "<",
+    .close = ">"
+  )
   if (stringr::str_detect(news[1], pattern = pattern, negate = TRUE)) {
-    msg = glue::glue("Top line of NEWS.md not have correct format. It should be
-                       # {pkg_name} {version} _{Sys.Date()}_")
+    msg = glue::glue(
+      "Top line of NEWS.md not have correct format. It should be
+                       # {pkg_name} {version} _{Sys.Date()}_"
+    )
     msg_error(msg)
   } else {
     cli::cli_alert_success("Your NEWS.md has the correct format")
@@ -13,8 +18,10 @@ check_news_major = function(news, pkg_name, version) {
 check_news_minor = function(news, pkg_name, version) {
   pattern = glue::glue("^# {pkg_name} \\(development version\\)$")
   if (stringr::str_detect(news[1], pattern = pattern, negate = TRUE)) {
-    msg = glue::glue("Top line of NEWS.md not have correct format. It should be
-                       # {pkg_name} (development version)")
+    msg = glue::glue(
+      "Top line of NEWS.md not have correct format. It should be
+                       # {pkg_name} (development version)"
+    )
     msg_error(msg)
   } else {
     cli::cli_alert_success("Your NEWS.md has the correct format")
@@ -45,7 +52,7 @@ check_news = function(pattern = NULL, path = ".") {
   } else {
     check_news_minor(news, pkg_name, version)
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 
@@ -67,5 +74,5 @@ check_all_news = function(pattern = NULL) {
   } else {
     cli::cli_alert_success("Your NEWS.md has the correct format")
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }

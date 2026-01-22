@@ -15,9 +15,11 @@ check_file_permissions = function(repo_files = NULL, path = ".") {
   on.exit(setwd(op))
   # Get all repos files
   if (is.null(repo_files)) {
-    repo_files = system2("git",
-                         args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
-                         stdout = TRUE)
+    repo_files = system2(
+      "git",
+      args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
+      stdout = TRUE
+    )
   }
   # Remove deleted files
   repo_files = repo_files[file.exists(repo_files)]
@@ -26,10 +28,15 @@ check_file_permissions = function(repo_files = NULL, path = ".") {
   modes_list = stringr::str_split(modes, pattern = "")
 
   # Check for executables
-  is_executable = unlist(lapply(modes_list, function(i) any(as.numeric(i) %% 2 != 0)))
+  is_executable = unlist(lapply(modes_list, function(i) {
+    any(as.numeric(i) %% 2 != 0)
+  }))
 
   # Only look for certain executable files
-  file_type = str_detect(repo_files, pattern = ".*\\.(txt|md|Rmd|yml|json|R|r)$")
+  file_type = str_detect(
+    repo_files,
+    pattern = ".*\\.(txt|md|Rmd|yml|json|R|r)$"
+  )
   is_executable = is_executable & file_type
 
   if (!any(is_executable)) {
@@ -48,16 +55,24 @@ check_file_permissions = function(repo_files = NULL, path = ".") {
 check_line_breaks = function(repo_files = NULL) {
   cli::cli_h3("Checking line breaks...check_line_breaks()")
   if (is.null(repo_files)) {
-    repo_files = system2("git",
-                         args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
-                         stdout = TRUE)
+    repo_files = system2(
+      "git",
+      args = c("ls-tree", "--full-tree", "-r", "--name-only", "HEAD"),
+      stdout = TRUE
+    )
   }
   # Remove deleted files
   repo_files = repo_files[file.exists(repo_files)]
-  line_breaks = vapply(repo_files,
-                       function(fname) system2("grep", args = c("--binary-files=without-match",
-                                                                "-Um1", "$'\015'", fname)),
-                       FUN.VALUE = integer(1))
+  line_breaks = vapply(
+    repo_files,
+    function(fname) {
+      system2(
+        "grep",
+        args = c("--binary-files=without-match", "-Um1", "$'\015'", fname)
+      )
+    },
+    FUN.VALUE = integer(1)
+  )
   line_breaks = names(line_breaks[line_breaks == 0])
   if (length(line_breaks) == 0L) {
     cli::cli_alert_success("Line breaks look good")

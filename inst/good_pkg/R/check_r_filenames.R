@@ -25,5 +25,5 @@ check_r_filenames = function(extension = "R", path = "R") {
   }
 
   cli::cli_alert_success("Filenames look good")
-  return(invisible(NULL))
+  invisible(NULL)
 }

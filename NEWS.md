@@ -1,3 +1,6 @@
+# inteRgrate 1.0.23 (2026-01-22)
+  * chore: Spring clean; formatting linting, running jarl
+
 # inteRgrate 1.0.22 _2022-05-25_
   * Bug: Remove empty lines from .Rbuildignore for `check_version()`
 
@@ -38,10 +41,10 @@
 # inteRgrate 1.0.8 _2021-01-05_
   * Feature: `check_version()` now works with multiple pkgs in a repo
   * Bug: `check_lintr()` ignores `R/*.rda` files (fixes #33)
-  
+
 # inteRgrate 1.0.7 _2020-11-25_
   * Feature: `check_all()` to run all checks
-  * Feature: Call `stop()` at the of the checks 
+  * Feature: Call `stop()` at the of the checks
 
 # inteRgrate 1.0.6 _2020-10-23_
   * Feature: allow `*` as emphasis indicator
@@ -64,7 +67,7 @@
   * Feature: Ensure files end with a line break
   * Feature: Build pkgs and set ENV variables
   * Feature: Add tests for yml parsing
-  
+
 # inteRgrate 1.0.1
   * Breaking changes
   * Feature: use __rcmdcheck__ instead of __devtools__. This breaks/changes a few things.

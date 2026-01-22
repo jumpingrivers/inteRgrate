@@ -7,5 +7,5 @@ set_crayon = function() {
   } else {
     options("crayon.enabled" = TRUE)
   }
-  return(invisible(NULL))
+  invisible(NULL)
 }
