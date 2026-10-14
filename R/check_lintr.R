@@ -1,25 +1,24 @@
 get_exclusions = function() {
+  defaults = c("^R/", "^cache/", "^packrat/", "^renv/")
   if (!file.exists(".lintr")) {
-    return(c("^R/|^cache/|^packrat/|^renv/"))
+    return(paste0(defaults, collapse = "|"))
   }
 
   exclusions = read.dcf(".lintr", all = TRUE)$exclusions
-
   if (is.null(exclusions)) {
-    return(c("^R/|^cache/|^packrat/|^renv/"))
+    return(paste0(defaults, collapse = "|"))
   }
-  exclusions = stringr::str_split(exclusions, ",")[[1]]
-  exclusions = stringr::str_remove(exclusions, "list\\W?\\(")
-  exclusions = stringr::str_remove(exclusions, "\\)$")
-  exclusions = stringr::str_squish(exclusions)
-  exclusions = stringr::str_remove_all(exclusions, ("^\"|\"$"))
+  exclusions = eval(parse(text = exclusions), envir = baseenv())
+
+  # Unnamed entries exclude whole files. Named entries exclude lines or linters
+  # within a file, which lintr::lint() applies itself, so those files are kept
+  nms = names(exclusions)
+  if (!is.null(nms)) {
+    exclusions = exclusions[!nzchar(nms)]
+  }
 
   ## Convert to regular expression
-  pattern = paste0(
-    c(exclusions, "^R/", "^cache/", "^packrat/", "^renv/"),
-    collapse = "|"
-  )
-  pattern
+  paste0(c(unlist(exclusions), defaults), collapse = "|")
 }
 
 lint_files = function() {
