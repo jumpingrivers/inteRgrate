@@ -1,3 +1,7 @@
+# inteRgrate 1.0.24 _2026-10-14_
+  * Bug: `check_lintr()` handles named `.lintr` exclusions, such as
+    `"tests" = list(undesirable_function_linter = Inf)`
+
 # inteRgrate 1.0.23 (2026-01-22)
   * chore: Spring clean; formatting linting, running jarl
 
